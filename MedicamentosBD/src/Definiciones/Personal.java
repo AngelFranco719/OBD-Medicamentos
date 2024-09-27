@@ -7,11 +7,11 @@ import java.util.*;
 public class Personal implements Serializable{
     @Id
     private String per_nombre; 
-    private enum Roles
+    public enum Roles
     {
         MEDICO, ENFERMERO
     };
-    private Roles per_rol;
+    public Roles per_rol;
     private String per_cedula;
     @OneToMany
         @JoinColumn(name="pres_per",nullable=false)
@@ -19,17 +19,31 @@ public class Personal implements Serializable{
     @OneToMany
         @JoinColumn(name="adm_per", nullable=false)
         private List<Administracion> per_adm=new ArrayList(); 
-    void formPer_pres(Prescripcion pres){
+    
+    public Personal(String per_nombre, Roles per_rol, String per_cedula){
+        this.per_nombre=per_nombre;
+        this.per_rol=per_rol;
+        this.per_cedula=per_cedula;
+    }
+    
+    public void formPer_pres(Prescripcion pres){
         this.per_pres.add(pres);
     }
-    void dropPer_pres(Prescripcion pres){
+    public void dropPer_pres(Prescripcion pres){
         this.per_pres.remove(pres);
     }
-    void formPer_adm(Administracion adm){
+    public void formPer_adm(Administracion adm){
         this.per_adm.add(adm);
     }
-    void dropPer_adm(Administracion adm){
+    public void dropPer_adm(Administracion adm){
         this.per_adm.remove(adm);
+    }
+    
+    public String getPer_nombre(){
+        return this.per_nombre;
+    }
+    public void setPer_nombre(String nombre){
+        this.per_nombre=nombre;
     }
     
     @Override
