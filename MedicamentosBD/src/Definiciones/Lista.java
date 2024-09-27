@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Definiciones;
 
 import java.io.Serializable;
@@ -34,6 +30,11 @@ private Date lis_hora_inicio;
     @OneToMany
         @JoinColumn(name="adm_lis",nullable=false)
         private List<Administracion> lis_adm=new ArrayList<Administracion>();
+    
+    @Transient
+    private SimpleDateFormat formato_fecha=new SimpleDateFormat("yyyy-mm-dd");
+    @Transient
+    private SimpleDateFormat formato_hora=new SimpleDateFormat("hh:mm:ss");
 
     public String getLis_intervalo() {
         return lis_intervalo;
@@ -72,36 +73,53 @@ private Date lis_hora_inicio;
     }
     
     
-    public Lista (String codigo, String intervalo, String dosis, int dias, Date fecha_inicio, Date hora_inicio){
+    public Lista (String codigo, String intervalo, String dosis, int dias, String fecha_inicio, String hora_inicio){
         lis_codigo =codigo;
         lis_intervalo = intervalo;
         lis_dosis = dosis;
         lis_dias = dias;
-        lis_fecha_inicio = fecha_inicio;
-        lis_hora_inicio = hora_inicio;
+        lis_fecha_inicio = this.parseStringToDate(fecha_inicio, formato_fecha);
+        lis_hora_inicio = this.parseStringToDate(hora_inicio, formato_hora);
     }
-    public SimpleDateFormat convertDate(Date fecha){
-       SimpleDateFormat df=new SimpleDateFormat("yyyy-mm-dd");
-        try{
-            df.parse(fecha.toString());
-        }catch(ParseException e){
-            System.out.println("Error al convertir la fecha");
-        }
-        return df;
-   }
+  
     
      @Override
     public String toString(){
-        SimpleDateFormat dt=this.convertDate(lis_fecha_inicio);
+        
         return String.format("\n-----\nCodigo: %s"
         + "\nIntervalo: %s"
         +"\nDosis: %s"
         +"\nDias: %d"
         +"\nFecha Inicio: %s"
-        +"\nHora Inicio: %s",
-        this.lis_codigo,this.lis_intervalo,this.lis_dosis,this.lis_dias,dt.toString(), this.getLis_adm(), this.getLis_med(), this.getLis_pres());
+        +"\nHora Inicio: %s"
+        +"\nFecha de Administracion: %s"
+        +"\nMedico: %s"
+        +"\nID Prescripcion: %s",
+        this.lis_codigo,
+        this.lis_intervalo,
+        this.lis_dosis,
+        this.lis_dias,
+        this.parseDatetoString(this.lis_fecha_inicio, formato_fecha), 
+        this.parseDatetoString(this.lis_hora_inicio, formato_hora),
+        this.getLis_adm(), 
+        this.getLis_med(), 
+        this.getLis_pres().getPres_codigo()
+        );
     }
     
+     private Date parseStringToDate(String fecha, SimpleDateFormat formato){
+        Date nuevaFecha=new Date();
+        try{
+            nuevaFecha=formato.parse(fecha);
+        }catch(Exception e){
+            System.out.println("Error al Convertir:"+e.toString()); 
+        }
+        return nuevaFecha;
+    }
+    
+    private String parseDatetoString(Date fecha, SimpleDateFormat formato){
+        return formato.format(fecha);
+    }
         
 
     public String getLis_codigo() {

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Definiciones;
 import java.io.Serializable;
 import java.text.ParseException;
@@ -32,40 +28,44 @@ public class Prescripcion implements Serializable {
         @JoinColumn(name="lis_pres",nullable=false)
         private List<Lista> pres_lis=new ArrayList<Lista>();
         
-    
+     @Transient
+    private SimpleDateFormat formato_fecha=new SimpleDateFormat("yyyy-mm-dd");
    
        
        
    public Prescripcion (){
    }
    
-   public Prescripcion(String codigo, Date fecha, String usos, String instrucciones){
+   public Prescripcion(String codigo, String Fecha, String usos, String instrucciones){
        pres_codigo=codigo;
-       pres_fecha=fecha;
+       pres_fecha=this.parseStringToDate(Fecha, formato_fecha);
        pres_usos=usos;
        pres_instrucciones=instrucciones;
        
        
    }
    
-   public SimpleDateFormat convertDate(Date fecha){
-       SimpleDateFormat df=new SimpleDateFormat("yyyy-mm-dd");
+   private Date parseStringToDate(String fecha, SimpleDateFormat formato){
+        Date nuevaFecha=new Date();
         try{
-            df.parse(fecha.toString());
-        }catch(ParseException e){
-            System.out.println("Error al convertir la fecha");
+            nuevaFecha=formato.parse(fecha);
+        }catch(Exception e){
+            System.out.println("Error al Convertir:"+e.toString()); 
         }
-        return df;
-   }
+        return nuevaFecha;
+    }
+    
+    private String parseDatetoString(Date fecha, SimpleDateFormat formato){
+        return formato.format(fecha);
+    }
    
    @Override
     public String toString(){
-        SimpleDateFormat dt=this.convertDate(pres_fecha);
         return String.format("\n-----\nCodigo: %s"
         + "\nFecha: %s"
         +"\nUsos: %s"
         +"\nInstrucciones: %s",
-        this.pres_codigo,dt.toString(),this.pres_usos,this.pres_instrucciones,this.getPres_pac(),this.getPres_per(),this.getPres_lis());
+        this.pres_codigo,this.parseDatetoString(pres_fecha, formato_fecha),this.pres_usos,this.pres_instrucciones,this.getPres_pac(),this.getPres_per(),this.getPres_lis());
     }
     
     public void formPres_pac(Paciente p1) {
