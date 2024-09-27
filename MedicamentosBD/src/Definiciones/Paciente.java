@@ -111,7 +111,5 @@ public class Paciente implements Serializable{
 
     public void setPac_pres(List<Prescripcion> pac_pres) {
         this.pac_pres = pac_pres;
-    }
-
-       
+    }    
 }
