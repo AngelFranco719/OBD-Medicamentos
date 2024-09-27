@@ -1,4 +1,4 @@
-package oodb_med;
+package Definiciones;
 
 import Definiciones.Ingreso;
 import java.io.Serializable;

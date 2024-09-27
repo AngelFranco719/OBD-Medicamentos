@@ -19,6 +19,9 @@ public class Personal implements Serializable{
     @OneToMany
         @JoinColumn(name="adm_per", nullable=false)
         private List<Administracion> per_adm=new ArrayList(); 
+    public Personal(){
+        
+    }
     
     public Personal(String per_nombre, Roles per_rol, String per_cedula){
         this.per_nombre=per_nombre;
