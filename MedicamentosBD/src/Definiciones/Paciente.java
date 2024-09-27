@@ -1,6 +1,6 @@
+package oodb_med;
 
-package Definiciones;
-
+import Definiciones.Ingreso;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.*;
