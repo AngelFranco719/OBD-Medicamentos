@@ -1,5 +1,6 @@
 package Definiciones;
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,9 +8,10 @@ import java.util.List;
 public class Medicamento implements Serializable {
 
     @Id
+    private String med_codigo;
     private String med_nombre;
-    private String med_presentacion;
     private int med_cantidad;
+    private String med_presentacion;
     private String med_descripcion;
 
     @OneToMany
