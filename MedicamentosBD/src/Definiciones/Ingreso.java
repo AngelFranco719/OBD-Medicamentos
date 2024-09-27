@@ -1,7 +1,9 @@
 
-package Definiciones;
+package oodb_med;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.*;
 import java.util.*;
 
@@ -18,6 +20,8 @@ public class Ingreso implements Serializable{
     @ManyToOne 
         @JoinColumn (name = "pac_ing", nullable = false)
         private Paciente ing_pac;
+    @Transient
+    private SimpleDateFormat formato_fecha=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     public Ingreso(){
         this.ing_num = 0;
@@ -28,28 +32,43 @@ public class Ingreso implements Serializable{
     }
     
 
-    public Ingreso(int i_n, String i_sin, String i_diag, Date i_feSal, Date i_feEnt) {
+    public Ingreso(int i_n, String i_sin, String i_diag, String i_feEnt, String i_feSal) {
         this.ing_num = i_n;
         this.ing_sintomas = i_sin;
         this.ing_diagnostico = i_diag;
-        this.ing_fechaSalida = i_feSal;
-        this.ing_fechaEntrada = i_feEnt;
+        this.ing_fechaEntrada = parseStringToDate(i_feEnt, formato_fecha);
+        this.ing_fechaSalida = parseStringToDate(i_feSal, formato_fecha);
     }
 
     @Override
     public String toString() {
+        
         return String.format("\n-----\nIngreso: %d "
                 + "\nSintomas: %s "
                 + "\nDiagnostico: %s "
-                + "\nFecha de Salida: %s "
                 + "\nFecha de Entrada: %s"
+                + "\nFecha de Salida: %s "
                 + "\nPaciente: %s\n",
                 this.ing_num, 
                 this.ing_sintomas, 
-                this.ing_diagnostico, 
-                this.ing_fechaSalida.toString(), 
-                this.ing_fechaEntrada.toString(), 
+                this.ing_diagnostico,  
+                this.parseDatetoString(ing_fechaSalida, formato_fecha),
+                this.parseDatetoString(ing_fechaEntrada, formato_fecha),
                 this.ing_pac.getPac_nombre());
+    }
+    
+    private Date parseStringToDate(String fecha, SimpleDateFormat formato){
+        Date nuevaFecha=new Date();
+        try{
+            nuevaFecha=formato.parse(fecha);
+        }catch(Exception e){
+            System.out.println("Error al Convertir:"+e.toString()); 
+        }
+        return nuevaFecha;
+    }
+    
+    private String parseDatetoString(Date fecha, SimpleDateFormat formato){
+        return formato.format(fecha);
     }
     
     public void formIng_pac(Paciente paci){
@@ -57,11 +76,6 @@ public class Ingreso implements Serializable{
     }
     
     public void dropIng_pac(Paciente paci){
-        // Remover este ingreso del conjunto de ingresos del paciente
-        if (paci != null) {
-            paci.getPac_ing().remove(this);
-        }
-        // Establecer el propietario del ingreso (ing_pac) como null
         this.ing_pac = null;
     }
 
