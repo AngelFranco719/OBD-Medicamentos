@@ -43,13 +43,13 @@ public class Ingreso implements Serializable{
                 + "\nDiagnostico: %s "
                 + "\nFecha de Salida: %s "
                 + "\nFecha de Entrada: %s"
-                + "\nPaciente: %b\n",
+                + "\nPaciente: %s\n",
                 this.ing_num, 
                 this.ing_sintomas, 
                 this.ing_diagnostico, 
                 this.ing_fechaSalida.toString(), 
                 this.ing_fechaEntrada.toString(), 
-                this.ing_pac);
+                this.ing_pac.getPac_nombre());
     }
     
     public void formIng_pac(Paciente paci){
