@@ -1,14 +1,11 @@
 package Definiciones;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import javax.persistence.*;
 import java.util.*;
-import java.time.format.DateTimeFormatter;
 
 @Entity
-public class Lista implements Serializable {
+public class Lista extends Fecha implements Serializable {
     private static final long serialVersionUID = 1L;
     
 @Id
@@ -31,10 +28,6 @@ private Date lis_hora_inicio;
         @JoinColumn(name="adm_lis",nullable=false)
         private List<Administracion> lis_adm=new ArrayList<Administracion>();
     
-    @Transient
-    private SimpleDateFormat formato_fecha=new SimpleDateFormat("yyyy-mm-dd");
-    @Transient
-    private SimpleDateFormat formato_hora=new SimpleDateFormat("hh:mm:ss");
 
     public String getLis_intervalo() {
         return lis_intervalo;
@@ -78,8 +71,8 @@ private Date lis_hora_inicio;
         lis_intervalo = intervalo;
         lis_dosis = dosis;
         lis_dias = dias;
-        lis_fecha_inicio = this.parseStringToDate(fecha_inicio, formato_fecha);
-        lis_hora_inicio = this.parseStringToDate(hora_inicio, formato_hora);
+        lis_fecha_inicio = this.parseStringToDate(fecha_inicio);
+        lis_hora_inicio = this.parseStringToHour(hora_inicio);
     }
   
     
@@ -99,29 +92,14 @@ private Date lis_hora_inicio;
         this.lis_intervalo,
         this.lis_dosis,
         this.lis_dias,
-        this.parseDatetoString(this.lis_fecha_inicio, formato_fecha), 
-        this.parseDatetoString(this.lis_hora_inicio, formato_hora),
+        this.parseDatetoString(this.lis_fecha_inicio), 
+        this.parseHourtoString(this.lis_hora_inicio),
         this.getLis_adm(), 
         this.getLis_med(), 
         this.getLis_pres().getPres_codigo()
         );
     }
     
-     private Date parseStringToDate(String fecha, SimpleDateFormat formato){
-        Date nuevaFecha=new Date();
-        try{
-            nuevaFecha=formato.parse(fecha);
-        }catch(Exception e){
-            System.out.println("Error al Convertir:"+e.toString()); 
-        }
-        return nuevaFecha;
-    }
-    
-    private String parseDatetoString(Date fecha, SimpleDateFormat formato){
-        return formato.format(fecha);
-    }
-        
-
     public String getLis_codigo() {
         return lis_codigo;
     }

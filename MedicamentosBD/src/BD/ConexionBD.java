@@ -5,7 +5,7 @@ public class ConexionBD {
     private EntityManager em;
     public ConexionBD(){
         try{
-            emf = Persistence.createEntityManagerFactory("$objectdb/db/cinedb.odb");
+            emf = Persistence.createEntityManagerFactory("$objectdb/db/Medicamentos.odb");
             em=emf.createEntityManager();
         }catch(Exception e){
             System.out.println("Error al Conectar con la Base de Datos."); 

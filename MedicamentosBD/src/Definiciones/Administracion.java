@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-public class Administracion implements Serializable{
+public class Administracion extends Fecha implements Serializable{
     @Id
     private String adm_codigo;
     private Date adm_fecha;
@@ -17,16 +17,13 @@ public class Administracion implements Serializable{
     @JoinColumn(name="lis_adm",nullable=false)
     private Lista adm_lis;
     
-    @Transient
-    private SimpleDateFormat formato_fecha=new SimpleDateFormat("yyyy-mm-dd");
-    @Transient
-    private SimpleDateFormat formato_hora=new SimpleDateFormat("hh:mm:ss");
-    
     public Administracion(String adm_codigo, String adm_fecha, String adm_hora, String adm_registro){
         this.adm_codigo=adm_codigo;
-        this.adm_fecha=this.parseStringToDate(adm_fecha, formato_fecha);
-        this.adm_hora=this.parseStringToDate(adm_hora, formato_hora);
+        this.adm_fecha=this.parseStringToDate(adm_fecha);
+        this.adm_hora=this.parseStringToHour(adm_hora);
         this.adm_registro=adm_registro; 
+    }
+    public Administracion(){
     }
     
     public void formAdm_per(Personal per){
@@ -42,19 +39,6 @@ public class Administracion implements Serializable{
         this.adm_lis=null;
     }
     
-    private Date parseStringToDate(String fecha, SimpleDateFormat formato){
-        Date nuevaFecha=new Date();
-        try{
-            nuevaFecha=formato.parse(fecha);
-        }catch(Exception e){
-            System.out.println("Error al Convertir:"+e.toString()); 
-        }
-        return nuevaFecha;
-    }
-    
-    private String parseDatetoString(Date fecha, SimpleDateFormat formato){
-        return formato.format(fecha);
-    }
     
     @Override
     public String toString(){
@@ -68,8 +52,8 @@ public class Administracion implements Serializable{
                 +"\nMedicamento Suministrado: %s"
                 , 
                 this.adm_codigo,
-                this.parseDatetoString(adm_fecha, formato_fecha),
-                this.parseDatetoString(adm_hora, formato_hora),
+                this.parseDatetoString(adm_fecha),
+                this.parseHourtoString(adm_hora),
                 this.adm_registro,
                 this.adm_per.getPer_nombre(),
                 this.adm_lis);

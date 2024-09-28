@@ -16,6 +16,14 @@ public class PrincipioActivo implements Serializable {
     @JoinColumn(name="comp_act",nullable=false)
     private List<Composicion> act_comp=new ArrayList();
 
+    public PrincipioActivo(String pri_codigo, String pri_nombre, String pri_descripcion){
+        this.pri_codigo=pri_codigo;
+        this.pri_nombre=pri_nombre;
+        this.pri_descripcion=pri_descripcion;
+    }
+    public PrincipioActivo(){
+    }
+    
     void formAct_comp(Composicion pres){
         this.act_comp.add(pres);
     }

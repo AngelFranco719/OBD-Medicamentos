@@ -2,13 +2,11 @@
 package Definiciones;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.*;
-import java.util.*;
 
 @Entity
-public class Ingreso implements Serializable{
+public class Ingreso extends Fecha implements Serializable{
     
     @Id
     private int ing_num;
@@ -20,8 +18,6 @@ public class Ingreso implements Serializable{
     @ManyToOne 
         @JoinColumn (name = "pac_ing", nullable = false)
         private Paciente ing_pac;
-    @Transient
-    private SimpleDateFormat formato_fecha=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     
     public Ingreso(){
         this.ing_num = 0;
@@ -36,8 +32,8 @@ public class Ingreso implements Serializable{
         this.ing_num = i_n;
         this.ing_sintomas = i_sin;
         this.ing_diagnostico = i_diag;
-        this.ing_fechaEntrada = parseStringToDate(i_feEnt, formato_fecha);
-        this.ing_fechaSalida = parseStringToDate(i_feSal, formato_fecha);
+        this.ing_fechaEntrada = parseStringToDate(i_feEnt);
+        this.ing_fechaSalida = parseStringToDate(i_feSal);
     }
 
     @Override
@@ -52,23 +48,9 @@ public class Ingreso implements Serializable{
                 this.ing_num, 
                 this.ing_sintomas, 
                 this.ing_diagnostico,  
-                this.parseDatetoString(ing_fechaSalida, formato_fecha),
-                this.parseDatetoString(ing_fechaEntrada, formato_fecha),
+                this.parseDatetoString(ing_fechaSalida),
+                this.parseDatetoString(ing_fechaEntrada),
                 this.ing_pac.getPac_nombre());
-    }
-    
-    private Date parseStringToDate(String fecha, SimpleDateFormat formato){
-        Date nuevaFecha=new Date();
-        try{
-            nuevaFecha=formato.parse(fecha);
-        }catch(Exception e){
-            System.out.println("Error al Convertir:"+e.toString()); 
-        }
-        return nuevaFecha;
-    }
-    
-    private String parseDatetoString(Date fecha, SimpleDateFormat formato){
-        return formato.format(fecha);
     }
     
     public void formIng_pac(Paciente paci){

@@ -1,13 +1,10 @@
 package Definiciones;
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import javax.persistence.*;
 import java.util.*;
-import java.time.format.DateTimeFormatter;
 
 @Entity
-public class Prescripcion implements Serializable {
+public class Prescripcion extends Fecha implements Serializable {
     private static final long serialVersionUID =1L;
     
     @Id
@@ -27,37 +24,18 @@ public class Prescripcion implements Serializable {
     @OneToMany
         @JoinColumn(name="lis_pres",nullable=false)
         private List<Lista> pres_lis=new ArrayList<Lista>();
-        
-     @Transient
-    private SimpleDateFormat formato_fecha=new SimpleDateFormat("yyyy-mm-dd");
-   
-       
        
    public Prescripcion (){
    }
    
    public Prescripcion(String codigo, String Fecha, String usos, String instrucciones){
        pres_codigo=codigo;
-       pres_fecha=this.parseStringToDate(Fecha, formato_fecha);
+       pres_fecha=this.parseStringToDate(Fecha);
        pres_usos=usos;
        pres_instrucciones=instrucciones;
        
        
    }
-   
-   private Date parseStringToDate(String fecha, SimpleDateFormat formato){
-        Date nuevaFecha=new Date();
-        try{
-            nuevaFecha=formato.parse(fecha);
-        }catch(Exception e){
-            System.out.println("Error al Convertir:"+e.toString()); 
-        }
-        return nuevaFecha;
-    }
-    
-    private String parseDatetoString(Date fecha, SimpleDateFormat formato){
-        return formato.format(fecha);
-    }
    
    @Override
     public String toString(){
@@ -65,7 +43,13 @@ public class Prescripcion implements Serializable {
         + "\nFecha: %s"
         +"\nUsos: %s"
         +"\nInstrucciones: %s",
-        this.pres_codigo,this.parseDatetoString(pres_fecha, formato_fecha),this.pres_usos,this.pres_instrucciones,this.getPres_pac(),this.getPres_per(),this.getPres_lis());
+        this.pres_codigo,
+        this.parseDatetoString(pres_fecha),
+        this.pres_usos,
+        this.pres_instrucciones,
+        this.getPres_pac(),
+        this.getPres_per(),
+        this.getPres_lis());
     }
     
     public void formPres_pac(Paciente p1) {
