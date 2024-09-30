@@ -10,10 +10,10 @@ public class MedicamentosBD {
         Personal p3=new Personal("Karla Citlaly Gomez Gomez", Personal.Roles.MEDICO, "KG-512891");
         Personal p4=new Personal("Cristian Enrique Rivas Anzaldo", Personal.Roles.ENFERMERO, "RI-12086");
         /// Objetos de Administración
-        Administracion a1=new Administracion("C-192", "11-10-2024","12:25:30","Completado");
-        Administracion a2=new Administracion("A-122", "12-10-2024","05:39:20","Completado");
-        Administracion a3=new Administracion("E-674", "13-10-2024","10:00:00","Programado");
-        Administracion a4=new Administracion("D-981", "14-10-2024","15:00:00","Programado");
+        Administracion a1=new Administracion("C-192", "11-10-2024 12:25:30","Completado");
+        Administracion a2=new Administracion("A-122", "12-10-2024 05:39:20","Completado");
+        Administracion a3=new Administracion("E-674", "13-10-2024 10:00:00","Programado");
+        Administracion a4=new Administracion("D-981", "14-10-2024 15:00:00","Programado");
         
         p1.formPer_adm(a1);
         p1.formPer_adm(a2);
@@ -80,7 +80,7 @@ public class MedicamentosBD {
        /* System.out.println(l1.toString());
         
        /*INGRESOS DE LOS PASIENTES*/
-       /* Ingreso i1 = new Ingreso(1, "Cuerpo cortado, nauseas y dolor de cabeza", "Infeccion en la vias respiratorias", "2024-09-26 13:20:10", "2024-09-26 13:20:10");
+        Ingreso i1 = new Ingreso(1, "Cuerpo cortado, nauseas y dolor de cabeza", "Infeccion en la vias respiratorias", "2024-09-26 13:20:10", "2024-09-26 13:20:10");
         Ingreso i2 = new Ingreso(2, "Ardor en garganta", "Gripa", "2024-08-01 09:20:10", "2024-08-01 09:05:32");
         Ingreso i3 = new Ingreso(3, "No soporta la luz, dolor de cabeza, malestar en general", "Migraña", "2024-10-30 15:00:10","2024-10-30 14:10:48");
         Ingreso i4 = new Ingreso(4, "Enrojecimiento en la piel", "Alergias", "2024-07-18 18:30:47", "2024-7-18 19:01:18");
@@ -108,7 +108,7 @@ public class MedicamentosBD {
         System.out.println("\n\n \t--- Datos de los pacientes y sus ingresos --- ");
         System.out.println(pa1.toString());
         System.out.println(pa2.toString());
-        System.out.println(pa3.toString()); */
+        System.out.println(pa3.toString()); 
         
         
     }

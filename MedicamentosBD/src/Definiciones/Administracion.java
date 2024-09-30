@@ -9,7 +9,6 @@ public class Administracion extends Fecha implements Serializable{
     @Id
     private String adm_codigo;
     private Date adm_fecha;
-    private Date adm_hora;
     private String adm_registro;
     @ManyToOne
     @JoinColumn(name="per_adm",nullable=false)
@@ -17,10 +16,9 @@ public class Administracion extends Fecha implements Serializable{
     @JoinColumn(name="lis_adm",nullable=false)
     private Lista adm_lis;
     
-    public Administracion(String adm_codigo, String adm_fecha, String adm_hora, String adm_registro){
+    public Administracion(String adm_codigo, String adm_fecha, String adm_registro){
         this.adm_codigo=adm_codigo;
         this.adm_fecha=this.parseStringToDate(adm_fecha);
-        this.adm_hora=this.parseStringToHour(adm_hora);
         this.adm_registro=adm_registro; 
     }
     public Administracion(){
@@ -46,14 +44,12 @@ public class Administracion extends Fecha implements Serializable{
                 "\n-----\n"+
                 "Codigo: %s"
                 +"\nFecha: %s"
-                +"\nHora: %s"
                 +"\nRegistro: %s"
                 +"\nPersonal a Cargo: %s"
                 +"\nMedicamento Suministrado: %s"
                 , 
                 this.adm_codigo,
                 this.parseDatetoString(adm_fecha),
-                this.parseHourtoString(adm_hora),
                 this.adm_registro,
                 this.adm_per.getPer_nombre(),
                 this.adm_lis);
