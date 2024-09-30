@@ -15,11 +15,11 @@ public class Prescripcion extends Fecha implements Serializable {
     
     @ManyToOne
         @JoinColumn(name="pac_pres",nullable=false)
-        private Paciente pres_pac=new Paciente();
+        private Paciente pres_pac;
         
     @ManyToOne
         @JoinColumn(name="per_pres",nullable=false)
-        private Personal pres_per=new Personal();
+        private Personal pres_per;
         
     @OneToMany
         @JoinColumn(name="lis_pres",nullable=false)

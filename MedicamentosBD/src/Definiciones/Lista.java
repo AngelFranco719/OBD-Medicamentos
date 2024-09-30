@@ -13,16 +13,15 @@ private String lis_codigo;
 private String lis_intervalo;
 private String lis_dosis;
 private int lis_dias;
-private Date lis_fecha_inicio;
-private Date lis_hora_inicio;
+private Date lis_fecha_hora_inicio;
 
     @ManyToOne
         @JoinColumn(name="pres_lis",nullable=false)
-        private Prescripcion lis_pres=new Prescripcion();
+        private Prescripcion lis_pres;
     
     @ManyToOne
         @JoinColumn(name="med_lis",nullable=false)
-        private Medicamento lis_med=new Medicamento();
+        private Medicamento lis_med;
     
     @OneToMany
         @JoinColumn(name="adm_lis",nullable=false)
@@ -66,13 +65,13 @@ private Date lis_hora_inicio;
     }
     
     
-    public Lista (String codigo, String intervalo, String dosis, int dias, String fecha_inicio, String hora_inicio){
+    public Lista (String codigo, String intervalo, String dosis, int dias, String fecha_hora_inicio){
         lis_codigo =codigo;
         lis_intervalo = intervalo;
         lis_dosis = dosis;
         lis_dias = dias;
-        lis_fecha_inicio = this.parseStringToDate(fecha_inicio);
-        lis_hora_inicio = this.parseStringToHour(hora_inicio);
+        lis_fecha_hora_inicio = this.parseStringToDate(fecha_hora_inicio);
+       
     }
   
     
@@ -92,8 +91,8 @@ private Date lis_hora_inicio;
         this.lis_intervalo,
         this.lis_dosis,
         this.lis_dias,
-        this.parseDatetoString(this.lis_fecha_inicio), 
-        this.parseHourtoString(this.lis_hora_inicio),
+        this.parseDatetoString(this.lis_fecha_hora_inicio), 
+        
         this.getLis_adm(), 
         this.getLis_med(), 
         this.getLis_pres().getPres_codigo()
@@ -148,20 +147,12 @@ private Date lis_hora_inicio;
         this.lis_dias = lis_dias;
     }
 
-    public Date getLis_fecha_inicio() {
-        return lis_fecha_inicio;
+    public Date getLis_fecha_hora_inicio() {
+        return lis_fecha_hora_inicio;
     }
 
-    public void setLis_fecha_inicio(Date lis_fecha_inicio) {
-        this.lis_fecha_inicio = lis_fecha_inicio;
-    }
-
-    public Date getLis_hora_inicio() {
-        return lis_hora_inicio;
-    }
-
-    public void setLis_hora_inicio(Date lis_hora_inicio) {
-        this.lis_hora_inicio = lis_hora_inicio;
+    public void setLis_fecha_hora_inicio(Date lis_fecha_inicio) {
+        this.lis_fecha_hora_inicio = lis_fecha_inicio;
     }
 
 
