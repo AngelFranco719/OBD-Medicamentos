@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class Fecha {
-    protected SimpleDateFormat Formato_Fecha=new SimpleDateFormat("dd-mm-yyyy hh:mm:ss"); 
+    protected SimpleDateFormat Formato_Fecha=new SimpleDateFormat("dd-MM-yyyy hh:mm:ss"); 
     public Date parseStringToDate(String fecha){
         Date nuevaFecha=new Date();
         try{
