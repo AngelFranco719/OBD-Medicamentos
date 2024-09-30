@@ -100,6 +100,30 @@ private Date lis_hora_inicio;
         );
     }
     
+    public void formLis_pres(Prescripcion pr1) {
+        lis_pres = pr1;
+    }
+    public void dropLis_pres(Prescripcion pr1) {
+        lis_pres = pr1;
+    }
+    
+    public void formLis_med(Medicamento m1) {
+        lis_med = m1;
+    }
+    public void dropLis_med(Medicamento m1) {
+        lis_med = m1;
+    }
+    
+    public void formLis_adm(Administracion a1)
+    {
+        getLis_adm().add(a1);
+    }
+     
+    public void dropLis_adm(Administracion a1)
+    {
+        getLis_adm().remove(a1);
+    }
+    
     public String getLis_codigo() {
         return lis_codigo;
     }
