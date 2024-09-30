@@ -30,31 +30,31 @@ public class MedicamentosBD {
         Nueva_Conexion.addPersist(a4);
         
         //Objetos de Prescripcion
-        Prescripcion pr1=new Prescripcion("P01-10","2024-12-13","2 Veces","Administrar medicamentos via oral");
+        Prescripcion pr1=new Prescripcion("P01-10","12-10-2024 10:00:00","2 Veces","Administrar medicamentos via oral");
         Nueva_Conexion.addPersist(pr1);
-        Prescripcion pr2=new Prescripcion("P02-11","2024-12-14","1 Veces","Administrar medicamentos via intramuscular");
+        Prescripcion pr2=new Prescripcion("P02-11","13-10-2024 10:00:00","1 Veces","Administrar medicamentos via intramuscular");
         Nueva_Conexion.addPersist(pr2);
-        Prescripcion pr3=new Prescripcion("P03-12","2024-12-15","3 Veces","Administrar medicamentos via oral");
+        Prescripcion pr3=new Prescripcion("P03-12","14-10-2024 10:00:00","3 Veces","Administrar medicamentos via oral");
         Nueva_Conexion.addPersist(pr3);
-        Prescripcion pr4=new Prescripcion("P04-13","2024-12-16","2 Veces","Administrar medicamentos via intramuscular");
+        Prescripcion pr4=new Prescripcion("P04-13","15-10-2024 10:00:00","2 Veces","Administrar medicamentos via intramuscular");
         Nueva_Conexion.addPersist(pr4);
-        Prescripcion pr5=new Prescripcion("P05-14","2024-12-17","4 Veces","Administrar medicamentos via oral");
+        Prescripcion pr5=new Prescripcion("P05-14","16-10-2024 10:00:00","4 Veces","Administrar medicamentos via oral");
         Nueva_Conexion.addPersist(pr5);
-        Prescripcion pr6=new Prescripcion("P06-15","2024-12-18","1 Veces","Administrar medicamentos via oral");
+        Prescripcion pr6=new Prescripcion("P06-15","17-10-2024 10:00:00","1 Veces","Administrar medicamentos via oral");
         Nueva_Conexion.addPersist(pr6);
         
         //Objetos de Lista 
-        Lista l1=new Lista("L01-10","Cada 4hr","20ml",5,"2024-10-10 10:36:02");
+        Lista l1=new Lista("L01-10","Cada 4hr","20ml",5,"10-10-2024 10:36:02");
         Nueva_Conexion.addPersist(l1);
-        Lista l2=new Lista("L02-11","Cada 6hr","3.5ml",3,"2024-10-11 10:00:02");
+        Lista l2=new Lista("L02-11","Cada 6hr","3.5ml",3,"11-10-2024 10:00:02");
         Nueva_Conexion.addPersist(l2);
-        Lista l3=new Lista("L03-12","Cada 24hr","500gr",2,"2024-10-12 11:00:02");
+        Lista l3=new Lista("L03-12","Cada 24hr","500gr",2,"12-10-2024 11:00:02");
         Nueva_Conexion.addPersist(l3);
-        Lista l4=new Lista("L04-13","Cada 24hr","5ml",5,"2024-10-13 11:30:02");
+        Lista l4=new Lista("L04-13","Cada 24hr","5ml",5,"13-10-2024 11:30:02");
         Nueva_Conexion.addPersist(l4);
-        Lista l5=new Lista("L05-14","Cada 6hr","200gr",7,"2024-10-14 13:40:02");
+        Lista l5=new Lista("L05-14","Cada 6hr","200gr",7,"14-10-2024 13:40:02");
         Nueva_Conexion.addPersist(l5);
-        Lista l6=new Lista("L06-15","Cada 8hr","15ml",6,"2024-10-15 13:50:02");
+        Lista l6=new Lista("L06-15","Cada 8hr","15ml",6,"15-10-2024 13:50:02");
         Nueva_Conexion.addPersist(l6);
   
         a1.formAdm_per(p1);
