@@ -20,16 +20,25 @@ public class Medicamento implements Serializable {
     @OneToMany
     @JoinColumn(name="list_med",nullable=false)
     private List<Lista>med_list=new ArrayList();
-    void formMed_comp(Composicion pres){
+    
+    public Medicamento(String med_codigo, String med_nombre, int med_cantidad, String med_presentacion, String med_descripcion){
+        this.med_codigo=med_codigo;
+        this.med_nombre=med_nombre;
+        this.med_cantidad=med_cantidad;
+        this.med_presentacion=med_presentacion; 
+        this.med_descripcion=med_descripcion; 
+    }
+    
+    public void formMed_comp(Composicion pres){
         this.med_comp.add(pres);
     }
-    void dropMed_comp(Composicion pres){
+    public void dropMed_comp(Composicion pres){
         this.med_comp.remove(pres);
     }
-    void formMed_list(Lista adm){
+    public void formMed_list(Lista adm){
         this.med_list.add(adm);
     }
-    void dropMed_list(Lista adm){
+    public void dropMed_list(Lista adm){
         this.med_list.remove(adm);
     }
     @Override

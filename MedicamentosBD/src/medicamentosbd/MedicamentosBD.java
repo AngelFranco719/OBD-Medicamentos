@@ -4,6 +4,25 @@ import Definiciones.*;
 public class MedicamentosBD {   
     public static void main(String[] args) {
         ConexionBD Nueva_Conexion=new ConexionBD();
+        ///Objetos medicamentos
+        Medicamento m1 = new Medicamento("I-2190","Dolorac",12,"Pastillas","Para dolores de cabeza y corporales");
+        Medicamento m2 = new Medicamento("P-0182","Tempra", 500, "Bebible", "Para dolores de estómago");
+        Medicamento m3 = new Medicamento("A-0091","Excedrin", 100, "Tabletas", "Para aliviar el dolor y reducir la fiebre");
+        Medicamento m4 = new Medicamento("N-1917","Flanax", 250, "Pastillas", "Para dolores articulares y musculares");
+        Medicamento m5 = new Medicamento("D-9137","Dolotren", 50, "Gel", "Para inflamaciones y dolores localizados");
+        
+        Nueva_Conexion.addPersist(m1);
+        Nueva_Conexion.addPersist(m2);
+        Nueva_Conexion.addPersist(m3);
+        Nueva_Conexion.addPersist(m4);
+        Nueva_Conexion.addPersist(m5);
+        //Objetos PincipioActivo
+        PrincipioActivo pa1 = new PrincipioActivo("D5009", "Ibuprofeno", "Antiinflamatorio no esteroideo");
+        PrincipioActivo pa2 = new PrincipioActivo("D5010", "Paracetamol", "Analgésico y antipirético");
+        PrincipioActivo pa3 = new PrincipioActivo("D5011", "Aspirina", "Antiinflamatorio y analgésico");
+        PrincipioActivo pa4 = new PrincipioActivo("D5012", "Naproxeno", "Antiinflamatorio no esteroideo");
+        PrincipioActivo pa5 = new PrincipioActivo("D5013", "Diclofenaco", "Antiinflamatorio y analgésico");
+        Nueva_Conexion.addPersist(pa1); 
         /// Objetos de Personal
         Personal p1=new Personal("Angel David Franco Hernandez", Personal.Roles.ENFERMERO, "A-291281"); 
         Personal p2=new Personal("Isay Fajardo Reyes", Personal.Roles.MEDICO, "FA-192181"); 
@@ -97,28 +116,35 @@ public class MedicamentosBD {
         Nueva_Conexion.addPersist(pa1);
         Paciente pa2 = new Paciente(47018329, "Maria Gonzalez", (float) 1.63, (float) 59.300);
         Nueva_Conexion.addPersist(pa2);
-        Paciente pa3 = new Paciente(57829375, "Jesus Ochoa", (float) 1.70, (float) 87.150);
         Nueva_Conexion.addPersist(pa3);
+        Nueva_Conexion.addPersist(pa4);
+        Nueva_Conexion.addPersist(pa5);
         
-        pa1.formPac_ing(i1);
-        pa1.formPac_ing(i6);
-        pa2.formPac_ing(i2);
-        pa2.formPac_ing(i3);
-        pa3.formPac_ing(i4);
-        pa3.formPac_ing(i5);
+        //Objetos Composicion
+        Composicion c1 = new Composicion("C-01",109);
+        c1.formComp_med(m1);
+        c1.formComp_act(pa1);
+        m1.formMed_comp(c1);
+        pa1.formAct_comp(c1);
+        Composicion c2=new Composicion("C-02",201);
+        c2.formComp_med(m2);
+        c2.formComp_act(pa2);
+        m2.formMed_comp(c2);
+        pa2.formAct_comp(c2);
+        Composicion c3=new Composicion("C-03",150);
+        c2.formComp_med(m3);
+        c2.formComp_act(pa3);
+        m3.formMed_comp(c3);
+        pa3.formAct_comp(c3);
         
-        i1.formIng_pac(pa1);
-        i2.formIng_pac(pa2);
-        i3.formIng_pac(pa2);
-        i4.formIng_pac(pa3);
-        i5.formIng_pac(pa3);
-        i6.formIng_pac(pa1);
+        Nueva_Conexion.addPersist(c1);
+        Nueva_Conexion.addPersist(c2);
+        Nueva_Conexion.addPersist(c3);
         
-        System.out.println("\n\n \t--- Datos de los pacientes y sus ingresos --- ");
-        System.out.println(pa1.toString());
-        System.out.println(pa2.toString());
-        System.out.println(pa3.toString()); 
         
+        System.out.println(c1.toString());
+        System.out.println(c2.toString());
+        System.out.println(c3.toString());
         
     }
 }
