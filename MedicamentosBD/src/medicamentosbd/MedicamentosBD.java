@@ -22,7 +22,11 @@ public class MedicamentosBD {
         PrincipioActivo pa3 = new PrincipioActivo("D5011", "Aspirina", "Antiinflamatorio y analgésico");
         PrincipioActivo pa4 = new PrincipioActivo("D5012", "Naproxeno", "Antiinflamatorio no esteroideo");
         PrincipioActivo pa5 = new PrincipioActivo("D5013", "Diclofenaco", "Antiinflamatorio y analgésico");
-        Nueva_Conexion.addPersist(pa1); 
+        Nueva_Conexion.addPersist(pa1);
+        Nueva_Conexion.addPersist(pa2);
+        Nueva_Conexion.addPersist(pa3);
+        Nueva_Conexion.addPersist(pa4);
+        Nueva_Conexion.addPersist(pa5);
         /// Objetos de Personal
         Personal p1=new Personal("Angel David Franco Hernandez", Personal.Roles.ENFERMERO, "A-291281"); 
         Personal p2=new Personal("Isay Fajardo Reyes", Personal.Roles.MEDICO, "FA-192181"); 
@@ -99,26 +103,39 @@ public class MedicamentosBD {
        /* System.out.println(l1.toString());
         
        /*INGRESOS DE LOS PASIENTES*/
-        Ingreso i1 = new Ingreso(1, "Cuerpo cortado, nauseas y dolor de cabeza", "Infeccion en la vias respiratorias", "2024-09-26 13:20:10", "2024-09-26 13:20:10");
+        Ingreso i1 = new Ingreso(1, "Cuerpo cortado, nauseas y dolor de cabeza", "Infeccion en la vias respiratorias", "26-09-2024 13:20:10", "26-09-2024 16:02:10");
         Nueva_Conexion.addPersist(i1);
-        Ingreso i2 = new Ingreso(2, "Ardor en garganta", "Gripa", "2024-08-01 09:20:10", "2024-08-01 09:05:32");
+        Ingreso i2 = new Ingreso(2, "Ardor en garganta", "Gripa", "01-08-2024 09:10:10", "01-08-2024 09:45:32");
         Nueva_Conexion.addPersist(i2);
-        Ingreso i3 = new Ingreso(3, "No soporta la luz, dolor de cabeza, malestar en general", "Migraña", "2024-10-30 15:00:10","2024-10-30 14:10:48");
+        Ingreso i3 = new Ingreso(3, "No soporta la luz, dolor de cabeza, malestar en general", "Migraña", "30-10-2024 15:00:10","30-10-2024 16:10:48");
         Nueva_Conexion.addPersist(i3);
-        Ingreso i4 = new Ingreso(4, "Enrojecimiento en la piel", "Alergias", "2024-07-18 18:30:47", "2024-7-18 19:01:18");
+        Ingreso i4 = new Ingreso(4, "Enrojecimiento en la piel", "Alergias", "18-07-2024 18:30:47", "18-7-2024 19:01:18");
         Nueva_Conexion.addPersist(i4);
-        Ingreso i5 = new Ingreso(5, "Salpullido y comezon en la piel ", "Varicela", "2024-10-10 10:00:10", "2024-10-16 9:11:00");
+        Ingreso i5 = new Ingreso(5, "Salpullido y comezon en la piel ", "Varicela", "10-10-2024 10:00:10", "16-10-2024 9:11:00");
         Nueva_Conexion.addPersist(i5);
-        Ingreso i6 = new Ingreso(6, "Diarrea, fiebre, dolor en el abdomen", "Infeccion estomacal", "2024-09-30 16:50:10", "2024-10-13 13:0:10");
+        Ingreso i6 = new Ingreso(6, "Diarrea, fiebre, dolor en el abdomen", "Infeccion estomacal", "30-09-2024 16:50:10", "13-10-2024 13:0:10");
         Nueva_Conexion.addPersist(i6);
         
-        Paciente pa1 = new Paciente(39792411, "Ricardo Moreno", (float) 1.71, (float) 80.200);
-        Nueva_Conexion.addPersist(pa1);
-        Paciente pa2 = new Paciente(47018329, "Maria Gonzalez", (float) 1.63, (float) 59.300);
-        Nueva_Conexion.addPersist(pa2);
-        Nueva_Conexion.addPersist(pa3);
-        Nueva_Conexion.addPersist(pa4);
-        Nueva_Conexion.addPersist(pa5);
+        Paciente pac1 = new Paciente(39792411, "Ricardo Moreno", (float) 1.71, (float) 80.200);
+        Nueva_Conexion.addPersist(pac1);
+        Paciente pac2 = new Paciente(47018329, "Maria Gonzalez", (float) 1.63, (float) 59.300);
+        Nueva_Conexion.addPersist(pac2);
+        Paciente pac3 = new Paciente(57829375, "Jesus Ochoa", (float) 1.70, (float) 87.150);
+        Nueva_Conexion.addPersist(pac3);
+        
+        pac1.formPac_ing(i1);
+        pac1.formPac_ing(i6);
+        pac2.formPac_ing(i2);
+        pac2.formPac_ing(i3);
+        pac3.formPac_ing(i4);
+        pac3.formPac_ing(i5);
+        
+        i1.formIng_pac(pac1);
+        i2.formIng_pac(pac2);
+        i3.formIng_pac(pac2);
+        i4.formIng_pac(pac3);
+        i5.formIng_pac(pac3);
+        i6.formIng_pac(pac1);        
         
         //Objetos Composicion
         Composicion c1 = new Composicion("C-01",109);
