@@ -8,6 +8,7 @@ import java.util.List;
 public class Composicion implements Serializable {
 
     @Id
+    private String comp_codigo; 
     private int comp_cantidad;
 
     @ManyToOne
@@ -18,17 +19,27 @@ public class Composicion implements Serializable {
     @JoinColumn(name = "act_comp", nullable = false)
     private List<PrincipioActivo> comp_act=new ArrayList();
 
-    void formComp_med(Medicamento med){
+    public Composicion(String comp_codigo,int comp_cantidad){
+        this.comp_cantidad=comp_cantidad;
+        this.comp_codigo=comp_codigo; 
+    }
+            
+    
+    public void formComp_med(Medicamento med){
         this.comp_med.add(med);
     }
-    void dropComp_med(Medicamento med){
+    public void dropComp_med(Medicamento med){
         this.comp_med.remove(med);
     }
-    void formComp_act(PrincipioActivo act){
+    public void formComp_act(PrincipioActivo act){
         this.comp_act.add(act);
     }
-    void dropComp_act(PrincipioActivo act){
+    public void dropComp_act(PrincipioActivo act){
         this.comp_act.remove(act);
+    }
+    
+    public String getComp_codigo(){
+        return this.comp_codigo;
     }
     
     @Override

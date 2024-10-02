@@ -24,24 +24,24 @@ public class PrincipioActivo implements Serializable {
     public PrincipioActivo(){
     }
     
-    void formAct_comp(Composicion pres){
+    public void formAct_comp(Composicion pres){
         this.act_comp.add(pres);
     }
-    void dropAct_comp(Composicion pres){
+    public void dropAct_comp(Composicion pres){
         this.act_comp.remove(pres);
     }
     
     @Override
     public String toString() {
         return String.format("\n------\n"+
-                             "Código: %s"+
-                             "\nNombre: %s"+
-                             "\nDescripcion: %s"+
-                             "\nComposicion: %s",
-                         this.pri_codigo,
-                         this.pri_nombre,
-                         this.pri_descripcion
-                         );
+                     "Código: %s" +
+                     "\nNombre: %s" +
+                     "\nDescripcion: %s" +
+                     "\nComposicion: %s",
+                     this.pri_codigo,
+                     this.pri_nombre,
+                     this.pri_descripcion,
+                     this.act_comp.get(0).getComp_codigo());
     }
 }
 
