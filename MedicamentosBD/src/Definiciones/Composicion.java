@@ -54,4 +54,11 @@ public class Composicion implements Serializable {
                 this.comp_act
         );
     }
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        Composicion comparado=(Composicion)obj;
+        return this.comp_codigo.equals(comparado.comp_codigo);
+    }
 }

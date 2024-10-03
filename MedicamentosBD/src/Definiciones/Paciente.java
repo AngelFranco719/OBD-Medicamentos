@@ -113,6 +113,13 @@ public class Paciente implements Serializable{
     public void setPac_pres(List<Prescripcion> pac_pres) {
         this.pac_pres = pac_pres;
     }
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        Paciente comparado=(Paciente)obj;
+        return this.pac_nombre.equals(comparado.pac_nombre);
+    }
 
        
 }

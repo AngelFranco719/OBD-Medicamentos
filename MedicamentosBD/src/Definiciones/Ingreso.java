@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class Ingreso extends Fecha implements Serializable{
     
     @Id
+    private String ing_codigo; 
     private int ing_num;
     private String ing_sintomas;
     private String ing_diagnostico;
@@ -28,7 +29,8 @@ public class Ingreso extends Fecha implements Serializable{
     }
     
 
-    public Ingreso(int i_n, String i_sin, String i_diag, String i_feEnt, String i_feSal) {
+    public Ingreso(String i_codigo,int i_n, String i_sin, String i_diag, String i_feEnt, String i_feSal) {
+        this.ing_codigo=i_codigo; 
         this.ing_num = i_n;
         this.ing_sintomas = i_sin;
         this.ing_diagnostico = i_diag;
@@ -61,6 +63,10 @@ public class Ingreso extends Fecha implements Serializable{
         this.ing_pac = null;
     }
 
+    public String getIng_codigo(){
+        return this.ing_codigo;
+    }
+    
     public int getIng_num() {
         return ing_num;
     }
@@ -109,5 +115,11 @@ public class Ingreso extends Fecha implements Serializable{
         this.ing_pac = ing_pac;
     }    
     
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        return false; 
+    }
     
 }

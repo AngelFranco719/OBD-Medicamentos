@@ -37,6 +37,9 @@ public class Administracion extends Fecha implements Serializable{
         this.adm_lis=null;
     }
     
+    public String getAdm_codigo(){
+        return this.adm_codigo;
+    }
     
     @Override
     public String toString(){
@@ -53,5 +56,12 @@ public class Administracion extends Fecha implements Serializable{
                 this.adm_registro,
                 this.adm_per.getPer_nombre(),
                 this.adm_lis);
+    }
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        Administracion comparado=(Administracion)obj;
+        return this.adm_codigo.equals(comparado.adm_codigo);
     }
 }

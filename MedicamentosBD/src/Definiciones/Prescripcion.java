@@ -121,6 +121,13 @@ public class Prescripcion extends Fecha implements Serializable {
     public List<Lista> getPres_lis() {
         return pres_lis;
     }
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        Prescripcion comparado=(Prescripcion)obj;
+        return this.pres_codigo.equals(comparado.pres_codigo);
+    }
 }    
     
     

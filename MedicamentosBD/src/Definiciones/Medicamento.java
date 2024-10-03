@@ -41,6 +41,10 @@ public class Medicamento implements Serializable {
     public void dropMed_list(Lista adm){
         this.med_list.remove(adm);
     }
+    
+    public String getMed_codigo(){
+        return this.med_codigo; 
+    }
     @Override
     public String toString() {
         return String.format("\n------\n"+
@@ -53,5 +57,12 @@ public class Medicamento implements Serializable {
                          this.med_cantidad,
                          this.med_descripcion
                          );
+    }
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        Medicamento comparado=(Medicamento)obj;
+        return this.med_codigo.equals(comparado.med_codigo);
     }
 }

@@ -43,5 +43,12 @@ public class PrincipioActivo implements Serializable {
                      this.pri_descripcion,
                      this.act_comp.get(0).getComp_codigo());
     }
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        PrincipioActivo comparado=(PrincipioActivo)obj;
+        return this.pri_codigo.equals(comparado.pri_codigo);
+    }
 }
 

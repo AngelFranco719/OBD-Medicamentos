@@ -64,4 +64,11 @@ public class Personal implements Serializable{
                          this.per_adm.size()
                          );
     } 
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        Personal comparado=(Personal)obj;
+        return this.per_nombre.equals(comparado.per_nombre);
+    }
 }

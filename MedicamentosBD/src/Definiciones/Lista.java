@@ -155,6 +155,12 @@ private Date lis_fecha_hora_inicio;
         this.lis_fecha_hora_inicio = lis_fecha_inicio;
     }
 
-
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        Lista comparado=(Lista)obj;
+        return this.lis_codigo.equals(comparado.lis_codigo);
+    }
 
 }
