@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import javax.persistence.*;
 import java.util.List;
 @Entity
-public class Medicamento implements Serializable {
+public class Medicamento extends Modelo implements Serializable {
 
     @Id
     private String med_codigo;
@@ -45,6 +45,12 @@ public class Medicamento implements Serializable {
     public String getMed_codigo(){
         return this.med_codigo; 
     }
+    
+    @Override
+    public String getID(){
+        return this.med_codigo;
+    }
+    
     @Override
     public String toString() {
         return String.format("\n------\n"+

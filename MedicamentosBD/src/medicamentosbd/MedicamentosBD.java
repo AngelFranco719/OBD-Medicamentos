@@ -1,167 +1,82 @@
 package medicamentosbd; 
 import BD.ConexionBD;
-import Definiciones.*;
-public class MedicamentosBD {   
+import Controlador.*;
+import Vistas.*;
+public class MedicamentosBD {  
+    static ConexionBD Conexion_Actual=new ConexionBD(); 
+    static Modelo_Administracion M_Adm; 
+    static Modelo_Composicion M_Comp; 
+    static Modelo_Ingreso M_Ing; 
+    static Modelo_Lista M_Lis; 
+    static Modelo_Medicamento M_Medicamento; 
+    static Modelo_Paciente M_Pac;
+    static Modelo_Personal M_Per;
+    static Modelo_Prescripcion M_Pres;
+    static Modelo_PrincipioActivo M_Pri; 
+    static Vista_Administracion Administracion;
+    static Vista_Composicion Composicion;
+    static Vista_Ingreso Ingreso;
+    static Vista_Lista Lista;
+    static Vista_Medicamento Medicamento;
+    static Vista_Paciente Paciente;
+    static Vista_Personal Personal;
+    static Vista_Prescripcion Prescripcion;
+    static Vista_PrincipioActivo Principio;
+    
     public static void main(String[] args) {
-        ConexionBD Nueva_Conexion=new ConexionBD();
-        ///Objetos medicamentos
-        Medicamento m1 = new Medicamento("I-2190","Dolorac",12,"Pastillas","Para dolores de cabeza y corporales");
-        Medicamento m2 = new Medicamento("P-0182","Tempra", 500, "Bebible", "Para dolores de estómago");
-        Medicamento m3 = new Medicamento("A-0091","Excedrin", 100, "Tabletas", "Para aliviar el dolor y reducir la fiebre");
-        Medicamento m4 = new Medicamento("N-1917","Flanax", 250, "Pastillas", "Para dolores articulares y musculares");
-        Medicamento m5 = new Medicamento("D-9137","Dolotren", 50, "Gel", "Para inflamaciones y dolores localizados");
-        
-        Nueva_Conexion.addPersist(m1);
-        Nueva_Conexion.addPersist(m2);
-        Nueva_Conexion.addPersist(m3);
-        Nueva_Conexion.addPersist(m4);
-        Nueva_Conexion.addPersist(m5);
-        //Objetos PincipioActivo
-        PrincipioActivo pa1 = new PrincipioActivo("D5009", "Ibuprofeno", "Antiinflamatorio no esteroideo");
-        PrincipioActivo pa2 = new PrincipioActivo("D5010", "Paracetamol", "Analgésico y antipirético");
-        PrincipioActivo pa3 = new PrincipioActivo("D5011", "Aspirina", "Antiinflamatorio y analgésico");
-        PrincipioActivo pa4 = new PrincipioActivo("D5012", "Naproxeno", "Antiinflamatorio no esteroideo");
-        PrincipioActivo pa5 = new PrincipioActivo("D5013", "Diclofenaco", "Antiinflamatorio y analgésico");
-        Nueva_Conexion.addPersist(pa1);
-        Nueva_Conexion.addPersist(pa2);
-        Nueva_Conexion.addPersist(pa3);
-        Nueva_Conexion.addPersist(pa4);
-        Nueva_Conexion.addPersist(pa5);
-        /// Objetos de Personal
-        Personal p1=new Personal("Angel David Franco Hernandez", Personal.Roles.ENFERMERO, "A-291281"); 
-        Personal p2=new Personal("Isay Fajardo Reyes", Personal.Roles.MEDICO, "FA-192181"); 
-        Personal p3=new Personal("Karla Citlaly Gomez Gomez", Personal.Roles.MEDICO, "KG-512891");
-        Personal p4=new Personal("Cristian Enrique Rivas Anzaldo", Personal.Roles.ENFERMERO, "RI-12086");
-        /// Objetos de Administración
-        Administracion a1=new Administracion("C-192", "11-10-2024 12:25:30","Completado");
-        Administracion a2=new Administracion("A-122", "12-10-2024 05:39:20","Completado");
-        Administracion a3=new Administracion("E-674", "13-10-2024 10:00:00","Programado");
-        Administracion a4=new Administracion("D-981", "14-10-2024 15:00:00","Programado");
-        
-        p1.formPer_adm(a1);
-        p1.formPer_adm(a2);
-        p4.formPer_adm(a3);
-        p4.formPer_adm(a4);
-        
-        Nueva_Conexion.addPersist(p1);
-        Nueva_Conexion.addPersist(p2);
-        Nueva_Conexion.addPersist(p3);
-        Nueva_Conexion.addPersist(p4);
-        Nueva_Conexion.addPersist(a1);
-        Nueva_Conexion.addPersist(a2);
-        Nueva_Conexion.addPersist(a3);
-        Nueva_Conexion.addPersist(a4);
-        
-        //Objetos de Prescripcion
-        Prescripcion pr1=new Prescripcion("P01-10","12-10-2024 10:00:00","2 Veces","Administrar medicamentos via oral");
-        Nueva_Conexion.addPersist(pr1);
-        Prescripcion pr2=new Prescripcion("P02-11","13-10-2024 10:00:00","1 Veces","Administrar medicamentos via intramuscular");
-        Nueva_Conexion.addPersist(pr2);
-        Prescripcion pr3=new Prescripcion("P03-12","14-10-2024 10:00:00","3 Veces","Administrar medicamentos via oral");
-        Nueva_Conexion.addPersist(pr3);
-        Prescripcion pr4=new Prescripcion("P04-13","15-10-2024 10:00:00","2 Veces","Administrar medicamentos via intramuscular");
-        Nueva_Conexion.addPersist(pr4);
-        Prescripcion pr5=new Prescripcion("P05-14","16-10-2024 10:00:00","4 Veces","Administrar medicamentos via oral");
-        Nueva_Conexion.addPersist(pr5);
-        Prescripcion pr6=new Prescripcion("P06-15","17-10-2024 10:00:00","1 Veces","Administrar medicamentos via oral");
-        Nueva_Conexion.addPersist(pr6);
-        
-        //Objetos de Lista 
-        Lista l1=new Lista("L01-10","Cada 4hr","20ml",5,"10-10-2024 10:36:02");
-        Nueva_Conexion.addPersist(l1);
-        Lista l2=new Lista("L02-11","Cada 6hr","3.5ml",3,"11-10-2024 10:00:02");
-        Nueva_Conexion.addPersist(l2);
-        Lista l3=new Lista("L03-12","Cada 24hr","500gr",2,"12-10-2024 11:00:02");
-        Nueva_Conexion.addPersist(l3);
-        Lista l4=new Lista("L04-13","Cada 24hr","5ml",5,"13-10-2024 11:30:02");
-        Nueva_Conexion.addPersist(l4);
-        Lista l5=new Lista("L05-14","Cada 6hr","200gr",7,"14-10-2024 13:40:02");
-        Nueva_Conexion.addPersist(l5);
-        Lista l6=new Lista("L06-15","Cada 8hr","15ml",6,"15-10-2024 13:50:02");
-        Nueva_Conexion.addPersist(l6);
-  
-        a1.formAdm_per(p1);
-        p1.formPer_adm(a1);
-        
-        pr1.formPres_lis(l1);
-        l1.formLis_pres(pr1);
-        pr2.formPres_lis(l2);
-        l2.formLis_pres(pr2);
-        pr3.formPres_lis(l3);
-        l3.formLis_pres(pr3);
-        pr4.formPres_lis(l4);
-        l4.formLis_pres(pr4);
-        pr5.formPres_lis(l5);
-        l5.formLis_pres(pr5);
-        pr6.formPres_lis(l6);
-        l6.formLis_pres(pr6);
-        
-        
-        System.out.println(a1.toString());
-        System.out.println(p1.toString());
-        System.out.println(pr1.toString());
-       /* System.out.println(l1.toString());
-        
-       /*INGRESOS DE LOS PASIENTES*/
-        Ingreso i1 = new Ingreso(1, "Cuerpo cortado, nauseas y dolor de cabeza", "Infeccion en la vias respiratorias", "26-09-2024 13:20:10", "26-09-2024 16:02:10");
-        Nueva_Conexion.addPersist(i1);
-        Ingreso i2 = new Ingreso(2, "Ardor en garganta", "Gripa", "01-08-2024 09:10:10", "01-08-2024 09:45:32");
-        Nueva_Conexion.addPersist(i2);
-        Ingreso i3 = new Ingreso(3, "No soporta la luz, dolor de cabeza, malestar en general", "Migraña", "30-10-2024 15:00:10","30-10-2024 16:10:48");
-        Nueva_Conexion.addPersist(i3);
-        Ingreso i4 = new Ingreso(4, "Enrojecimiento en la piel", "Alergias", "18-07-2024 18:30:47", "18-7-2024 19:01:18");
-        Nueva_Conexion.addPersist(i4);
-        Ingreso i5 = new Ingreso(5, "Salpullido y comezon en la piel ", "Varicela", "10-10-2024 10:00:10", "16-10-2024 9:11:00");
-        Nueva_Conexion.addPersist(i5);
-        Ingreso i6 = new Ingreso(6, "Diarrea, fiebre, dolor en el abdomen", "Infeccion estomacal", "30-09-2024 16:50:10", "13-10-2024 13:0:10");
-        Nueva_Conexion.addPersist(i6);
-        
-        Paciente pac1 = new Paciente(39792411, "Ricardo Moreno", (float) 1.71, (float) 80.200);
-        Nueva_Conexion.addPersist(pac1);
-        Paciente pac2 = new Paciente(47018329, "Maria Gonzalez", (float) 1.63, (float) 59.300);
-        Nueva_Conexion.addPersist(pac2);
-        Paciente pac3 = new Paciente(57829375, "Jesus Ochoa", (float) 1.70, (float) 87.150);
-        Nueva_Conexion.addPersist(pac3);
-        
-        pac1.formPac_ing(i1);
-        pac1.formPac_ing(i6);
-        pac2.formPac_ing(i2);
-        pac2.formPac_ing(i3);
-        pac3.formPac_ing(i4);
-        pac3.formPac_ing(i5);
-        
-        i1.formIng_pac(pac1);
-        i2.formIng_pac(pac2);
-        i3.formIng_pac(pac2);
-        i4.formIng_pac(pac3);
-        i5.formIng_pac(pac3);
-        i6.formIng_pac(pac1);        
-        
-        //Objetos Composicion
-        Composicion c1 = new Composicion("C-01",109);
-        c1.formComp_med(m1);
-        c1.formComp_act(pa1);
-        m1.formMed_comp(c1);
-        pa1.formAct_comp(c1);
-        Composicion c2=new Composicion("C-02",201);
-        c2.formComp_med(m2);
-        c2.formComp_act(pa2);
-        m2.formMed_comp(c2);
-        pa2.formAct_comp(c2);
-        Composicion c3=new Composicion("C-03",150);
-        c2.formComp_med(m3);
-        c2.formComp_act(pa3);
-        m3.formMed_comp(c3);
-        pa3.formAct_comp(c3);
-        
-        Nueva_Conexion.addPersist(c1);
-        Nueva_Conexion.addPersist(c2);
-        Nueva_Conexion.addPersist(c3);
-        
-        
-        System.out.println(c1.toString());
-        System.out.println(c2.toString());
-        System.out.println(c3.toString());
-        
+       InicializarControladores();
+       InicializarVistas(); 
+       InicializarRelaciones(); 
+       Composicion.ImprimirInstancias();
     }
+    
+    public static void InicializarControladores(){
+        M_Adm=new Modelo_Administracion(Conexion_Actual); 
+        M_Comp=new Modelo_Composicion(Conexion_Actual); 
+        M_Ing=new Modelo_Ingreso(Conexion_Actual); 
+        M_Lis=new Modelo_Lista(Conexion_Actual);
+        M_Medicamento=new Modelo_Medicamento(Conexion_Actual); 
+        M_Pac=new Modelo_Paciente(Conexion_Actual); 
+        M_Per=new Modelo_Personal(Conexion_Actual);
+        M_Pres=new Modelo_Prescripcion(Conexion_Actual); 
+        M_Pri=new Modelo_PrincipioActivo(Conexion_Actual); 
+        RelacionarControladores(); 
+    }
+    
+    public static void InicializarRelaciones(){
+        Administracion.InicializarRelaciones();
+        Ingreso.inicializarRelaciones();
+        Composicion.InicializarRelaciones();
+        Lista.InicializarRelaciones();
+        Medicamento.InicializarRelaciones();
+        Paciente.InicializarRelaciones();
+        Personal.InicializarRelaciones();
+        Prescripcion.InicializarRelacion();
+        Principio.InicializarRelacion();
+    }
+    
+    public static void RelacionarControladores(){
+        M_Adm.setModelo_Personal(M_Per); M_Adm.setModelo_Lista(M_Lis);
+        M_Comp.setModelo_Medicamento(M_Medicamento,M_Pri);
+        M_Ing.getModelo_Paciente(M_Pac);
+        M_Lis.setModelo_Administracion(M_Adm); M_Lis.setModelo_Medicamento(M_Medicamento); M_Lis.setModelo_Prescripcion(M_Pres);
+        M_Medicamento.setModelo_Composicion(M_Comp); M_Medicamento.setModelo_Lista(M_Lis);
+        M_Pac.setModelo_Ingreso(M_Ing); M_Pac.setModelo_Prescripcion(M_Pres);
+        M_Per.setModelo_Administracion(M_Adm); M_Per.setModelo_Prescripcion(M_Pres);
+        M_Pres.setModelo_Lista(M_Lis); M_Pres.setModelo_Paciente(M_Pac); M_Pres.setModelo_Personal(M_Per);
+        M_Pri.setModelo_Composicion(M_Comp);
+    }
+    
+    public static void InicializarVistas(){
+        Administracion=new Vista_Administracion(Conexion_Actual, M_Adm,M_Lis, M_Per);
+        Composicion=new Vista_Composicion(Conexion_Actual,M_Comp,M_Medicamento);
+        Ingreso=new Vista_Ingreso(Conexion_Actual,M_Ing,M_Pac);
+        Lista=new Vista_Lista(Conexion_Actual,M_Lis ,M_Pres,M_Medicamento,M_Adm);
+        Medicamento=new Vista_Medicamento(Conexion_Actual,M_Medicamento,M_Comp,M_Lis);
+        Paciente=new Vista_Paciente(Conexion_Actual,M_Pac,M_Ing,M_Pres);
+        Personal=new Vista_Personal(Conexion_Actual,M_Per,M_Adm,M_Pres);
+        Prescripcion=new Vista_Prescripcion(Conexion_Actual,M_Pres,M_Pac,M_Per,M_Lis);
+        Principio=new Vista_PrincipioActivo(Conexion_Actual,M_Pri,M_Comp);
+    }
+    
 }

@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-public class Administracion extends Fecha implements Serializable{
+public class Administracion extends Modelo implements Serializable{
     @Id
     private String adm_codigo;
     private Date adm_fecha;
@@ -40,9 +40,16 @@ public class Administracion extends Fecha implements Serializable{
     public String getAdm_codigo(){
         return this.adm_codigo;
     }
+   
+    
+    @Override
+    public String getID(){
+        return this.adm_codigo;
+    }
     
     @Override
     public String toString(){
+        Administracion adm=new Administracion(); 
         return String.format(
                 "\n-----\n"+
                 "Codigo: %s"
@@ -64,4 +71,6 @@ public class Administracion extends Fecha implements Serializable{
         Administracion comparado=(Administracion)obj;
         return this.adm_codigo.equals(comparado.adm_codigo);
     }
+    
+    
 }

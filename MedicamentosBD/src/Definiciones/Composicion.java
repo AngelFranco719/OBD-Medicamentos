@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Composicion implements Serializable {
+public class Composicion extends Modelo implements Serializable {
 
     @Id
     private String comp_codigo; 
@@ -41,6 +41,12 @@ public class Composicion implements Serializable {
     public String getComp_codigo(){
         return this.comp_codigo;
     }
+    
+    @Override
+    public String getID(){
+        return this.comp_codigo;
+    }
+    
     
     @Override
     public String toString() {

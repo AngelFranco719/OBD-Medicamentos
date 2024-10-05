@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class PrincipioActivo implements Serializable {
+public class PrincipioActivo extends Modelo implements Serializable {
 
     @Id
     private String pri_codigo;
@@ -30,18 +30,26 @@ public class PrincipioActivo implements Serializable {
     public void dropAct_comp(Composicion pres){
         this.act_comp.remove(pres);
     }
+    public String getAct_codigo(){
+        return this.pri_codigo;
+    }
+    
+    @Override
+    public String getID(){
+        return this.pri_codigo;
+    }
     
     @Override
     public String toString() {
         return String.format("\n------\n"+
-                     "Código: %s" +
+                     "Codigo: %s" +
                      "\nNombre: %s" +
                      "\nDescripcion: %s" +
                      "\nComposicion: %s",
                      this.pri_codigo,
                      this.pri_nombre,
                      this.pri_descripcion,
-                     this.act_comp.get(0).getComp_codigo());
+                     this.act_comp.toString());
     }
     @Override
     public boolean equals(Object obj){

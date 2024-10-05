@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class Personal implements Serializable{
+public class Personal extends Modelo implements Serializable{
     @Id
     private String per_nombre; 
     public enum Roles
@@ -47,6 +47,11 @@ public class Personal implements Serializable{
     }
     public void setPer_nombre(String nombre){
         this.per_nombre=nombre;
+    }
+    
+    @Override
+    public String getID(){
+        return this.per_nombre;
     }
     
     @Override

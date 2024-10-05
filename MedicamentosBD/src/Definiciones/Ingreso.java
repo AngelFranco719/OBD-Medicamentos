@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Entity
-public class Ingreso extends Fecha implements Serializable{
+public class Ingreso extends Modelo implements Serializable{
     
     @Id
     private String ing_codigo; 
@@ -39,20 +39,29 @@ public class Ingreso extends Fecha implements Serializable{
     }
 
     @Override
+    public String getID(){
+        return this.ing_codigo;
+    }
+    
+    @Override
     public String toString() {
         
-        return String.format("\n-----\nIngreso: %d "
+        return String.format("\n-----\n"+
+                "Codigo: %s"
+                + "Ingreso: %d "
                 + "\nSintomas: %s "
                 + "\nDiagnostico: %s "
                 + "\nFecha de Entrada: %s"
-                + "\nFecha de Salida: %s "
-                + "\nPaciente: %s\n",
+                + "\nFecha de Salida: %s ",
+                //+ "\nPaciente: %s\n",
+                this.ing_codigo,
                 this.ing_num, 
                 this.ing_sintomas, 
                 this.ing_diagnostico,  
                 this.parseDatetoString(ing_fechaSalida),
-                this.parseDatetoString(ing_fechaEntrada),
-                this.ing_pac.getPac_nombre());
+                this.parseDatetoString(ing_fechaEntrada));
+                ///this.ing_pac.getPac_nombre());
+                
     }
     
     public void formIng_pac(Paciente paci){
