@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Composicion implements Serializable {
+public class Composicion extends Modelo implements Serializable {
 
     @Id
     private String comp_codigo; 
@@ -43,6 +43,12 @@ public class Composicion implements Serializable {
     }
     
     @Override
+    public String getID(){
+        return this.comp_codigo;
+    }
+    
+    
+    @Override
     public String toString() {
         return String.format(
                 "\n-----\n" +
@@ -53,5 +59,12 @@ public class Composicion implements Serializable {
                 this.comp_med,
                 this.comp_act
         );
+    }
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        Composicion comparado=(Composicion)obj;
+        return this.comp_codigo.equals(comparado.comp_codigo);
     }
 }

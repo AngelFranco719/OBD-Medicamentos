@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class Personal implements Serializable{
+public class Personal extends Modelo implements Serializable{
     @Id
     private String per_nombre; 
     public enum Roles
@@ -50,6 +50,11 @@ public class Personal implements Serializable{
     }
     
     @Override
+    public String getID(){
+        return this.per_nombre;
+    }
+    
+    @Override
     public String toString(){
         return String.format("\n------\n"+
                              "Nombre: %s"+
@@ -64,4 +69,11 @@ public class Personal implements Serializable{
                          this.per_adm.size()
                          );
     } 
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        Personal comparado=(Personal)obj;
+        return this.per_nombre.equals(comparado.per_nombre);
+    }
 }

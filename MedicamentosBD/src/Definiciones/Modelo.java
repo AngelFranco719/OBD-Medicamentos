@@ -3,8 +3,9 @@ package Definiciones;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class Fecha {
+public abstract class Modelo {
     protected SimpleDateFormat Formato_Fecha=new SimpleDateFormat("dd-MM-yyyy hh:mm:ss"); 
+    public abstract String getID(); 
     public Date parseStringToDate(String fecha){
         Date nuevaFecha=new Date();
         try{

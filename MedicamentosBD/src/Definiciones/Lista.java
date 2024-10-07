@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class Lista extends Fecha implements Serializable {
+public class Lista extends Modelo implements Serializable {
     private static final long serialVersionUID = 1L;
     
 @Id
@@ -72,6 +72,11 @@ private Date lis_fecha_hora_inicio;
         lis_dias = dias;
         lis_fecha_hora_inicio = this.parseStringToDate(fecha_hora_inicio);
        
+    }
+    
+    @Override
+    public String getID(){
+        return this.lis_codigo;
     }
   
     
@@ -155,6 +160,12 @@ private Date lis_fecha_hora_inicio;
         this.lis_fecha_hora_inicio = lis_fecha_inicio;
     }
 
-
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        Lista comparado=(Lista)obj;
+        return this.lis_codigo.equals(comparado.lis_codigo);
+    }
 
 }

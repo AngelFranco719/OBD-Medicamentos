@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class Prescripcion extends Fecha implements Serializable {
+public class Prescripcion extends Modelo implements Serializable {
     private static final long serialVersionUID =1L;
     
     @Id
@@ -36,6 +36,11 @@ public class Prescripcion extends Fecha implements Serializable {
        
        
    }
+   
+    @Override
+    public String getID(){
+        return this.pres_codigo;
+    }
    
    @Override
     public String toString(){
@@ -120,6 +125,13 @@ public class Prescripcion extends Fecha implements Serializable {
     }
     public List<Lista> getPres_lis() {
         return pres_lis;
+    }
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        Prescripcion comparado=(Prescripcion)obj;
+        return this.pres_codigo.equals(comparado.pres_codigo);
     }
 }    
     

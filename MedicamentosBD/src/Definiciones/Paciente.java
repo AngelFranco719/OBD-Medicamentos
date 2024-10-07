@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-public class Paciente implements Serializable{
+public class Paciente extends Modelo implements Serializable{
     @Id
     private int pac_nss;
     private String pac_nombre;
@@ -41,6 +41,11 @@ public class Paciente implements Serializable{
                 + "\nEstatura: %.2f "
                 + "\nPeso: %.2f "
                 + "\nIngresos : %s\n",this.pac_nss,this.pac_nombre,this.pac_estatura,this.pac_peso,this.getPac_ing());
+    }
+    
+    @Override
+    public String getID(){
+        return this.pac_nombre;
     }
     
     public void printIngresos(){
@@ -112,6 +117,13 @@ public class Paciente implements Serializable{
 
     public void setPac_pres(List<Prescripcion> pac_pres) {
         this.pac_pres = pac_pres;
+    }
+    @Override
+    public boolean equals(Object obj){
+        if(this==obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false; 
+        Paciente comparado=(Paciente)obj;
+        return this.pac_nombre.equals(comparado.pac_nombre);
     }
 
        
