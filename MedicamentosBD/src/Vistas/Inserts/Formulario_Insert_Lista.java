@@ -216,6 +216,7 @@ public class Formulario_Insert_Lista extends javax.swing.JFrame {
     }//GEN-LAST:event_Lista_Fecha_HoraActionPerformed
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
+        SimpleDateFormat Formato=new SimpleDateFormat("dd-MM-yy"); 
         String Codigo =this.Lista_Codigo.getText();
         String Intervalo=this.Lista_intervalo.getText();
         String Dosis=this.Lista_Dosis.getText();
@@ -224,8 +225,11 @@ public class Formulario_Insert_Lista extends javax.swing.JFrame {
         String Medicamento=this.Lista_Medicamento.getSelectedItem().toString();
         String Prescripcion=this.Lista_Prescripcion.getSelectedItem().toString();
         String Administracion=this.Lista_Admi.getSelectedItem().toString();
+        
         Confirmacion_Lista confirmacion=new Confirmacion_Lista(Lista,Codigo,Intervalo,Dosis,Fecha_Hora,Dias,Medicamento,Prescripcion,Administracion);
         confirmacion.setVisible(true);
+        
+        
     }//GEN-LAST:event_Button_EnviarActionPerformed
 
     /**
