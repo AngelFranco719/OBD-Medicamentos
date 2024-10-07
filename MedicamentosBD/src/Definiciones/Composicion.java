@@ -23,8 +23,12 @@ public class Composicion extends Modelo implements Serializable {
         this.comp_cantidad=comp_cantidad;
         this.comp_codigo=comp_codigo; 
     }
-            
-    
+
+    public Composicion() {
+        this.comp_cantidad=0;
+        this.comp_codigo="";
+    }
+        
     public void formComp_med(Medicamento med){
         this.comp_med.add(med);
     }

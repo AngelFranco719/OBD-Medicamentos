@@ -19,6 +19,8 @@ public class MedicamentosBD {
        InicializarControladores(); 
        Formulario_Insert_Medicamento ventana=new Formulario_Insert_Medicamento(M_Medicamento,M_Comp); 
        ventana.setVisible(true);
+
+        
     }
     
     public static void InicializarControladores(){

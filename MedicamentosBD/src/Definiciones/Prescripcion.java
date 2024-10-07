@@ -33,8 +33,7 @@ public class Prescripcion extends Modelo implements Serializable {
        pres_fecha=this.parseStringToDate(Fecha);
        pres_usos=usos;
        pres_instrucciones=instrucciones;
-       
-       
+   
    }
    
     @Override
