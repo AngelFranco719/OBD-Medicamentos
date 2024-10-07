@@ -21,6 +21,14 @@ public class Medicamento implements Serializable {
     @JoinColumn(name="list_med",nullable=false)
     private List<Lista>med_list=new ArrayList();
     
+    public Medicamento(){
+        this.med_codigo="";
+        this.med_nombre="";
+        this.med_cantidad=0;
+        this.med_presentacion=""; 
+        this.med_descripcion="";
+    }
+    
     public Medicamento(String med_codigo, String med_nombre, int med_cantidad, String med_presentacion, String med_descripcion){
         this.med_codigo=med_codigo;
         this.med_nombre=med_nombre;
@@ -54,4 +62,61 @@ public class Medicamento implements Serializable {
                          this.med_descripcion
                          );
     }
+
+    public String getMed_codigo() {
+        return med_codigo;
+    }
+
+    public void setMed_codigo(String med_codigo) {
+        this.med_codigo = med_codigo;
+    }
+
+    public String getMed_nombre() {
+        return med_nombre;
+    }
+
+    public void setMed_nombre(String med_nombre) {
+        this.med_nombre = med_nombre;
+    }
+
+    public int getMed_cantidad() {
+        return med_cantidad;
+    }
+
+    public void setMed_cantidad(int med_cantidad) {
+        this.med_cantidad = med_cantidad;
+    }
+
+    public String getMed_presentacion() {
+        return med_presentacion;
+    }
+
+    public void setMed_presentacion(String med_presentacion) {
+        this.med_presentacion = med_presentacion;
+    }
+
+    public String getMed_descripcion() {
+        return med_descripcion;
+    }
+
+    public void setMed_descripcion(String med_descripcion) {
+        this.med_descripcion = med_descripcion;
+    }
+
+    public List<Composicion> getMed_comp() {
+        return med_comp;
+    }
+
+    public void setMed_comp(List<Composicion> med_comp) {
+        this.med_comp = med_comp;
+    }
+
+    public List<Lista> getMed_list() {
+        return med_list;
+    }
+
+    public void setMed_list(List<Lista> med_list) {
+        this.med_list = med_list;
+    }
+    
 }

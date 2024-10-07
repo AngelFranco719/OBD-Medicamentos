@@ -40,7 +40,8 @@ public class Paciente implements Serializable{
                 + "\nNombre: %s "
                 + "\nEstatura: %.2f "
                 + "\nPeso: %.2f "
-                + "\nIngresos : %s\n",this.pac_nss,this.pac_nombre,this.pac_estatura,this.pac_peso,this.getPac_ing());
+                + "\nIngresos : %s"
+                + "\nPrescripciones : %s\n",this.pac_nss,this.pac_nombre,this.pac_estatura,this.pac_peso,this.getPac_ing().size(),this.getPac_pres());
     }
     
     public void printIngresos(){
