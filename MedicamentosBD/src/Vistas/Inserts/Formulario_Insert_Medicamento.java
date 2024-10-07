@@ -1,4 +1,4 @@
-package Formularios_Inserts;
+package Vistas.Inserts;
 
 import Confirmacion.Confirmacion_Medicamento;
 import Controlador.Modelo_Composicion;

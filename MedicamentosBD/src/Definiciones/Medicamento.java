@@ -81,11 +81,6 @@ public class Medicamento extends Modelo implements Serializable {
         return this.med_codigo.equals(comparado.med_codigo);
     }
 
-
-    public String getMed_codigo() {
-        return med_codigo;
-    }
-
     public void setMed_codigo(String med_codigo) {
         this.med_codigo = med_codigo;
     }

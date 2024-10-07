@@ -1,5 +1,5 @@
 
-package Vistas;
+package Vistas.Inserts;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 

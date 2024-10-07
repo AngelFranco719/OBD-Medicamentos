@@ -1,5 +1,5 @@
 
-package Vistas;
+package Vistas.Inserts;
 
 public class JFPrescripcion extends javax.swing.JFrame {
 

@@ -1,4 +1,4 @@
-package Vistas;
+package Vistas.Inserts;
 
 public class JFPersonal extends javax.swing.JFrame {
 

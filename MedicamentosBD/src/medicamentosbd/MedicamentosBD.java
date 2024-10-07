@@ -1,7 +1,7 @@
 package medicamentosbd; 
 import BD.ConexionBD;
 import Controlador.*;
-import Formularios_Inserts.*;
+import Vistas.Inserts.*;
 public class MedicamentosBD {  
     static ConexionBD Conexion_Actual=new ConexionBD(); 
     static Modelo_Administracion M_Adm; 
