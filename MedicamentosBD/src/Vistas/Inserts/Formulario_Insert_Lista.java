@@ -225,7 +225,17 @@ public class Formulario_Insert_Lista extends javax.swing.JFrame {
         String Medicamento=this.Lista_Medicamento.getSelectedItem().toString();
         String Prescripcion=this.Lista_Prescripcion.getSelectedItem().toString();
         String Administracion=this.Lista_Admi.getSelectedItem().toString();
+        Date Fecha=this.Calendario.getDate();
+        String fecha_final=new String(); 
+        try{
+            fecha_final=Formato.format(Fecha);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
         
+        String Hora=this.Adm_Hora.getText();
+        fecha_final+=" "+Hora; 
+        JOptionPane.showMessageDialog(this,fecha_final);                             
         Confirmacion_Lista confirmacion=new Confirmacion_Lista(Lista,Codigo,Intervalo,Dosis,Fecha_Hora,Dias,Medicamento,Prescripcion,Administracion);
         confirmacion.setVisible(true);
         
