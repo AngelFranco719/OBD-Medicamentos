@@ -145,7 +145,7 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
         String Cantidad = this.Com_Cantidad.getText();
         String Medicamento = this.Com_Medicamento.getSelectedItem().toString();
         String Activo = this.Com_Activos.getSelectedItem().toString();
-        Confirmacion_Composicion confirmacion=new Confirmacion_Composicion(Composicion,Codigo,Cantidad,Medicamento,Activo);
+        Confirmacion_Composicion confirmacion=new Confirmacion_Composicion(Composicion,Codigo,Cantidad,Activo,Medicamento);
         confirmacion.setVisible(true);
         
     }//GEN-LAST:event_Button_EnviarActionPerformed

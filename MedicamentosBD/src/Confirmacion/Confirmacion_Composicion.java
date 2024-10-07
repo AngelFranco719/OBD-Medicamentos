@@ -151,6 +151,7 @@ public class Confirmacion_Composicion extends javax.swing.JFrame {
         Composicion.InitializeInstance(Codigo, Integer.parseInt(Cantidad));
         Composicion.RelationshipComposicion_Activo(Codigo, Activo);
         Composicion.RelationshipComposicion_Medicamento(Codigo, Medicamento);
+        Composicion.InsertToBD(Codigo);
     }//GEN-LAST:event_Button_EnviarActionPerformed
 
     /**
