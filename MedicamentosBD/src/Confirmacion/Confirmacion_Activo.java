@@ -1,20 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Confirmacion;
 
-/**
- *
- * @author Karla
- */
+import Controlador.Modelo_PrincipioActivo;
 public class Confirmacion_Activo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Confirmacion_Activo
-     */
-    public Confirmacion_Activo() {
+   String Codigo;
+   String Nombre;
+   String Descripcion;
+   String Composicion;
+   Modelo_PrincipioActivo Activo;
+    public Confirmacion_Activo(Modelo_PrincipioActivo Activo,String Codigo, String Nombre, String Descripcion, String Composicion) {
         initComponents();
+        this.Codigo=Codigo;
+        this.Nombre=Nombre;
+        this.Descripcion=Descripcion;
+        this.Composicion=Composicion;
+        this.PrA_Codigo.setText(Codigo);
+        this.PrA_Nombre.setText(Nombre);
+        this.PrA_Composicion.setText(Composicion);
+        this.PrA_Descripcion.setText(Descripcion);
+        this.Activo=Activo;
     }
 
     /**
@@ -36,6 +41,8 @@ public class Confirmacion_Activo extends javax.swing.JFrame {
         PrA_Codigo = new javax.swing.JLabel();
         PrA_Nombre = new javax.swing.JLabel();
         PrA_Descripcion = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        PrA_Composicion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +56,11 @@ public class Confirmacion_Activo extends javax.swing.JFrame {
         jLabel4.setText("Descripcion:");
 
         Button_Enviar.setText("Enviar");
+        Button_Enviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_EnviarActionPerformed(evt);
+            }
+        });
 
         Button_Cancelar2.setText("Cancelar");
         Button_Cancelar2.addActionListener(new java.awt.event.ActionListener() {
@@ -63,19 +75,23 @@ public class Confirmacion_Activo extends javax.swing.JFrame {
 
         PrA_Descripcion.setText("jLabel5");
 
+        jLabel5.setText("Composicion:");
+
+        PrA_Composicion.setText("jLabel6");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
                         .addComponent(Button_Enviar)
                         .addGap(41, 41, 41)
                         .addComponent(Button_Cancelar2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(129, 129, 129)
@@ -85,15 +101,18 @@ public class Confirmacion_Activo extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(PrA_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(PrA_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(PrA_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(46, 46, 46)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                                .addComponent(PrA_Descripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(PrA_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(PrA_Composicion, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,7 +122,9 @@ public class Confirmacion_Activo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(PrA_Codigo))
+                    .addComponent(PrA_Codigo)
+                    .addComponent(jLabel5)
+                    .addComponent(PrA_Composicion))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -137,6 +158,12 @@ public class Confirmacion_Activo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Button_Cancelar2ActionPerformed
 
+    private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
+        Activo.InitializeInstance(Codigo, Nombre, Descripcion);
+        Activo.RelationshipPrincipio_Composicion(Codigo, Composicion);
+        Activo.InsertToBD(Codigo);
+    }//GEN-LAST:event_Button_EnviarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -167,23 +194,23 @@ public class Confirmacion_Activo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Confirmacion_Activo().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Button_Cancelar;
-    private javax.swing.JButton Button_Cancelar1;
     private javax.swing.JButton Button_Cancelar2;
     private javax.swing.JButton Button_Enviar;
     private javax.swing.JLabel PrA_Codigo;
+    private javax.swing.JLabel PrA_Composicion;
     private javax.swing.JLabel PrA_Descripcion;
     private javax.swing.JLabel PrA_Nombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

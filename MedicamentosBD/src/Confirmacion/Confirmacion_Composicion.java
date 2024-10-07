@@ -1,20 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Confirmacion;
+import Controlador.Modelo_Composicion;
 
-/**
- *
- * @author Karla
- */
 public class Confirmacion_Composicion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Confirmacion_Composicion
-     */
-    public Confirmacion_Composicion() {
+    Modelo_Composicion Composicion;
+    String Codigo;
+    String Cantidad;
+    String Medicamento;
+    String Activo;
+    public Confirmacion_Composicion(Modelo_Composicion Composicion, String Codigo, String Cantidad, String Activo, String Medicamento) {
         initComponents();
+        this.Codigo=Codigo;
+        this.Cantidad=Cantidad;
+        this.Activo=Activo;
+        this.Medicamento=Medicamento;
+        this.Com_Codigo.setText(Codigo);
+        this.Com_Cantidad.setText(Cantidad);
+        this.Com_medicamento.setText(Medicamento);
+        this.Com_Activo.setText(Activo);
+        this.Composicion=Composicion;
     }
 
     /**
@@ -144,7 +148,9 @@ public class Confirmacion_Composicion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
-        // TODO add your handling code here:
+        Composicion.InitializeInstance(Codigo, Integer.parseInt(Cantidad));
+        Composicion.RelationshipComposicion_Activo(Codigo, Activo);
+        Composicion.RelationshipComposicion_Medicamento(Codigo, Medicamento);
     }//GEN-LAST:event_Button_EnviarActionPerformed
 
     /**
@@ -177,7 +183,6 @@ public class Confirmacion_Composicion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Confirmacion_Composicion().setVisible(true);
             }
         });
     }
