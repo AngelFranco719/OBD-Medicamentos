@@ -5,7 +5,11 @@ import Controlador.Modelo_Prescripcion;
 import Controlador.Modelo_Medicamento;
 import Controlador.Modelo_Administracion;
 import Confirmacion.Confirmacion_Lista;
+import com.toedter.calendar.JCalendar;
+import java.awt.BorderLayout;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class Formulario_Insert_Lista extends javax.swing.JFrame {
 
