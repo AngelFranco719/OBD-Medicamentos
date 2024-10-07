@@ -16,12 +16,6 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
         
     }
 
-    /**
-     * Creates new form Formulario_Insert_Activos
-     */
-    public Formulario_Insert_Activos() {
-        initComponents();
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -205,7 +199,7 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Formulario_Insert_Activos().setVisible(true);
+               
             }
         });
     }

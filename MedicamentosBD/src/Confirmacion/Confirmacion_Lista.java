@@ -225,6 +225,7 @@ public class Confirmacion_Lista extends javax.swing.JFrame {
         Lista.RelationshipLista_Administracion(Codigo, Administracion);
         Lista.RelationshipLista_Medicamento(Codigo, Medicamento);
         Lista.RelationshipLista_Prescripcion(Codigo, Prescripcion);
+        Lista.InsertToBD(Codigo);
     }//GEN-LAST:event_Button_EnviarActionPerformed
 
     /**

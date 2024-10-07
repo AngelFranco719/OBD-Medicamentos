@@ -17,7 +17,7 @@ public class MedicamentosBD {
     
     public static void main(String[] args) {
        InicializarControladores(); 
-       Formulario_Insert_Composicion ventana=new Formulario_Insert_Composicion(M_Comp,M_Medicamento,M_Pri); 
+       Formulario_Insert_Activos ventana=new Formulario_Insert_Activos(M_Pri,M_Comp); 
        ventana.setVisible(true);
 
         
