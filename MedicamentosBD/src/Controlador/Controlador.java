@@ -2,19 +2,39 @@ package Controlador;
 import BD.ConexionBD;
 import Definiciones.Modelo;
 import java.util.*;
+import java.util.function.Function;
 
 public abstract class Controlador<T> {
     ConexionBD Conexion_Actual; 
     public abstract List<T> getLista(); 
+    public abstract void setLista(List<T> Lista); 
+    public abstract String getEntidad(); 
+    public abstract Class getClase(); 
+    public abstract Function<T, String> getFunction(String Atributo);  
     public Controlador(ConexionBD Conexion_Actual){
         this.Conexion_Actual=Conexion_Actual; 
     }
-    public void InsertToBD(T obj) {       
+    public void InsertToBD(String ID) {  
+        T Instancia=this.getElementByID(ID);
         try {
-            Conexion_Actual.addPersist(obj); 
+            Conexion_Actual.addPersist(Instancia); 
         } catch (Exception e) {
             System.out.println("Error al Ingresar a la Base de Datos");
         }
+    }
+    
+    public List<String> getListAttribute(String Atributo){
+        List<String>Resultado=new ArrayList(); 
+        Function<T,String>Getter=this.getFunction(Atributo);
+        for(T instancia : this.getLista()){
+            Resultado.add(Getter.apply(instancia));
+        }
+        return Resultado; 
+    }
+    
+    public void selectInstancesFromBD(){
+        List<T> Nueva_Lista = Conexion_Actual.SelectAllFrom(getEntidad(), getClase());
+        this.setLista(Nueva_Lista);
     }
     
     public void InsertAllToBD(){

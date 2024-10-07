@@ -8,8 +8,9 @@ import Definiciones.Prescripcion;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
-public class Modelo_Personal extends Controlador{
+public class Modelo_Personal extends Controlador<Personal>{
     ConexionBD Conexion_Actual; 
     List<Personal> Lista_Personal=new ArrayList();
     Modelo_Administracion Administracion; 
@@ -24,6 +25,7 @@ public class Modelo_Personal extends Controlador{
     public Modelo_Personal(ConexionBD Conexion_Actual){
         super(Conexion_Actual); 
         this.Conexion_Actual=Conexion_Actual; 
+         this.selectInstancesFromBD();
     }
     
     public void setModelo_Administracion(Modelo_Administracion Administracion){
@@ -38,7 +40,6 @@ public class Modelo_Personal extends Controlador{
             Roles setRol=Roles.valueOf(per_rol);
             Personal per=new Personal(per_nombre, setRol, per_cedula); 
             Lista_Personal.add(per);
-            this.InsertToBD(per);
         }catch(Exception e){
             System.out.println("Error al Ingresar al Modelo");
         }
@@ -63,5 +64,25 @@ public class Modelo_Personal extends Controlador{
     public List<Personal>getLista(){
         System.out.println(this.hashCode()); 
         return this.Lista_Personal;
+    }
+    @Override
+    public String getEntidad(){
+        return "Personal";
+    }
+    @Override
+    public Class getClase(){
+        return Personal.class;
+    }
+    @Override
+    public Function<Personal, String> getFunction(String Atributo){
+        switch(Atributo){
+            case "per_nombre":
+                return Personal::getPer_nombre;
+        }
+        return null; 
+    }
+    @Override 
+    public void setLista(List<Personal> Lista){
+        this.Lista_Personal=Lista; 
     }
 }

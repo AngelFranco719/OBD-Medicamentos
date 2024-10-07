@@ -42,6 +42,10 @@ public class Composicion extends Modelo implements Serializable {
         return this.comp_codigo;
     }
     
+    public List<String> getComp_med(){
+        return this.getComp_med();
+    }
+    
     @Override
     public String getID(){
         return this.comp_codigo;

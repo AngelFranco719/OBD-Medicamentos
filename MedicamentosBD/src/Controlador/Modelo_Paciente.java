@@ -7,8 +7,9 @@ import Definiciones.Prescripcion;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
-public class Modelo_Paciente extends Controlador{
+public class Modelo_Paciente extends Controlador<Paciente>{
     ConexionBD Conexion_Actual; 
     List<Paciente> Lista_Paciente=new ArrayList(); 
     Modelo_Ingreso Ingreso; 
@@ -22,7 +23,8 @@ public class Modelo_Paciente extends Controlador{
     
     public Modelo_Paciente(ConexionBD Conexion_Actual){
         super(Conexion_Actual);
-        this.Conexion_Actual=Conexion_Actual;  
+        this.Conexion_Actual=Conexion_Actual; 
+         this.selectInstancesFromBD();
     }
     
     public void setModelo_Ingreso(Modelo_Ingreso Ingreso){
@@ -36,7 +38,6 @@ public class Modelo_Paciente extends Controlador{
         try{
             Paciente pac=new Paciente(p_nss, p_nomb, p_estat, p_peso); 
             Lista_Paciente.add(pac);
-            this.InsertToBD(pac);
         }catch(Exception e){
             System.out.println("Error al Ingresar al Modelo");
         }
@@ -57,5 +58,25 @@ public class Modelo_Paciente extends Controlador{
     @Override
     public List<Paciente> getLista(){
         return this.Lista_Paciente;
+    }
+    @Override
+    public String getEntidad(){
+        return "Paciente";
+    }
+    @Override
+    public Class getClase(){
+        return Paciente.class;
+    }
+    @Override
+    public Function<Paciente, String> getFunction(String Atributo){
+        switch(Atributo){
+            case "pac_nombre":
+                return Paciente::getPac_nombre;
+        }
+        return null; 
+    }
+    @Override 
+    public void setLista(List<Paciente> Lista){
+        this.Lista_Paciente=Lista; 
     }
 }

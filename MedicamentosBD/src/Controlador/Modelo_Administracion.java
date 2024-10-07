@@ -4,9 +4,10 @@ import Definiciones.Administracion;
 import Definiciones.Lista;
 import Definiciones.Personal;
 import java.util.*;
-public class Modelo_Administracion extends Controlador{
+import java.util.function.Function;
+public class Modelo_Administracion extends Controlador<Administracion>{
     ConexionBD Conexion_Actual;
-    List<Administracion>Lista_Administracion=new ArrayList(); 
+    List<Administracion>Lista_Administracion=new ArrayList();  
     Modelo_Personal Personal; 
     Modelo_Lista Lista; 
     public Modelo_Administracion(ConexionBD Conexion_Actual,Modelo_Personal Personal, Modelo_Lista Lista){
@@ -31,7 +32,6 @@ public class Modelo_Administracion extends Controlador{
         try{
             Administracion adm=new Administracion(adm_codigo, adm_fecha, adm_registro); 
             Lista_Administracion.add(adm);
-            this.InsertToBD(adm);
         }catch(Exception e){
             System.out.println("Error al Ingresar al Modelo");
         }
@@ -52,5 +52,27 @@ public class Modelo_Administracion extends Controlador{
     @Override 
     public List<Administracion> getLista(){
         return this.Lista_Administracion;
+    }
+    @Override 
+    public void setLista(List<Administracion> Lista){
+        this.Lista_Administracion=Lista; 
+    }
+    @Override
+    public String getEntidad(){
+        return "Administracion";
+    }
+    @Override
+    public Class getClase(){
+        return Administracion.class;
+    }
+    @Override
+    public Function<Administracion, String> getFunction(String Atributo){
+        switch(Atributo){
+            case "adm_codigo":
+                return Administracion::getAdm_codigo; 
+            case "adm_fecha":
+                return Administracion::getAdm_fecha; 
+        }
+        return null; 
     }
 }

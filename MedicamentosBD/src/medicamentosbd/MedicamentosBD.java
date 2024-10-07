@@ -1,7 +1,7 @@
 package medicamentosbd; 
 import BD.ConexionBD;
 import Controlador.*;
-import Vistas.*;
+import Formularios_Inserts.*;
 public class MedicamentosBD {  
     static ConexionBD Conexion_Actual=new ConexionBD(); 
     static Modelo_Administracion M_Adm; 
@@ -13,21 +13,12 @@ public class MedicamentosBD {
     static Modelo_Personal M_Per;
     static Modelo_Prescripcion M_Pres;
     static Modelo_PrincipioActivo M_Pri; 
-    static Vista_Administracion Administracion;
-    static Vista_Composicion Composicion;
-    static Vista_Ingreso Ingreso;
-    static Vista_Lista Lista;
-    static Vista_Medicamento Medicamento;
-    static Vista_Paciente Paciente;
-    static Vista_Personal Personal;
-    static Vista_Prescripcion Prescripcion;
-    static Vista_PrincipioActivo Principio;
+
     
     public static void main(String[] args) {
-       InicializarControladores();
-       InicializarVistas(); 
-       InicializarRelaciones(); 
-       Composicion.ImprimirInstancias();
+       InicializarControladores(); 
+       Formulario_Insert_Medicamento ventana=new Formulario_Insert_Medicamento(M_Medicamento,M_Comp); 
+       ventana.setVisible(true);
     }
     
     public static void InicializarControladores(){
@@ -43,18 +34,6 @@ public class MedicamentosBD {
         RelacionarControladores(); 
     }
     
-    public static void InicializarRelaciones(){
-        Administracion.InicializarRelaciones();
-        Ingreso.inicializarRelaciones();
-        Composicion.InicializarRelaciones();
-        Lista.InicializarRelaciones();
-        Medicamento.InicializarRelaciones();
-        Paciente.InicializarRelaciones();
-        Personal.InicializarRelaciones();
-        Prescripcion.InicializarRelacion();
-        Principio.InicializarRelacion();
-    }
-    
     public static void RelacionarControladores(){
         M_Adm.setModelo_Personal(M_Per); M_Adm.setModelo_Lista(M_Lis);
         M_Comp.setModelo_Medicamento(M_Medicamento,M_Pri);
@@ -67,16 +46,5 @@ public class MedicamentosBD {
         M_Pri.setModelo_Composicion(M_Comp);
     }
     
-    public static void InicializarVistas(){
-        Administracion=new Vista_Administracion(Conexion_Actual, M_Adm,M_Lis, M_Per);
-        Composicion=new Vista_Composicion(Conexion_Actual,M_Comp,M_Medicamento);
-        Ingreso=new Vista_Ingreso(Conexion_Actual,M_Ing,M_Pac);
-        Lista=new Vista_Lista(Conexion_Actual,M_Lis ,M_Pres,M_Medicamento,M_Adm);
-        Medicamento=new Vista_Medicamento(Conexion_Actual,M_Medicamento,M_Comp,M_Lis);
-        Paciente=new Vista_Paciente(Conexion_Actual,M_Pac,M_Ing,M_Pres);
-        Personal=new Vista_Personal(Conexion_Actual,M_Per,M_Adm,M_Pres);
-        Prescripcion=new Vista_Prescripcion(Conexion_Actual,M_Pres,M_Pac,M_Per,M_Lis);
-        Principio=new Vista_PrincipioActivo(Conexion_Actual,M_Pri,M_Comp);
-    }
     
 }

@@ -4,7 +4,8 @@ import Definiciones.Composicion;
 import Definiciones.Medicamento;
 import Definiciones.PrincipioActivo;
 import java.util.*;
-public class Modelo_Composicion extends Controlador{
+import java.util.function.Function;
+public class Modelo_Composicion extends Controlador<Composicion>{
     List<Composicion> Lista_Composicion=new ArrayList(); 
     Modelo_Medicamento Medicamento;
     Modelo_PrincipioActivo Activo; 
@@ -14,10 +15,12 @@ public class Modelo_Composicion extends Controlador{
         this.Conexion_Actual=Conexion_Actual; 
         this.Medicamento=Medicamento; 
         this.Activo=Activo; 
+        this.selectInstancesFromBD();
     }
     public Modelo_Composicion(ConexionBD Conexion_Actual){
         super(Conexion_Actual);
         this.Conexion_Actual=Conexion_Actual; 
+        this.selectInstancesFromBD();
     }
     
     public void setModelo_Medicamento(Modelo_Medicamento Medicamento,Modelo_PrincipioActivo act){
@@ -48,5 +51,25 @@ public class Modelo_Composicion extends Controlador{
     @Override
     public List<Composicion> getLista(){
         return this.Lista_Composicion;
+    }
+    @Override
+    public String getEntidad(){
+        return "Composicion";
+    }
+    @Override
+    public Class getClase(){
+        return Composicion.class;
+    }
+    @Override
+    public Function<Composicion, String> getFunction(String Atributo){
+        switch(Atributo){
+            case "comp_codigo":
+                return Composicion::getComp_codigo; 
+        }
+        return null; 
+    }
+    @Override 
+    public void setLista(List<Composicion> Lista){
+        this.Lista_Composicion=Lista; 
     }
 }

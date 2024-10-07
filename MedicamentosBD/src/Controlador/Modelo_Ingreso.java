@@ -3,7 +3,8 @@ import BD.ConexionBD;
 import Definiciones.Ingreso;
 import Definiciones.Paciente;
 import java.util.*;
-public class Modelo_Ingreso extends Controlador{
+import java.util.function.Function;
+public class Modelo_Ingreso extends Controlador<Ingreso>{
     ConexionBD Conexion_Actual; 
     List<Ingreso> Lista_Ingreso=new ArrayList(); 
     Modelo_Paciente Paciente; 
@@ -15,6 +16,7 @@ public class Modelo_Ingreso extends Controlador{
     public Modelo_Ingreso(ConexionBD Conexion_Actual){
         super(Conexion_Actual);
         this.Conexion_Actual=Conexion_Actual; 
+        this.selectInstancesFromBD();
     }
     public void getModelo_Paciente(Modelo_Paciente Paciente){
         this.Paciente=Paciente; 
@@ -37,5 +39,25 @@ public class Modelo_Ingreso extends Controlador{
     @Override
     public List<Ingreso> getLista(){
         return this.Lista_Ingreso;
+    }
+    @Override
+    public String getEntidad(){
+        return "Ingreso";
+    }
+    @Override
+    public Class getClase(){
+        return Ingreso.class;
+    }
+    @Override
+    public Function<Ingreso, String> getFunction(String Atributo){
+        switch(Atributo){
+            case "ing_codigo":
+                return Ingreso::getIng_codigo;
+        }
+        return null; 
+    }
+    @Override 
+    public void setLista(List<Ingreso> Lista){
+        this.Lista_Ingreso=Lista; 
     }
 }

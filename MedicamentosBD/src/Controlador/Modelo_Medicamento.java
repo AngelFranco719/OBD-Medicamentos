@@ -4,8 +4,9 @@ import BD.ConexionBD;
 import Definiciones.Composicion;
 import Definiciones.Lista;
 import java.util.*;
+import java.util.function.Function;
 
-public class Modelo_Medicamento extends Controlador{
+public class Modelo_Medicamento extends Controlador<Medicamento>{
     ConexionBD Conexion_Actual; 
     List<Medicamento>Lista_Medicamentos=new ArrayList();
     Modelo_Composicion Composicion; 
@@ -19,6 +20,7 @@ public class Modelo_Medicamento extends Controlador{
     public Modelo_Medicamento(ConexionBD Conexion_Actual){
         super(Conexion_Actual);
         this.Conexion_Actual=Conexion_Actual; 
+         this.selectInstancesFromBD();
     }
     public void setModelo_Composicion(Modelo_Composicion Composicion){
         this.Composicion=Composicion; 
@@ -38,7 +40,7 @@ public class Modelo_Medicamento extends Controlador{
     
     public void RelationshipMedicamento_Composicion(String med_codigo, String com_codigo){
         Composicion c=(Composicion)Composicion.getElementByID(com_codigo);
-        Medicamento m=(Medicamento)Composicion.getElementByID(med_codigo);
+        Medicamento m=(Medicamento)this.getElementByID(med_codigo);
         m.formMed_comp(c);
         c.formComp_med(m);
     }
@@ -53,5 +55,25 @@ public class Modelo_Medicamento extends Controlador{
     @Override
     public List<Medicamento> getLista(){
         return this.Lista_Medicamentos;
+    }
+    @Override
+    public String getEntidad(){
+        return "Medicamento";
+    }
+    @Override
+    public Class getClase(){
+        return Medicamento.class;
+    }
+    @Override
+    public Function<Medicamento, String> getFunction(String Atributo){
+        switch(Atributo){
+            case "med_codigo":
+                return Medicamento::getMed_codigo;
+        }
+        return null; 
+    }
+    @Override 
+    public void setLista(List<Medicamento> Lista){
+        this.Lista_Medicamentos=Lista; 
     }
 }
