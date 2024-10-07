@@ -17,6 +17,7 @@ public class Formulario_Insert_Lista extends javax.swing.JFrame {
     Modelo_Medicamento Medicamento;
     Modelo_Prescripcion Prescripcion;
     Modelo_Administracion Administracion;
+    JCalendar Calendario;
     public Formulario_Insert_Lista(Modelo_Lista Lista, Modelo_Medicamento Medicamento, Modelo_Prescripcion Prescripcion,Modelo_Administracion Administracion) {
         initComponents();
         this.Lista=Lista;
@@ -24,6 +25,7 @@ public class Formulario_Insert_Lista extends javax.swing.JFrame {
         this.Prescripcion=Prescripcion;
         this.Administracion=Administracion;
         this.InicializarCombos();
+        this.InicializarCalendario();
     }
 
     /**
@@ -283,6 +285,13 @@ public class Formulario_Insert_Lista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 
+     private void InicializarCalendario(){
+        Calendario = new JCalendar(); 
+        this.P_Calendario.setLayout(new BorderLayout());
+        this.P_Calendario.add(Calendario, BorderLayout.CENTER);
+        this.P_Calendario.repaint();
+        this.P_Calendario.revalidate();
+    }
     private void InicializarCombos() {
         List<String>ListaMedicamento=Medicamento.getListAttribute("med_codigo");
         this.Lista_Medicamento.removeAllItems();
