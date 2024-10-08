@@ -1,4 +1,5 @@
 package Vistas.Inserts;
+import Confirmacion.Confirmacion_Administracion;
 import Controlador.Modelo_Administracion;
 import Controlador.Modelo_Lista;
 import Controlador.Modelo_Personal;
@@ -252,6 +253,7 @@ public class Formulario_Insert_Administracion extends javax.swing.JFrame {
         String Clinica=this.Adm_Clinica.getText();
         String Lista=this.Adm_Lista.getSelectedItem().toString();
         String Personal=this.Adm_Personal.getSelectedItem().toString();
+        String Registro=this.Adm_Registro.getText(); 
         Date Fecha=this.Calendario.getDate();
         String fecha_final=new String(); 
         try{
@@ -262,7 +264,8 @@ public class Formulario_Insert_Administracion extends javax.swing.JFrame {
         
         String Hora=this.Adm_Hora.getText();
         fecha_final+=" "+Hora; 
-        JOptionPane.showMessageDialog(this,fecha_final);
+        Confirmacion_Administracion Confirmacion=new Confirmacion_Administracion(this.Administracion,Codigo, Clinica, Lista, Personal, fecha_final, Registro); 
+        Confirmacion.setVisible(true);
     }//GEN-LAST:event_Button_EnviarActionPerformed
 
     /**

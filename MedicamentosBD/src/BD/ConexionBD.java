@@ -1,6 +1,7 @@
 package BD;
 import java.util.*;
 import javax.persistence.*;
+import javax.swing.JOptionPane;
 public class ConexionBD <T>{
     private EntityManagerFactory emf; 
     private EntityManager em;
@@ -17,8 +18,9 @@ public class ConexionBD <T>{
             em.getTransaction().begin();
             em.persist(Registro);
             em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null,"Ingresado Correctamente.");
         }catch(Exception e){
-            System.out.println("Error al Ingresar los Datos:"+e.toString()); 
+            JOptionPane.showMessageDialog(null,"Error al Ingresar: "+e.toString());
         }        
     }
     public List<T> SelectAllFrom(String Entidad, Class<T> TipoClase){
