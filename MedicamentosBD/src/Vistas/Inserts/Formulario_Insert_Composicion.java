@@ -5,6 +5,7 @@ import Controlador.Modelo_Composicion;
 import Controlador.Modelo_PrincipioActivo;
 import Controlador.Modelo_Medicamento;
 import java.util.List;
+import javax.swing.JFrame;
 public class Formulario_Insert_Composicion extends javax.swing.JFrame {
 
     Modelo_Composicion Composicion;
@@ -16,6 +17,7 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
         this.Medicamento=Medicamento;
         this.Activo=Activo;
         this.InicializarComboBox();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -40,7 +42,7 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
         Button_Enviar = new javax.swing.JButton();
         Button_Cancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel1.setText("COMPOSICION");

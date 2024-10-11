@@ -59,7 +59,7 @@ public class Formulario_Insert_Lista extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         P_Calendario = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Selecciona la Prescripcion");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N

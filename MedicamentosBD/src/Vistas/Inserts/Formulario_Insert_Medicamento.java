@@ -4,6 +4,7 @@ import Confirmacion.Confirmacion_Medicamento;
 import Controlador.Modelo_Composicion;
 import Controlador.Modelo_Medicamento;
 import java.util.*;
+import javax.swing.JFrame;
 
 public class Formulario_Insert_Medicamento extends javax.swing.JFrame {
 
@@ -14,6 +15,7 @@ public class Formulario_Insert_Medicamento extends javax.swing.JFrame {
         this.Medicamento=Medicamento;
         this.Composicion=Composicion; 
         this.InicializarComposiciones();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
@@ -41,7 +43,7 @@ public class Formulario_Insert_Medicamento extends javax.swing.JFrame {
 
         jPasswordField1.setText("jPasswordField1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel1.setText("MEDICAMENTO");

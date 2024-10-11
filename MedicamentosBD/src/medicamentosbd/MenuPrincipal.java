@@ -166,7 +166,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 Administracion.setVisible(true);
                 break; 
             case "Composicion":
-                Formulario_Insert_Composicion Composicion=new Formulario_Insert_Composicion();
+                Formulario_Insert_Composicion Composicion=new Formulario_Insert_Composicion(M_Comp,M_Medicamento,M_Pri);
                 Composicion.setVisible(true);
                 break;
             case "Ingreso":
@@ -174,7 +174,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 Ingreso.setVisible(true);
                 break;
             case "Lista":
-                Formulario_Insert_Lista Lista=new Formulario_Insert_Lista(); 
+                Formulario_Insert_Lista Lista=new Formulario_Insert_Lista(M_Lis, M_Medicamento,M_Pres,M_Adm); 
                 Lista.setVisible(true);
                 break; 
             case "Medicamento":
@@ -194,7 +194,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 Prescripcion.setVisible(true);
                 break;
             case "PrincipioActivo":
-                Formulario_Insert_Activos Activos=new Formulario_Insert_Activos(); 
+                Formulario_Insert_Activos Activos=new Formulario_Insert_Activos(M_Pri,M_Comp); 
                 Activos.setVisible(true);
                 break; 
                

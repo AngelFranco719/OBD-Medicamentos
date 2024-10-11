@@ -3,6 +3,7 @@ import Confirmacion.Confirmacion_Activo;
 import Controlador.Modelo_Composicion;
 import Controlador.Modelo_PrincipioActivo;
 import java.util.*;
+import javax.swing.JFrame;
 
 public class Formulario_Insert_Activos extends javax.swing.JFrame {
     Modelo_PrincipioActivo Activo;
@@ -13,6 +14,7 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
         this.Activo=Activo;
         this.Composicion=Composicion;
         this.InicializarComposiciones();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
     }
 
@@ -40,7 +42,7 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         Act_Composicion = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         jLabel1.setText("PRINCIPO ACTIVO");
