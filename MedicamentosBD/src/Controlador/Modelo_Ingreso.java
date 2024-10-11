@@ -3,6 +3,7 @@ import BD.ConexionBD;
 import Definiciones.Ingreso;
 import Definiciones.Paciente;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
 public class Modelo_Ingreso extends Controlador<Ingreso>{
     ConexionBD Conexion_Actual; 
@@ -60,4 +61,5 @@ public class Modelo_Ingreso extends Controlador<Ingreso>{
     public void setLista(List<Ingreso> Lista){
         this.Lista_Ingreso=Lista; 
     }
+   
 }

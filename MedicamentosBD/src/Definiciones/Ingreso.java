@@ -104,16 +104,16 @@ public class Ingreso extends Modelo implements Serializable{
         return ing_fechaSalida;
     }
 
-    public void setIng_fechaSalida(Date ing_fechaSalida) {
-        this.ing_fechaSalida = ing_fechaSalida;
+    public void setIng_fechaSalida(String ing_fechaSalida) {
+        this.ing_fechaSalida = this.parseStringToDate(ing_fechaSalida);
     }
 
     public Date getIng_fechaEntrada() {
         return ing_fechaEntrada;
     }
 
-    public void setIng_fechaEntrada(Date ing_fechaEntrada) {
-        this.ing_fechaEntrada = ing_fechaEntrada;
+    public void setIng_fechaEntrada(String ing_fechaEntrada) {
+        this.ing_fechaEntrada = this.parseStringToDate(ing_fechaEntrada);
     }
 
     public Paciente getIng_pac() {

@@ -4,6 +4,7 @@ import Definiciones.Administracion;
 import Definiciones.Lista;
 import Definiciones.Personal;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
 public class Modelo_Administracion extends Controlador<Administracion>{
     ConexionBD Conexion_Actual;
@@ -37,11 +38,17 @@ public class Modelo_Administracion extends Controlador<Administracion>{
             System.out.println("Error al Ingresar al Modelo");
         }
     }
+    
     public void RelationshipAdministracion_Personal(String adm_codigo, String per_nombre){
         Administracion a=(Administracion)this.getElementByID(adm_codigo);
         Personal p=(Personal)Personal.getElementByID(per_nombre);
         a.formAdm_per(p);
         p.formPer_adm(a);
+    }
+    private void RelationshipAdministracion_Personal(Administracion Instancia, String per_nombre){
+        Personal p=(Personal)Personal.getElementByID(per_nombre);
+        Instancia.formAdm_per(p);
+        p.formPer_adm(Instancia);
     }
     
     public void RelationshipAdministracion_Lista(String adm_codigo, String lis_codigo){
@@ -49,6 +56,11 @@ public class Modelo_Administracion extends Controlador<Administracion>{
         Lista l=(Lista)Lista.getElementByID(lis_codigo);
         a.formAdm_lis(l);
         l.dropLis_adm(a);
+    }
+     public void RelationshipAdministracion_Lista(Administracion Instancia, String lis_codigo){
+        Lista l=(Lista)Lista.getElementByID(lis_codigo);
+        Instancia.formAdm_lis(l);
+        l.formLis_adm(Instancia);
     }
     @Override 
     public List<Administracion> getLista(){
@@ -75,5 +87,11 @@ public class Modelo_Administracion extends Controlador<Administracion>{
                 return Administracion::getAdm_fecha; 
         }
         return null; 
+    }
+    public void ActualizarInstancia(String adm_codigo, String adm_fecha, String adm_registro, String per_nombre, String lis_codigo){
+        Administracion nuevaInstancia=new Administracion(adm_codigo, adm_fecha, adm_registro); 
+        this.RelationshipAdministracion_Personal(nuevaInstancia, per_nombre);
+        this.RelationshipAdministracion_Lista(nuevaInstancia, lis_codigo);
+        this.UpdateInstance(nuevaInstancia);
     }
 }
