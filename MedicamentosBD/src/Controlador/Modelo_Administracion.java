@@ -19,6 +19,7 @@ public class Modelo_Administracion extends Controlador<Administracion>{
     public Modelo_Administracion(ConexionBD Conexion_Actual){
         super(Conexion_Actual);
         this.Conexion_Actual=Conexion_Actual; 
+        this.Lista_Administracion=this.Conexion_Actual.SelectAllFrom("Administracion", this.getClase());
     }
     
      public void setModelo_Personal(Modelo_Personal Personal){
