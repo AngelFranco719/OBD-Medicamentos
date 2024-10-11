@@ -49,6 +49,11 @@ public class Confirmacion_Medicamento extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Button_Cancelar.setText("Cancelar");
+        Button_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_CancelarActionPerformed(evt);
+            }
+        });
 
         Button_Enviar.setText("Enviar");
         Button_Enviar.addActionListener(new java.awt.event.ActionListener() {
@@ -177,6 +182,10 @@ public class Confirmacion_Medicamento extends javax.swing.JFrame {
         Medicamento.RelationshipMedicamento_Composicion(Codigo, Composicion);
         Medicamento.InsertToBD(Codigo);
     }//GEN-LAST:event_Button_EnviarActionPerformed
+
+    private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Button_CancelarActionPerformed
 
     /**
      * @param args the command line arguments

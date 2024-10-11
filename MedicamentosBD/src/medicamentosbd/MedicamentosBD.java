@@ -18,8 +18,13 @@ public class MedicamentosBD {
     public static void main(String[] args) {
        InicializarControladores(); 
        Formulario_Insert_Medicamento ventana=new Formulario_Insert_Medicamento(M_Medicamento,M_Comp); 
-       ventana.setVisible(true);
-
+       //ventana.setVisible(true);
+       
+       JFIngreso frameIngreso = new JFIngreso(M_Ing, M_Pac);
+       frameIngreso.setVisible(true);
+       
+       JFPaciente framePaciente = new JFPaciente(M_Pac, M_Ing);
+       //framePaciente.setVisible(true);
         
     }
     
