@@ -149,6 +149,10 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
+        if (!validarCamposVacios()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String Codigo =this.Com_Codigo.getText();
         String Cantidad = this.Com_Cantidad.getText();
         String Medicamento = this.Com_Medicamento.getSelectedItem().toString();
@@ -211,7 +215,13 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
         }  
         
     }
-    
+    public boolean validarCamposVacios() {       
+       if (Com_Codigo.getText().trim().isEmpty() || 
+           Com_Cantidad.getText().trim().isEmpty()){
+           return false;
+       }
+       return true;
+}
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

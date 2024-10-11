@@ -165,6 +165,11 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
     }//GEN-LAST:event_Button_CancelarActionPerformed
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
+        
+        if (!validarCamposVacios()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String Codigo=this.Act_Codigo.getText();
         String Nombre=this.Act_Nombre.getText();
         String Descripcion=this.Act_Descripcion.getText();
@@ -215,6 +220,15 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
             Act_Composicion.addItem(composicion);
         }   
     }
+    
+    public boolean validarCamposVacios() {       
+       if (Act_Codigo.getText().trim().isEmpty() || 
+           Act_Nombre.getText().trim().isEmpty() ||
+           Act_Descripcion.getText().trim().isEmpty()) {
+           return false;
+       }
+       return true;
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Act_Codigo;
