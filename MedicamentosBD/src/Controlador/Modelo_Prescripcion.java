@@ -79,7 +79,7 @@ public class Modelo_Prescripcion extends Controlador<Prescripcion>{
     @Override
     public Function<Prescripcion, String> getFunction(String Atributo){
         switch(Atributo){
-            case "ing_codigo":
+            case "pres_codigo":
                 return Prescripcion::getPres_codigo;
         }
         return null; 

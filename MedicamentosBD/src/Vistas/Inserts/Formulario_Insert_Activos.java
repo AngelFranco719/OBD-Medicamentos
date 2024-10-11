@@ -1,17 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vistas.Inserts;
+import Confirmacion.Confirmacion_Activo;
+import Controlador.Modelo_Composicion;
+import Controlador.Modelo_PrincipioActivo;
+import java.util.*;
 
 public class Formulario_Insert_Activos extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Formulario_Insert_Activos
-     */
-    public Formulario_Insert_Activos() {
+    Modelo_PrincipioActivo Activo;
+    Modelo_Composicion Composicion;
+    
+    public  Formulario_Insert_Activos(Modelo_PrincipioActivo Activo, Modelo_Composicion Composicion){
         initComponents();
+        this.Activo=Activo;
+        this.Composicion=Composicion;
+        this.InicializarComposiciones();
+        
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,9 +34,11 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
         Act_Nombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        Act_Descripcion = new javax.swing.JTextArea();
         Button_Enviar = new javax.swing.JButton();
         Button_Cancelar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        Act_Composicion = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,11 +51,16 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
 
         jLabel4.setText("Descripcion:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        Act_Descripcion.setColumns(20);
+        Act_Descripcion.setRows(5);
+        jScrollPane1.setViewportView(Act_Descripcion);
 
         Button_Enviar.setText("Enviar");
+        Button_Enviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_EnviarActionPerformed(evt);
+            }
+        });
 
         Button_Cancelar.setText("Cancelar");
         Button_Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -57,6 +68,10 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
                 Button_CancelarActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("Composicion:");
+
+        Act_Composicion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -68,7 +83,7 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -84,7 +99,11 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(Act_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(Act_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(63, 63, 63)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Act_Composicion, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -102,7 +121,9 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(Act_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Act_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(Act_Composicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -126,7 +147,9 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,6 +158,16 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
     private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Button_CancelarActionPerformed
+
+    private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
+        String Codigo=this.Act_Codigo.getText();
+        String Nombre=this.Act_Nombre.getText();
+        String Descripcion=this.Act_Descripcion.getText();
+        String Composicion=this.Act_Composicion.getSelectedItem().toString();
+        Confirmacion_Activo confirmacion=new Confirmacion_Activo(Activo,Codigo,Nombre,Descripcion,Composicion);
+        confirmacion.setVisible(true);
+        
+    }//GEN-LAST:event_Button_EnviarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,13 +199,22 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Formulario_Insert_Activos().setVisible(true);
+               
             }
         });
+    }
+    private void InicializarComposiciones(){
+        List<String>Composiciones=Composicion.getListAttribute("comp_codigo");
+        Act_Composicion.removeAllItems();
+        for(String composicion : Composiciones){
+            Act_Composicion.addItem(composicion);
+        }   
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Act_Codigo;
+    private javax.swing.JComboBox<String> Act_Composicion;
+    private javax.swing.JTextArea Act_Descripcion;
     private javax.swing.JTextField Act_Nombre;
     private javax.swing.JButton Button_Cancelar;
     private javax.swing.JButton Button_Enviar;
@@ -180,8 +222,8 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

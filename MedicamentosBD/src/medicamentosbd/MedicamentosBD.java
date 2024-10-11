@@ -19,10 +19,6 @@ public class MedicamentosBD {
        InicializarControladores(); 
        MenuPrincipal Menu=new MenuPrincipal(M_Adm,M_Comp,M_Ing,M_Lis,M_Medicamento,M_Pac,M_Per,M_Pres,M_Pri);
        Menu.setVisible(true);
-       
-       
-
-        
     }
     
     public static void InicializarControladores(){

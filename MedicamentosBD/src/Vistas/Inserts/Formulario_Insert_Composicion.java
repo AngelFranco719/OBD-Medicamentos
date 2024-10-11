@@ -1,20 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vistas.Inserts;
 
-/**
- *
- * @author Karla
- */
+import Confirmacion.Confirmacion_Composicion;
+import Controlador.Modelo_Composicion;
+import Controlador.Modelo_PrincipioActivo;
+import Controlador.Modelo_Medicamento;
+import java.util.List;
 public class Formulario_Insert_Composicion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Formulario_Insert_Composicion
-     */
-    public Formulario_Insert_Composicion() {
+    Modelo_Composicion Composicion;
+    Modelo_Medicamento Medicamento;
+    Modelo_PrincipioActivo Activo;
+    public Formulario_Insert_Composicion(Modelo_Composicion Composicion,Modelo_Medicamento Medicamento, Modelo_PrincipioActivo Activo) {
         initComponents();
+        this.Composicion=Composicion;
+        this.Medicamento=Medicamento;
+        this.Activo=Activo;
+        this.InicializarComboBox();
     }
 
     /**
@@ -57,6 +58,11 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
         Com_Activos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         Button_Enviar.setText("Enviar");
+        Button_Enviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_EnviarActionPerformed(evt);
+            }
+        });
 
         Button_Cancelar.setText("Cancelar");
 
@@ -134,6 +140,16 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
+        String Codigo =this.Com_Codigo.getText();
+        String Cantidad = this.Com_Cantidad.getText();
+        String Medicamento = this.Com_Medicamento.getSelectedItem().toString();
+        String Activo = this.Com_Activos.getSelectedItem().toString();
+        Confirmacion_Composicion confirmacion=new Confirmacion_Composicion(Composicion,Codigo,Cantidad,Activo,Medicamento);
+        confirmacion.setVisible(true);
+        
+    }//GEN-LAST:event_Button_EnviarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -164,11 +180,26 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Formulario_Insert_Composicion().setVisible(true);
+                
             }
         });
     }
+     private void InicializarComboBox(){
+        List<String>ComboMedicamento=Medicamento.getListAttribute("med_codigo");
+        Com_Medicamento.removeAllItems();
+        for(String medicamento : ComboMedicamento){
+            Com_Medicamento.addItem(medicamento);
+        }  
+        List<String>ComboActivo=Activo.getListAttribute("pri_codigo");
+        Com_Activos.removeAllItems();
+        for(String activo : ComboActivo){
+            Com_Activos.addItem(activo);
+        }  
+        
+    }
+    
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_Cancelar;
     private javax.swing.JButton Button_Enviar;
