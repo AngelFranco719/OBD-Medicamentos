@@ -85,4 +85,16 @@ public class Modelo_Personal extends Controlador<Personal>{
     public void setLista(List<Personal> Lista){
         this.Lista_Personal=Lista; 
     }
+     @Override
+    public String[] getAttributes(){
+        return new String[]{"Nombre", "Rol", "Cedula"};
+    }
+    @Override
+    public List<String> getAllAtributesFromInstance(int index){
+        List<String> Atributos=new ArrayList();
+        Atributos.add(String.valueOf(this.Lista_Personal.get(index).getPer_nombre()));
+        Atributos.add(String.valueOf(this.Lista_Personal.get(index).getPer_rol()));
+        Atributos.add(String.valueOf(this.Lista_Personal.get(index).getPer_cedula()));
+        return Atributos; 
+    }
 }

@@ -61,5 +61,21 @@ public class Modelo_Ingreso extends Controlador<Ingreso>{
     public void setLista(List<Ingreso> Lista){
         this.Lista_Ingreso=Lista; 
     }
+    @Override
+    public String[] getAttributes(){
+        return new String[]{"Código", "Número", "Sintomas", "Diagnostico", "Fecha de Salida", "Fecha de Entrada", "Paciente"};
+    }
+    @Override
+    public List<String> getAllAtributesFromInstance(int index){
+        List<String> Atributos=new ArrayList();
+        Atributos.add(this.Lista_Ingreso.get(index).getIng_codigo());
+        Atributos.add(this.Lista_Ingreso.get(index).getIng_num());
+        Atributos.add(this.Lista_Ingreso.get(index).getIng_sintomas());
+        Atributos.add(this.Lista_Ingreso.get(index).getIng_diagnostico());
+        Atributos.add(this.Lista_Ingreso.get(index).getIng_fechaSalida());
+        Atributos.add(this.Lista_Ingreso.get(index).getIng_fechaEntrada());
+        Atributos.add(this.Lista_Ingreso.get(index).getIng_pac());
+        return Atributos; 
+    }
    
 }

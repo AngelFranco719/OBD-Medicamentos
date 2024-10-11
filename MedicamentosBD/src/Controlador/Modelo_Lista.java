@@ -84,4 +84,20 @@ public class Modelo_Lista extends Controlador<Lista>{
     public void setLista(List<Lista> Lista){
         this.Lista_Listas=Lista; 
     }
+    @Override
+    public String[] getAttributes(){
+        return new String[]{"Código", "Intervalo", "Dósis", "Días", "Fecha", "Prescripcion", "Medicamento"};
+    }
+    @Override
+    public List<String> getAllAtributesFromInstance(int index){
+        List<String> Atributos=new ArrayList();
+        Atributos.add(this.Lista_Listas.get(index).getLis_codigo());
+        Atributos.add(this.Lista_Listas.get(index).getLis_intervalo());
+        Atributos.add(this.Lista_Listas.get(index).getLis_dosis());
+        Atributos.add(String.valueOf(this.Lista_Listas.get(index).getLis_dias()));
+        Atributos.add(this.Lista_Listas.get(index).getLis_fecha_hora_inicio());
+        Atributos.add(this.Lista_Listas.get(index).getLis_pres());
+        Atributos.add(this.Lista_Listas.get(index).getLis_med());
+        return Atributos; 
+    }
 }

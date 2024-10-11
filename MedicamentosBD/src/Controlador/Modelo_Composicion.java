@@ -73,5 +73,15 @@ public class Modelo_Composicion extends Controlador<Composicion>{
     public void setLista(List<Composicion> Lista){
         this.Lista_Composicion=Lista; 
     }
- 
+    @Override
+    public String[] getAttributes(){
+        return new String[]{"Código", "Cantidad"};
+    }
+    @Override
+    public List<String> getAllAtributesFromInstance(int index){
+        List<String> Atributos=new ArrayList();
+        Atributos.add(this.Lista_Composicion.get(index).getComp_codigo());
+        Atributos.add(this.Lista_Composicion.get(index).getComp_cantidad());
+        return Atributos; 
+    }
 }

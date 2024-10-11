@@ -88,6 +88,21 @@ public class Modelo_Administracion extends Controlador<Administracion>{
         }
         return null; 
     }
+    @Override
+    public String[] getAttributes(){
+        return new String[]{"Código", "Fecha", "Registro", "Personal", "Lista"};
+    }
+    @Override
+    public List<String> getAllAtributesFromInstance(int index){
+        List<String> Atributos=new ArrayList();
+        Atributos.add(this.Lista_Administracion.get(index).getAdm_codigo());
+        Atributos.add(this.Lista_Administracion.get(index).getAdm_fecha());
+        Atributos.add(this.Lista_Administracion.get(index).getAdm_registro());
+        Atributos.add(this.Lista_Administracion.get(index).getAdm_per());
+        Atributos.add(this.Lista_Administracion.get(index).getAdm_lis());
+        return Atributos; 
+    }
+    
     public void ActualizarInstancia(String adm_codigo, String adm_fecha, String adm_registro, String per_nombre, String lis_codigo){
         Administracion nuevaInstancia=new Administracion(adm_codigo, adm_fecha, adm_registro); 
         this.RelationshipAdministracion_Personal(nuevaInstancia, per_nombre);

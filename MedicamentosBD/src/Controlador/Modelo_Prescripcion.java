@@ -88,5 +88,19 @@ public class Modelo_Prescripcion extends Controlador<Prescripcion>{
     public void setLista(List<Prescripcion> Lista){
         this.Lista_Prescripcion=Lista; 
     }
-    
+     @Override
+    public String[] getAttributes(){
+        return new String[]{"Código", "Fecha", "Usos", "Instrucciones", "Paciente", "Personal"};
+    }
+    @Override
+    public List<String> getAllAtributesFromInstance(int index){
+        List<String> Atributos=new ArrayList();
+        Atributos.add(this.Lista_Prescripcion.get(index).getPres_codigo());
+        Atributos.add(this.Lista_Prescripcion.get(index).getPres_fecha());
+        Atributos.add(this.Lista_Prescripcion.get(index).getPres_usos());
+        Atributos.add(this.Lista_Prescripcion.get(index).getPres_instrucciones());
+        Atributos.add(this.Lista_Prescripcion.get(index).getPres_pac());
+        Atributos.add(this.Lista_Prescripcion.get(index).getPres_per());
+        return Atributos; 
+    }
 }

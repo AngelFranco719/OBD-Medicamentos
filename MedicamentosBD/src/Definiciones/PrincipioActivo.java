@@ -33,6 +33,12 @@ public class PrincipioActivo extends Modelo implements Serializable {
     public String getAct_codigo(){
         return this.pri_codigo;
     }
+    public String getAct_nombre(){
+        return this.pri_nombre;
+    }
+    public String getAct_descripcion(){
+        return this.pri_descripcion;
+    }
     
     @Override
     public String getID(){

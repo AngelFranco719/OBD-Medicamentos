@@ -211,6 +211,11 @@ public class Formulario_Insert_Administracion extends javax.swing.JFrame {
         });
 
         Button_Cancelar.setText("Cancelar");
+        Button_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_CancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,6 +274,13 @@ public class Formulario_Insert_Administracion extends javax.swing.JFrame {
         Confirmacion_Administracion Confirmacion=new Confirmacion_Administracion(this.Administracion,Codigo, Clinica, Lista, Personal, fecha_final, Registro); 
         Confirmacion.setVisible(true);
     }//GEN-LAST:event_Button_EnviarActionPerformed
+
+    private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed
+        // TODO add your handling code here:
+        if(JOptionPane.OK_OPTION==JOptionPane.showConfirmDialog(this, "Los Cambios se Perderán ¿Desea salir?")){
+            this.dispose(); 
+        }
+    }//GEN-LAST:event_Button_CancelarActionPerformed
 
     /**
      * @param args the command line arguments

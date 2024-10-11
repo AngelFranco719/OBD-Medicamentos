@@ -9,6 +9,10 @@ import Controlador.Modelo_Paciente;
 import Controlador.Modelo_Personal;
 import Controlador.Modelo_Prescripcion;
 import Controlador.Modelo_PrincipioActivo;
+import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
+import medicamentosbd.Paneles.Insertar;
+import medicamentosbd.Paneles.TablaDatos;
 
 public class MenuPrincipal extends javax.swing.JFrame {
     Modelo_Administracion M_Adm; 
@@ -24,7 +28,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             Modelo_Lista M_Lis,Modelo_Medicamento M_Medicamento,Modelo_Paciente M_Pac,Modelo_Personal M_Per,
             Modelo_Prescripcion M_Pres,Modelo_PrincipioActivo M_Pri) {
         initComponents();
-        this.P_Insertar.setVisible(false);
         this.M_Adm=M_Adm; 
         this.M_Comp=M_Comp;
         this.M_Ing=M_Ing; 
@@ -34,6 +37,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.M_Per=M_Per;
         this.M_Pres=M_Pres;
         this.M_Pri=M_Pri;
+        JP_Contenido.setLayout(new BoxLayout(this.JP_Contenido, BoxLayout.Y_AXIS));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -41,13 +45,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         B_Insertar = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        B_VerDatos = new javax.swing.JToggleButton();
         jToggleButton3 = new javax.swing.JToggleButton();
         jToggleButton4 = new javax.swing.JToggleButton();
-        P_Insertar = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        Cb_Tablas = new javax.swing.JComboBox<>();
-        B_Formulario = new javax.swing.JButton();
+        JP_Contenido = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,46 +63,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton2.setText("Ver Datos");
+        B_VerDatos.setText("Ver Datos");
+        B_VerDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_VerDatosActionPerformed(evt);
+            }
+        });
 
         jToggleButton3.setText("Actualizar Datos");
 
         jToggleButton4.setText("Borrar Datos");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Selecciona una Tabla:");
-
-        Cb_Tablas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        B_Formulario.setText("Ver Formulario");
-        B_Formulario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                B_FormularioActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout P_InsertarLayout = new javax.swing.GroupLayout(P_Insertar);
-        P_Insertar.setLayout(P_InsertarLayout);
-        P_InsertarLayout.setHorizontalGroup(
-            P_InsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(P_InsertarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Cb_Tablas, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(B_Formulario)
-                .addContainerGap(70, Short.MAX_VALUE))
+        javax.swing.GroupLayout JP_ContenidoLayout = new javax.swing.GroupLayout(JP_Contenido);
+        JP_Contenido.setLayout(JP_ContenidoLayout);
+        JP_ContenidoLayout.setHorizontalGroup(
+            JP_ContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 488, Short.MAX_VALUE)
         );
-        P_InsertarLayout.setVerticalGroup(
-            P_InsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(P_InsertarLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(P_InsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(Cb_Tablas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(B_Formulario))
-                .addContainerGap(123, Short.MAX_VALUE))
+        JP_ContenidoLayout.setVerticalGroup(
+            JP_ContenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 423, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,20 +92,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JP_Contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(B_Insertar)
                                 .addGap(18, 18, 18)
-                                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(B_VerDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jToggleButton3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(P_Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jLabel1)))
+                                .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -135,71 +116,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B_Insertar)
-                    .addComponent(jToggleButton2)
+                    .addComponent(B_VerDatos)
                     .addComponent(jToggleButton3)
                     .addComponent(jToggleButton4))
-                .addGap(18, 18, 18)
-                .addComponent(P_Insertar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(JP_Contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void B_InsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_InsertarActionPerformed
-        String[] Tablas={
-            "Administracion", "Composicion", "Ingreso", "Lista", "Medicamento",
-            "Paciente", "Personal", "Prescripcion", "PrincipioActivo"
-        };
-        this.Cb_Tablas.removeAllItems();
-        for(String tabla : Tablas){
-            Cb_Tablas.addItem(tabla);
+        JP_Contenido.removeAll();
+        if(this.B_Insertar.isSelected()){
+            JP_Contenido.add(new Insertar(M_Adm,M_Comp,M_Ing,M_Lis,M_Medicamento,M_Pac,M_Per,M_Pres,M_Pri));
         }
-        this.P_Insertar.setVisible(true);
+        
+        JP_Contenido.revalidate();
+        JP_Contenido.repaint();
     }//GEN-LAST:event_B_InsertarActionPerformed
 
-    private void B_FormularioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_FormularioActionPerformed
-        String Tabla_Seleccionada=this.Cb_Tablas.getSelectedItem().toString();
-        switch (Tabla_Seleccionada){
-            case "Administracion":
-                Formulario_Insert_Administracion Administracion=new Formulario_Insert_Administracion(M_Adm,M_Per,M_Lis);
-                Administracion.setVisible(true);
-                break; 
-            case "Composicion":
-                Formulario_Insert_Composicion Composicion=new Formulario_Insert_Composicion(M_Comp,M_Medicamento,M_Pri);
-                Composicion.setVisible(true);
-                break;
-            case "Ingreso":
-                JFIngreso Ingreso=new JFIngreso();
-                Ingreso.setVisible(true);
-                break;
-            case "Lista":
-                Formulario_Insert_Lista Lista=new Formulario_Insert_Lista(M_Lis, M_Medicamento,M_Pres,M_Adm); 
-                Lista.setVisible(true);
-                break; 
-            case "Medicamento":
-                Formulario_Insert_Medicamento Medicamento=new Formulario_Insert_Medicamento(M_Medicamento,M_Comp);
-                Medicamento.setVisible(true);
-                break; 
-            case "Paciente":
-                JFPaciente Paciente=new JFPaciente(); 
-                Paciente.setVisible(true);
-                break;
-            case "Personal":
-                JFPersonal Personal=new JFPersonal();
-                Personal.setVisible(true);
-                break; 
-            case "Prescripcion":
-                JFPrescripcion Prescripcion=new JFPrescripcion();
-                Prescripcion.setVisible(true);
-                break;
-            case "PrincipioActivo":
-                Formulario_Insert_Activos Activos=new Formulario_Insert_Activos(M_Pri,M_Comp); 
-                Activos.setVisible(true);
-                break; 
-               
+    private void B_VerDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_VerDatosActionPerformed
+        JP_Contenido.removeAll();
+        if(this.B_VerDatos.isSelected()){
+            this.JP_Contenido.add(new TablaDatos(M_Adm,M_Comp,M_Ing,M_Lis,M_Medicamento,M_Pac,M_Per,M_Pres,M_Pri));
         }
-    }//GEN-LAST:event_B_FormularioActionPerformed
+        JP_Contenido.revalidate();
+        JP_Contenido.repaint();
+    }//GEN-LAST:event_B_VerDatosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,13 +181,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton B_Formulario;
     private javax.swing.JToggleButton B_Insertar;
-    private javax.swing.JComboBox<String> Cb_Tablas;
-    private javax.swing.JPanel P_Insertar;
+    private javax.swing.JToggleButton B_VerDatos;
+    private javax.swing.JPanel JP_Contenido;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;
     // End of variables declaration//GEN-END:variables

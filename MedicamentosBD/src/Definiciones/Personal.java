@@ -45,6 +45,14 @@ public class Personal extends Modelo implements Serializable{
     public String getPer_nombre(){
         return this.per_nombre;
     }
+    
+    public String getPer_rol(){
+        return this.per_rol.toString();
+    }
+    public String getPer_cedula(){
+        return this.per_cedula; 
+    }
+    
     public void setPer_nombre(String nombre){
         this.per_nombre=nombre;
     }

@@ -103,6 +103,11 @@ public class Formulario_Insert_Lista extends javax.swing.JFrame {
 
         Button_Cancelar.setText("Cancelar");
         Button_Cancelar.setToolTipText("");
+        Button_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_CancelarActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Intervalo:");
 
@@ -276,6 +281,13 @@ public class Formulario_Insert_Lista extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_Button_EnviarActionPerformed
+
+    private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed
+        // TODO add your handling code here:
+        if(JOptionPane.OK_OPTION==JOptionPane.showConfirmDialog(this, "Los Cambios se Perderán ¿Desea salir?")){
+            this.dispose(); 
+        }
+    }//GEN-LAST:event_Button_CancelarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,7 @@ import Controlador.Modelo_Composicion;
 import Controlador.Modelo_PrincipioActivo;
 import java.util.*;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class Formulario_Insert_Activos extends javax.swing.JFrame {
     Modelo_PrincipioActivo Activo;
@@ -158,7 +159,9 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed
-        // TODO add your handling code here:
+        if(JOptionPane.OK_OPTION==JOptionPane.showConfirmDialog(this, "Los Cambios se Perderán ¿Desea salir?")){
+            this.dispose(); 
+        }
     }//GEN-LAST:event_Button_CancelarActionPerformed
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed

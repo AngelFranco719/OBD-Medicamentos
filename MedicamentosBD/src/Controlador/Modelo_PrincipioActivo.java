@@ -65,4 +65,16 @@ public class Modelo_PrincipioActivo extends Controlador<PrincipioActivo>{
     public void setLista(List<PrincipioActivo> Lista){
         this.Lista_Activo=Lista; 
     }
+     @Override
+    public String[] getAttributes(){
+        return new String[]{"Código", "Nombre", "Descripción"};
+    }
+    @Override
+    public List<String> getAllAtributesFromInstance(int index){
+        List<String> Atributos=new ArrayList();
+        Atributos.add(this.Lista_Activo.get(index).getAct_codigo());
+        Atributos.add(this.Lista_Activo.get(index).getAct_nombre());
+        Atributos.add(this.Lista_Activo.get(index).getAct_descripcion());
+        return Atributos; 
+    }
 }

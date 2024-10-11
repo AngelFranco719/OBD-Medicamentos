@@ -36,16 +36,16 @@ private Date lis_fecha_hora_inicio;
         this.lis_intervalo = lis_intervalo;
     }
 
-    public Prescripcion getLis_pres() {
-        return lis_pres;
+    public String getLis_pres() {
+        return lis_pres.getPres_codigo();
     }
 
     public void setLis_pres(Prescripcion lis_pres) {
         this.lis_pres = lis_pres;
     }
 
-    public Medicamento getLis_med() {
-        return lis_med;
+    public String getLis_med() {
+        return lis_med.getMed_nombre();
     }
 
     public void setLis_med(Medicamento lis_med) {
@@ -100,7 +100,7 @@ private Date lis_fecha_hora_inicio;
         
         this.getLis_adm(), 
         this.getLis_med(), 
-        this.getLis_pres().getPres_codigo()
+        this.getLis_pres()
         );
     }
     
@@ -152,8 +152,8 @@ private Date lis_fecha_hora_inicio;
         this.lis_dias = lis_dias;
     }
 
-    public Date getLis_fecha_hora_inicio() {
-        return lis_fecha_hora_inicio;
+    public String getLis_fecha_hora_inicio() {
+        return this.parseDatetoString(lis_fecha_hora_inicio);
     }
 
     public void setLis_fecha_hora_inicio(Date lis_fecha_inicio) {

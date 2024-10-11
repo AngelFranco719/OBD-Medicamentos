@@ -12,6 +12,8 @@ public abstract class Controlador<T> {
     public abstract String getEntidad(); 
     public abstract Class getClase(); 
     public abstract Function<T, String> getFunction(String Atributo);  
+    public abstract String[] getAttributes(); 
+    public abstract List<String> getAllAtributesFromInstance(int index);
 
     public Controlador(ConexionBD Conexion_Actual){
         this.Conexion_Actual=Conexion_Actual; 
@@ -76,5 +78,7 @@ public abstract class Controlador<T> {
         }
         return null;
     }
-    
+    public int getListCount(){
+        return this.getLista().size();
+    }
 }

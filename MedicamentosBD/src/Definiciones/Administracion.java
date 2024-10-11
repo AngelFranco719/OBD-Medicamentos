@@ -44,6 +44,18 @@ public class Administracion extends Modelo implements Serializable{
         return this.parseDatetoString(adm_fecha);
     }
     
+    public String getAdm_registro(){
+        return this.adm_registro;
+    }
+    
+    public String getAdm_per(){
+        return this.adm_per.getPer_nombre();
+    }
+    
+    public String getAdm_lis(){
+        return this.adm_lis.getLis_codigo();
+    }
+    
     public void setAdm_codigo(String adm_codigo){
         this.adm_codigo=adm_codigo;
     }

@@ -76,8 +76,8 @@ public class Ingreso extends Modelo implements Serializable{
         return this.ing_codigo;
     }
     
-    public int getIng_num() {
-        return ing_num;
+    public String getIng_num() {
+        return Integer.toString(ing_num);
     }
 
     public void setIng_num(int ing_num) {
@@ -100,24 +100,24 @@ public class Ingreso extends Modelo implements Serializable{
         this.ing_diagnostico = ing_diagnostico;
     }
 
-    public Date getIng_fechaSalida() {
-        return ing_fechaSalida;
+    public String getIng_fechaSalida() {
+        return this.parseDatetoString(ing_fechaSalida);
     }
 
     public void setIng_fechaSalida(String ing_fechaSalida) {
         this.ing_fechaSalida = this.parseStringToDate(ing_fechaSalida);
     }
 
-    public Date getIng_fechaEntrada() {
-        return ing_fechaEntrada;
+    public String getIng_fechaEntrada() {
+        return this.parseDatetoString(ing_fechaEntrada);
     }
 
     public void setIng_fechaEntrada(String ing_fechaEntrada) {
         this.ing_fechaEntrada = this.parseStringToDate(ing_fechaEntrada);
     }
 
-    public Paciente getIng_pac() {
-        return ing_pac;
+    public String getIng_pac() {
+        return ing_pac.getPac_nombre();
     }
 
     public void setIng_pac(Paciente ing_pac) {

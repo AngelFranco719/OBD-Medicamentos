@@ -46,6 +46,10 @@ public class Composicion extends Modelo implements Serializable {
         return this.comp_codigo;
     }
     
+    public String getComp_cantidad(){
+        return Integer.toString(comp_cantidad);
+    }
+    
     public List<Medicamento> getComp_med(){
         return this.comp_med;
     }

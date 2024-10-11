@@ -67,12 +67,15 @@ public class Prescripcion extends Modelo implements Serializable {
         pres_per = per1;
     }
 
-    public Paciente getPres_pac() {
-        return pres_pac;
+    public String getPres_pac() {
+        return pres_pac.getPac_nombre();
     }
 
-    public Personal getPres_per() {
-        return pres_per;
+    public String getPres_per() {
+        if(pres_per!=null)
+            return pres_per.getPer_nombre();
+        else
+            return "No asignado";
     }
     public void dropPres_per(Personal per1) {
         pres_per = per1;
@@ -94,9 +97,9 @@ public class Prescripcion extends Modelo implements Serializable {
         return pres_codigo;
     }
 
-    public Date getPres_fecha() {
+    public String getPres_fecha() {
         
-        return pres_fecha;
+        return this.parseDatetoString(pres_fecha);
     }
 
     public String getPres_usos() {

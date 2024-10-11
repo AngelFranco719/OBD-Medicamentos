@@ -76,4 +76,18 @@ public class Modelo_Medicamento extends Controlador<Medicamento>{
     public void setLista(List<Medicamento> Lista){
         this.Lista_Medicamentos=Lista; 
     }
+    @Override
+    public String[] getAttributes(){
+        return new String[]{"Código", "Nombre", "Cantidad", "Presentación", "Descripción"};
+    }
+    @Override
+    public List<String> getAllAtributesFromInstance(int index){
+        List<String> Atributos=new ArrayList();
+        Atributos.add(this.Lista_Medicamentos.get(index).getMed_codigo());
+        Atributos.add(this.Lista_Medicamentos.get(index).getMed_nombre());
+        Atributos.add(String.valueOf(this.Lista_Medicamentos.get(index).getMed_cantidad()));
+        Atributos.add(this.Lista_Medicamentos.get(index).getMed_presentacion());
+        Atributos.add(this.Lista_Medicamentos.get(index).getMed_descripcion());
+        return Atributos; 
+    }
 }

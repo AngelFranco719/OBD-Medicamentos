@@ -6,6 +6,7 @@ import Controlador.Modelo_PrincipioActivo;
 import Controlador.Modelo_Medicamento;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 public class Formulario_Insert_Composicion extends javax.swing.JFrame {
 
     Modelo_Composicion Composicion;
@@ -67,6 +68,11 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
         });
 
         Button_Cancelar.setText("Cancelar");
+        Button_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_CancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,6 +157,12 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
         confirmacion.setVisible(true);
         
     }//GEN-LAST:event_Button_EnviarActionPerformed
+
+    private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed
+        if(JOptionPane.OK_OPTION==JOptionPane.showConfirmDialog(this, "Los Cambios se Perderán ¿Desea salir?")){
+            this.dispose(); 
+        }
+    }//GEN-LAST:event_Button_CancelarActionPerformed
 
     /**
      * @param args the command line arguments
