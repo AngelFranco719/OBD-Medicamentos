@@ -4,6 +4,7 @@ import Definiciones.Composicion;
 import Definiciones.Medicamento;
 import Definiciones.PrincipioActivo;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
 public class Modelo_Composicion extends Controlador<Composicion>{
     List<Composicion> Lista_Composicion=new ArrayList(); 
@@ -46,7 +47,7 @@ public class Modelo_Composicion extends Controlador<Composicion>{
         Composicion p=(Composicion)this.getElementByID(comp_codigo);
         PrincipioActivo a=(PrincipioActivo)Activo.getElementByID(act_codigo);
         p.formComp_act(a);
-        //a.formAct_comp(p);
+        a.formAct_comp(p);
     }
     @Override
     public List<Composicion> getLista(){
@@ -72,4 +73,5 @@ public class Modelo_Composicion extends Controlador<Composicion>{
     public void setLista(List<Composicion> Lista){
         this.Lista_Composicion=Lista; 
     }
+ 
 }

@@ -2,6 +2,7 @@ package Controlador;
 import BD.ConexionBD;
 import Definiciones.Modelo;
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public abstract class Controlador<T> {
@@ -11,6 +12,7 @@ public abstract class Controlador<T> {
     public abstract String getEntidad(); 
     public abstract Class getClase(); 
     public abstract Function<T, String> getFunction(String Atributo);  
+
     public Controlador(ConexionBD Conexion_Actual){
         this.Conexion_Actual=Conexion_Actual; 
     }
@@ -35,6 +37,10 @@ public abstract class Controlador<T> {
     public void selectInstancesFromBD(){
         List<T> Nueva_Lista = Conexion_Actual.SelectAllFrom(getEntidad(), getClase());
         this.setLista(Nueva_Lista);
+    }
+    
+    public void UpdateInstance(T Instancia){
+        Conexion_Actual.UpdateInstance(Instancia);
     }
     
     public void InsertAllToBD(){

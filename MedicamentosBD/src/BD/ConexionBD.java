@@ -1,5 +1,6 @@
 package BD;
 import java.util.*;
+import java.util.function.Consumer;
 import javax.persistence.*;
 import javax.swing.JOptionPane;
 public class ConexionBD <T>{
@@ -23,6 +24,18 @@ public class ConexionBD <T>{
             JOptionPane.showMessageDialog(null,"Error al Ingresar: "+e.toString());
         }        
     }
+    
+    public void UpdateInstance(T Nueva_Instancia){
+        try{
+            em.getTransaction().begin();
+            em.merge(Nueva_Instancia);
+            em.getTransaction().commit();
+        }catch(Exception e){
+            System.out.println("Error al Actualizar");
+        }
+        
+    }
+    
     public List<T> SelectAllFrom(String Entidad, Class<T> TipoClase){
         List<T>Resultados=new ArrayList(); 
         String Sentencia="SELECT o FROM "+Entidad+" o";
