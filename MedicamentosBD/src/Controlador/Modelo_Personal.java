@@ -85,4 +85,8 @@ public class Modelo_Personal extends Controlador<Personal>{
     public void setLista(List<Personal> Lista){
         this.Lista_Personal=Lista; 
     }
+
+    public void InitializeInstance(String Administracion, String Nombre, String Rol, String Cedula) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

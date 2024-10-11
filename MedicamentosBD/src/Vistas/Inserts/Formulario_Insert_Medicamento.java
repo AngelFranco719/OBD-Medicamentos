@@ -62,6 +62,11 @@ public class Formulario_Insert_Medicamento extends javax.swing.JFrame {
         });
 
         Button_Cancelar.setText("Cancelar");
+        Button_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_CancelarActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Composicion:");
 
@@ -180,6 +185,10 @@ public class Formulario_Insert_Medicamento extends javax.swing.JFrame {
     private void Cb_ComposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cb_ComposicionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Cb_ComposicionActionPerformed
+
+    private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Button_CancelarActionPerformed
 
     /**
      * @param args the command line arguments

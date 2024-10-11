@@ -88,5 +88,9 @@ public class Modelo_Prescripcion extends Controlador<Prescripcion>{
     public void setLista(List<Prescripcion> Lista){
         this.Lista_Prescripcion=Lista; 
     }
+
+    public void InitializeInstance(String Codigo, String Fecha, String Paciente, String Personal, String Lista, String Instrucciones, String Cantidad) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

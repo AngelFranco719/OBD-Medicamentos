@@ -15,12 +15,11 @@ public class MedicamentosBD {
     static Modelo_PrincipioActivo M_Pri; 
 
     
+    
     public static void main(String[] args) {
        InicializarControladores(); 
-       Formulario_Insert_Medicamento ventana=new Formulario_Insert_Medicamento(M_Medicamento,M_Comp); 
+       JFPrescripcion ventana=new JFPrescripcion(M_Pres, M_Pac, M_Per, M_Lis); 
        ventana.setVisible(true);
-
-        
     }
     
     public static void InicializarControladores(){
