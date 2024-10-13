@@ -11,6 +11,8 @@ import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class JFPrescripcion extends javax.swing.JFrame {
 
@@ -252,6 +254,7 @@ public class JFPrescripcion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
+        
         String Codigo=this.pre_codigo.getText();
         String Fecha=new String(); 
         try{
@@ -268,7 +271,9 @@ public class JFPrescripcion extends javax.swing.JFrame {
     }//GEN-LAST:event_Button_EnviarActionPerformed
 
     private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed
-        // TODO add your handling code here:
+        if(JOptionPane.OK_OPTION==JOptionPane.showConfirmDialog(this, "Los cambios se perderán ¿Desea salir?")){
+            this.dispose();
+        }
     }//GEN-LAST:event_Button_CancelarActionPerformed
 
     

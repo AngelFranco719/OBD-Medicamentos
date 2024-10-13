@@ -2,6 +2,7 @@
 package Confirmacion;
 
 import Controlador.Modelo_Prescripcion;
+import javax.swing.JOptionPane;
 
 public class JFConfirmaPrescripcion extends javax.swing.JFrame {
 
@@ -41,7 +42,7 @@ public class JFConfirmaPrescripcion extends javax.swing.JFrame {
         lblUso = new javax.swing.JLabel();
         lblFecha1 = new javax.swing.JLabel();
         lblInstricciones1 = new javax.swing.JLabel();
-        ConfirmaBtn = new javax.swing.JButton();
+        CancelarButton = new javax.swing.JButton();
         Button_Enviar = new javax.swing.JButton();
         pre_codigo = new javax.swing.JLabel();
         pre_fecha = new javax.swing.JLabel();
@@ -71,7 +72,12 @@ public class JFConfirmaPrescripcion extends javax.swing.JFrame {
         lblInstricciones1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblInstricciones1.setText("Instrucciones: ");
 
-        ConfirmaBtn.setText("Confirmar");
+        CancelarButton.setText("Cancelar");
+        CancelarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarButtonActionPerformed(evt);
+            }
+        });
 
         Button_Enviar.setText("Enviar");
         Button_Enviar.addActionListener(new java.awt.event.ActionListener() {
@@ -105,10 +111,10 @@ public class JFConfirmaPrescripcion extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(355, Short.MAX_VALUE)
+                .addContainerGap(362, Short.MAX_VALUE)
                 .addComponent(Button_Enviar)
                 .addGap(18, 18, 18)
-                .addComponent(ConfirmaBtn)
+                .addComponent(CancelarButton)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
@@ -179,7 +185,7 @@ public class JFConfirmaPrescripcion extends javax.swing.JFrame {
                     .addComponent(pre_cantidad))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ConfirmaBtn)
+                    .addComponent(CancelarButton)
                     .addComponent(Button_Enviar))
                 .addContainerGap())
         );
@@ -218,6 +224,12 @@ public class JFConfirmaPrescripcion extends javax.swing.JFrame {
         Prescripcion.InitializeInstance(Codigo, Fecha, Cantidad, Instrucciones);
         Prescripcion.InsertToBD(Codigo);
     }//GEN-LAST:event_Button_EnviarActionPerformed
+
+    private void CancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarButtonActionPerformed
+        if(JOptionPane.OK_OPTION==JOptionPane.showConfirmDialog(this, "Desea regresar?")){
+            this.dispose();
+        }
+    }//GEN-LAST:event_CancelarButtonActionPerformed
 
     
     
@@ -258,7 +270,7 @@ public class JFConfirmaPrescripcion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_Enviar;
-    private javax.swing.JButton ConfirmaBtn;
+    private javax.swing.JButton CancelarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

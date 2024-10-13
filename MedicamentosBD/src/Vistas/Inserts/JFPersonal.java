@@ -75,6 +75,11 @@ public class JFPersonal extends javax.swing.JFrame {
         });
 
         Button_Cancelar.setText("Cancelar");
+        Button_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_CancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -155,6 +160,21 @@ public class JFPersonal extends javax.swing.JFrame {
         n_c.setVisible(true);
     }//GEN-LAST:event_Button_EnviarActionPerformed
 
+    private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed
+        if(JOptionPane.OK_OPTION==JOptionPane.showConfirmDialog(this, "Los cambios se perderán ¿Desea salir?")){
+            this.dispose();
+        }
+    }//GEN-LAST:event_Button_CancelarActionPerformed
+
+    
+    
+    private void InicializarAdministracion(){
+        List<String>RAdmnin=Administracion.getListAttribute("adm_codigo");
+        per_admin.removeAllItems();
+        for(String admin : RAdmnin){
+            per_admin.addItem(admin);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_Cancelar;
