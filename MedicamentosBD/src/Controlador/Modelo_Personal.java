@@ -85,6 +85,7 @@ public class Modelo_Personal extends Controlador<Personal>{
     public void setLista(List<Personal> Lista){
         this.Lista_Personal=Lista; 
     }
+
      @Override
     public String[] getAttributes(){
         return new String[]{"Nombre", "Rol", "Cedula"};
