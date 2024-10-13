@@ -130,7 +130,7 @@ public class Insertar extends javax.swing.JPanel {
             Composicion.setVisible(true);
             break;
             case "Ingreso":
-            JFIngreso Ingreso=new JFIngreso();
+            JFIngreso Ingreso=new JFIngreso(M_Ing,M_Pac);
             Ingreso.setVisible(true);
             break;
             case "Lista":
@@ -142,7 +142,7 @@ public class Insertar extends javax.swing.JPanel {
             Medicamento.setVisible(true);
             break;
             case "Paciente":
-            JFPaciente Paciente=new JFPaciente();
+            JFPaciente Paciente=new JFPaciente(M_Pac,M_Ing);
             Paciente.setVisible(true);
             break;
             case "Personal":
