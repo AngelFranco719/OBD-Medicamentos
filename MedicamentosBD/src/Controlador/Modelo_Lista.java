@@ -100,4 +100,17 @@ public class Modelo_Lista extends Controlador<Lista>{
         Atributos.add(this.Lista_Listas.get(index).getLis_med());
         return Atributos; 
     }
+    @Override
+    public List<String> getAllAtributesFromInstance(String ID){
+        List<String> Atributos=new ArrayList();
+        Lista Seleccionado=this.getElementByID(ID);
+        Atributos.add(Seleccionado.getLis_codigo());
+        Atributos.add(Seleccionado.getLis_intervalo());
+        Atributos.add(Seleccionado.getLis_dosis());
+        Atributos.add(String.valueOf(Seleccionado.getLis_dias()));
+        Atributos.add(Seleccionado.getLis_fecha_hora_inicio());
+        Atributos.add(Seleccionado.getLis_pres());
+        Atributos.add(Seleccionado.getLis_med());
+        return Atributos; 
+    }
 }

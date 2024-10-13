@@ -11,6 +11,7 @@ import Controlador.Modelo_Prescripcion;
 import Controlador.Modelo_PrincipioActivo;
 import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
+import medicamentosbd.Paneles.ActualizarDatos;
 import medicamentosbd.Paneles.Insertar;
 import medicamentosbd.Paneles.TablaDatos;
 
@@ -46,7 +47,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         B_Insertar = new javax.swing.JToggleButton();
         B_VerDatos = new javax.swing.JToggleButton();
-        jToggleButton3 = new javax.swing.JToggleButton();
+        B_Actualizar = new javax.swing.JToggleButton();
         jToggleButton4 = new javax.swing.JToggleButton();
         JP_Contenido = new javax.swing.JPanel();
 
@@ -70,7 +71,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton3.setText("Actualizar Datos");
+        B_Actualizar.setText("Actualizar Datos");
+        B_Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_ActualizarActionPerformed(evt);
+            }
+        });
 
         jToggleButton4.setText("Borrar Datos");
 
@@ -103,7 +109,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(B_VerDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jToggleButton3)
+                                .addComponent(B_Actualizar)
                                 .addGap(18, 18, 18)
                                 .addComponent(jToggleButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(52, Short.MAX_VALUE))
@@ -117,7 +123,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(B_Insertar)
                     .addComponent(B_VerDatos)
-                    .addComponent(jToggleButton3)
+                    .addComponent(B_Actualizar)
                     .addComponent(jToggleButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JP_Contenido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,6 +151,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         JP_Contenido.revalidate();
         JP_Contenido.repaint();
     }//GEN-LAST:event_B_VerDatosActionPerformed
+
+    private void B_ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_ActualizarActionPerformed
+        JP_Contenido.removeAll();
+        if(this.B_Actualizar.isSelected()){
+            this.JP_Contenido.add(new ActualizarDatos(M_Adm, M_Comp, M_Ing, M_Lis, M_Medicamento, M_Pac, M_Per, M_Pres, M_Pri));
+        }
+        JP_Contenido.revalidate();
+        JP_Contenido.repaint();
+    }//GEN-LAST:event_B_ActualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,11 +196,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton B_Actualizar;
     private javax.swing.JToggleButton B_Insertar;
     private javax.swing.JToggleButton B_VerDatos;
     private javax.swing.JPanel JP_Contenido;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JToggleButton jToggleButton3;
     private javax.swing.JToggleButton jToggleButton4;
     // End of variables declaration//GEN-END:variables
 }

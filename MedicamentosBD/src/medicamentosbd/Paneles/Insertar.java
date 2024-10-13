@@ -146,11 +146,11 @@ public class Insertar extends javax.swing.JPanel {
             Paciente.setVisible(true);
             break;
             case "Personal":
-            JFPersonal Personal=new JFPersonal();
+            JFPersonal Personal=new JFPersonal(M_Per,M_Adm);
             Personal.setVisible(true);
             break;
             case "Prescripcion":
-            JFPrescripcion Prescripcion=new JFPrescripcion();
+            JFPrescripcion Prescripcion=new JFPrescripcion(M_Pres,M_Pac,M_Per,M_Lis);
             Prescripcion.setVisible(true);
             break;
             case "PrincipioActivo":

@@ -215,7 +215,7 @@ public class JFConfirmaPrescripcion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
-        Prescripcion.InitializeInstance(Codigo, Fecha, Paciente, Personal, Lista, Instrucciones, Cantidad);
+        Prescripcion.InitializeInstance(Codigo, Fecha, Cantidad, Instrucciones);
         Prescripcion.InsertToBD(Codigo);
     }//GEN-LAST:event_Button_EnviarActionPerformed
 

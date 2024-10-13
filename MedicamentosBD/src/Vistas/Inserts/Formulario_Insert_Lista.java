@@ -9,6 +9,7 @@ import com.toedter.calendar.JCalendar;
 import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 public class Formulario_Insert_Lista extends javax.swing.JFrame {
@@ -27,7 +28,41 @@ public class Formulario_Insert_Lista extends javax.swing.JFrame {
         this.InicializarCombos();
         this.InicializarCalendario();
     }
+    public Formulario_Insert_Lista(Modelo_Lista Lista, Modelo_Medicamento Medicamento, Modelo_Prescripcion Prescripcion,Modelo_Administracion Administracion
+    , List<String> Atributos) {
+        initComponents();
+        this.Lista=Lista;
+        this.Medicamento=Medicamento;
+        this.Prescripcion=Prescripcion;
+        this.Administracion=Administracion;
+        this.InicializarCombos();
+        this.InicializarCalendario();
+        JOptionPane.showMessageDialog(this, Atributos);
+        this.Lista_Codigo.setText(Atributos.get(0));
+        this.Lista_intervalo.setText(Atributos.get(1));
+        this.Lista_Dosis.setText(Atributos.get(2));
+        this.Lista_Dias.setText(Atributos.get(3));
+        try{
+            SimpleDateFormat FormatoF=new SimpleDateFormat("dd-MM-yy hh:mm:ss");
+            SimpleDateFormat FormatoH=new SimpleDateFormat("hh:mm:ss");
+            Date Fecha=FormatoF.parse(Atributos.get(4));
+            this.Calendario.setDate(Fecha);
+            this.Lis_Hora.setText(FormatoH.format(Fecha));
+        }catch(Exception e){}
+        this.Lista_Prescripcion.setSelectedItem(this.getElementInCombo(Atributos.get(5), this.Lista_Prescripcion));
+        this.Lista_Medicamento.setSelectedItem(this.getElementInCombo(Medicamento.getIDByNombre(Atributos.get(6)), Lista_Medicamento));
+        this.Lista_Codigo.setEditable(false);
+    }
 
+    private Object getElementInCombo(String ID, JComboBox Combo){
+         for(int i=0; i<Combo.getItemCount(); i++){
+             if(Combo.getItemAt(i).equals(ID)){
+                 return Combo.getItemAt(i);
+             }
+         }
+         return null; 
+     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

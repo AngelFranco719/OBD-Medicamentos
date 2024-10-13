@@ -20,7 +20,41 @@ public class JFPaciente extends javax.swing.JFrame {
         this.InicializarIngresos();
         agregarValidaciones();
     }
+    public JFPaciente(Modelo_Paciente Paciente, Modelo_Ingreso Ingreso, List<String>Atributos) {
+        initComponents();
+        this.Paciente = Paciente;
+        this.Ingreso = Ingreso;
+        this.InicializarIngresos();
+        agregarValidaciones();
+        JOptionPane.showMessageDialog(this, Atributos);
+        this.txtNSS.setText(Atributos.get(0));
+        this.SepararNombres(Atributos.get(1));
+        this.txtEstatura.setText(Atributos.get(2));
+        this.txtPeso.setText(Atributos.get(3));
+        this.txtNSS.setEditable(false);
+    }
 
+    public void SepararNombres(String NombreCompleto){
+        String[] Separacion=NombreCompleto.split(" ");
+        switch (Separacion.length) {
+            case 2 -> {
+                this.txtNombre_Pact.setText(Separacion[0]);
+                this.txtNomPaterno_Pac.setText(Separacion[1]);
+            }
+            case 3 -> {
+                this.txtNombre_Pact.setText(Separacion[0]);
+                this.txtNomPaterno_Pac.setText(Separacion[1]);
+                this.txtNomMaterno_Pac.setText(Separacion[2]);
+            }
+            case 4 -> {
+                this.txtNombre_Pact.setText(Separacion[0]+" "+Separacion[1]);
+                this.txtNomPaterno_Pac.setText(Separacion[2]);
+                this.txtNomMaterno_Pac.setText(Separacion[3]);
+            }
+            default -> {
+            }
+        }
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

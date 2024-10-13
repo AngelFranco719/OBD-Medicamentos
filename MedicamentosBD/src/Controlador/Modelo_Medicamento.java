@@ -52,6 +52,15 @@ public class Modelo_Medicamento extends Controlador<Medicamento>{
         l.formLis_med(m);
     }
     
+    public String getIDByNombre(String Nombre){
+        for(Medicamento med : this.Lista_Medicamentos){
+            if(med.getMed_nombre().equals(Nombre)){
+                return med.getID();
+            }
+        }
+        return null; 
+    }
+    
     @Override
     public List<Medicamento> getLista(){
         return this.Lista_Medicamentos;
@@ -88,6 +97,17 @@ public class Modelo_Medicamento extends Controlador<Medicamento>{
         Atributos.add(String.valueOf(this.Lista_Medicamentos.get(index).getMed_cantidad()));
         Atributos.add(this.Lista_Medicamentos.get(index).getMed_presentacion());
         Atributos.add(this.Lista_Medicamentos.get(index).getMed_descripcion());
+        return Atributos; 
+    }
+    @Override
+    public List<String> getAllAtributesFromInstance(String ID){
+        List<String> Atributos=new ArrayList();
+        Medicamento Seleccionado=this.getElementByID(ID);
+        Atributos.add(Seleccionado.getMed_codigo());
+        Atributos.add(Seleccionado.getMed_nombre());
+        Atributos.add(String.valueOf(Seleccionado.getMed_cantidad()));
+        Atributos.add(Seleccionado.getMed_presentacion());
+        Atributos.add(Seleccionado.getMed_descripcion());
         return Atributos; 
     }
 }

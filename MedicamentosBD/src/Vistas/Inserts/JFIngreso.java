@@ -9,6 +9,7 @@ import com.toedter.calendar.JCalendar;
 import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -30,6 +31,37 @@ public class JFIngreso extends javax.swing.JFrame {
         this.InicializarCalendario();
         
     }
+    public JFIngreso(Modelo_Ingreso ingreso, Modelo_Paciente paciente, List<String> Atributos) {
+        initComponents();
+        this.Ingreso = ingreso;
+        this.Paciente= paciente;
+        InicializarPac();
+        lblErrorNum.setText("");
+        lblErrorCodigo.setText("");
+        agregarValidaciones();
+        this.InicializarCalendario();
+        JOptionPane.showMessageDialog(this, Atributos);   
+        this.txtcodigo.setText(Atributos.get(0));
+        this.txtid.setText(Atributos.get(1));
+        this.txtSintomas.setText(Atributos.get(2));
+        this.txtDiagnostico.setText(Atributos.get(3));
+        try{
+            SimpleDateFormat Formato=new SimpleDateFormat("dd-MM-yy");
+            this.nuevoCalendario.setDate(Formato.parse(Atributos.get(4)));
+            this.nuevoCalendario2.setDate(Formato.parse(Atributos.get(5)));
+        }catch(Exception e){}
+        this.PacienteCb.setSelectedItem(this.getElementInCombo(Atributos.get(6), PacienteCb));
+        this.txtcodigo.setEditable(false);
+        
+    }
+    private Object getElementInCombo(String ID, JComboBox Combo){
+         for(int i=0; i<Combo.getItemCount(); i++){
+             if(Combo.getItemAt(i).equals(ID)){
+                 return Combo.getItemAt(i);
+             }
+         }
+         return null; 
+     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

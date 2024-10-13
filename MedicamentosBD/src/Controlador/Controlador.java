@@ -14,6 +14,7 @@ public abstract class Controlador<T> {
     public abstract Function<T, String> getFunction(String Atributo);  
     public abstract String[] getAttributes(); 
     public abstract List<String> getAllAtributesFromInstance(int index);
+    public abstract List<String> getAllAtributesFromInstance(String ID);
 
     public Controlador(ConexionBD Conexion_Actual){
         this.Conexion_Actual=Conexion_Actual; 

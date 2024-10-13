@@ -103,4 +103,16 @@ public class Modelo_Prescripcion extends Controlador<Prescripcion>{
         Atributos.add(this.Lista_Prescripcion.get(index).getPres_per());
         return Atributos; 
     }
+    @Override
+    public List<String> getAllAtributesFromInstance(String ID){
+        List<String> Atributos=new ArrayList();
+        Prescripcion Seleccionado=this.getElementByID(ID);
+        Atributos.add(Seleccionado.getPres_codigo());
+        Atributos.add(Seleccionado.getPres_fecha());
+        Atributos.add(Seleccionado.getPres_usos());
+        Atributos.add(Seleccionado.getPres_instrucciones());
+        Atributos.add(Seleccionado.getPres_pac());
+        Atributos.add(Seleccionado.getPres_per());
+        return Atributos; 
+    }
 }

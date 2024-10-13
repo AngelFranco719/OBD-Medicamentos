@@ -9,6 +9,7 @@ import com.toedter.calendar.JCalendar;
 import java.awt.BorderLayout;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 public class Formulario_Insert_Administracion extends javax.swing.JFrame {
     Modelo_Administracion Administracion;
@@ -23,6 +24,36 @@ public class Formulario_Insert_Administracion extends javax.swing.JFrame {
         this.InicializarCombos();
         this.InicializarCalendario();
     }
+     public Formulario_Insert_Administracion(Modelo_Administracion Administracion, Modelo_Personal Personal, Modelo_Lista Lista, List<String>Atributos) {
+        initComponents();
+        this.Administracion=Administracion;
+        this.Personal=Personal; 
+        this.Lista=Lista; 
+        this.InicializarCombos();
+        this.InicializarCalendario();
+        JOptionPane.showMessageDialog(this, Atributos);
+        SimpleDateFormat FormatoF=new SimpleDateFormat("dd-MM-yy");
+        SimpleDateFormat FormatoH=new SimpleDateFormat("hh:mm:ss"); 
+        this.Adm_Codigo.setText(Atributos.get(0));
+        try{
+            Date Fecha=FormatoF.parse(Atributos.get(1));
+            this.Calendario.setDate(Fecha);
+            this.Adm_Hora.setText(FormatoH.format(Fecha));
+        }catch(Exception e){}
+        this.Adm_Registro.setText(Atributos.get(2));
+        this.Adm_Personal.setSelectedItem(this.getElementInCombo(Atributos.get(3), Adm_Personal));
+        this.Adm_Lista.setSelectedItem(this.getElementInCombo(Atributos.get(4), Adm_Lista));
+        this.Adm_Codigo.setEditable(false);
+    }
+     
+     private Object getElementInCombo(String ID, JComboBox Combo){
+         for(int i=0; i<Combo.getItemCount(); i++){
+             if(Combo.getItemAt(i).equals(ID)){
+                 return Combo.getItemAt(i);
+             }
+         }
+         return null; 
+     }
     
     
     private void InicializarCalendario(){

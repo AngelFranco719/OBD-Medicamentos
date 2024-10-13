@@ -18,6 +18,21 @@ public class Formulario_Insert_Medicamento extends javax.swing.JFrame {
         this.InicializarComposiciones();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
+    public Formulario_Insert_Medicamento(Modelo_Medicamento Medicamento, Modelo_Composicion Composicion,
+            List<String> Atributos) {
+        initComponents();
+        this.Medicamento=Medicamento;
+        this.Composicion=Composicion; 
+        this.InicializarComposiciones();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JOptionPane.showMessageDialog(this, Atributos);
+        this.Med_Codigo.setText((Atributos.get(0)));
+        this.Med_Nombre.setText(Atributos.get(1));
+        this.Med_Cantidad.setText(Atributos.get(2));
+        this.Med_Presentacion.setText(Atributos.get(3));
+        this.med_desc.setText(Atributos.get(4));
+        this.Med_Codigo.setEditable(false);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

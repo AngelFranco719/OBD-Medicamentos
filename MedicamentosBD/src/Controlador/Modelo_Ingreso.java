@@ -77,5 +77,18 @@ public class Modelo_Ingreso extends Controlador<Ingreso>{
         Atributos.add(this.Lista_Ingreso.get(index).getIng_pac());
         return Atributos; 
     }
+    @Override
+    public List<String> getAllAtributesFromInstance(String ID){
+        List<String> Atributos=new ArrayList();
+        Ingreso Seleccionado=this.getElementByID(ID);
+        Atributos.add(Seleccionado.getIng_codigo());
+        Atributos.add(Seleccionado.getIng_num());
+        Atributos.add(Seleccionado.getIng_sintomas());
+        Atributos.add(Seleccionado.getIng_diagnostico());
+        Atributos.add(Seleccionado.getIng_fechaSalida());
+        Atributos.add(Seleccionado.getIng_fechaEntrada());
+        Atributos.add(Seleccionado.getIng_pac());
+        return Atributos; 
+    }
    
 }

@@ -18,6 +18,19 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
     }
+    public  Formulario_Insert_Activos(Modelo_PrincipioActivo Activo, Modelo_Composicion Composicion, 
+            List<String> Atributos){
+        initComponents();
+        this.Activo=Activo;
+        this.Composicion=Composicion;
+        this.InicializarComposiciones();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JOptionPane.showMessageDialog(this, Atributos);
+        this.Act_Codigo.setText(Atributos.get(0));
+        this.Act_Nombre.setText(Atributos.get(1));
+        this.Act_Descripcion.setText(Atributos.get(2));
+        this.Act_Codigo.setEditable(false);
+    }
 
 
     /**

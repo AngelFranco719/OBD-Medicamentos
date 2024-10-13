@@ -81,15 +81,25 @@ public class Modelo_Paciente extends Controlador<Paciente>{
     }
     @Override
     public String[] getAttributes(){
-        return new String[]{"NSS", "Nombre", "Estatura", "Peso"};
+        return new String[]{"Nombre", "NSS","Estatura", "Peso"};
     }
     @Override
     public List<String> getAllAtributesFromInstance(int index){
         List<String> Atributos=new ArrayList();
-        Atributos.add(String.valueOf(this.Lista_Paciente.get(index).getPac_nss()));
         Atributos.add(this.Lista_Paciente.get(index).getPac_nombre());
+        Atributos.add(String.valueOf(this.Lista_Paciente.get(index).getPac_nss()));
         Atributos.add(String.valueOf(this.Lista_Paciente.get(index).getPac_estatura()));
         Atributos.add(String.valueOf(this.Lista_Paciente.get(index).getPac_peso()));
+        return Atributos; 
+    }
+    @Override
+    public List<String> getAllAtributesFromInstance(String ID){
+        List<String> Atributos=new ArrayList();
+        Paciente Seleccionado=this.getElementByID(ID);
+        Atributos.add(String.valueOf(Seleccionado.getPac_nss()));
+        Atributos.add(Seleccionado.getPac_nombre());
+        Atributos.add(String.valueOf(Seleccionado.getPac_estatura()));
+        Atributos.add(String.valueOf(Seleccionado.getPac_peso()));
         return Atributos; 
     }
 }

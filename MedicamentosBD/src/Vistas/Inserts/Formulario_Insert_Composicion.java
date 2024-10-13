@@ -20,6 +20,19 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
         this.InicializarComboBox();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
+    public Formulario_Insert_Composicion(Modelo_Composicion Composicion,Modelo_Medicamento Medicamento, Modelo_PrincipioActivo Activo,
+            List<String> Atributos) {
+        initComponents();
+        this.Composicion=Composicion;
+        this.Medicamento=Medicamento;
+        this.Activo=Activo;
+        this.InicializarComboBox();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JOptionPane.showMessageDialog(this, Atributos);
+        this.Com_Codigo.setText(Atributos.get(0));
+        this.Com_Cantidad.setText(Atributos.get(1));
+        this.Com_Codigo.setEditable(false);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

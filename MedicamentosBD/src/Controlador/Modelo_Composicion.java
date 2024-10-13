@@ -84,4 +84,12 @@ public class Modelo_Composicion extends Controlador<Composicion>{
         Atributos.add(this.Lista_Composicion.get(index).getComp_cantidad());
         return Atributos; 
     }
+    @Override
+    public List<String> getAllAtributesFromInstance(String ID){
+        List<String> Atributos=new ArrayList();
+        Composicion Seleccionado=this.getElementByID(ID);
+        Atributos.add(Seleccionado.getComp_codigo());
+        Atributos.add(Seleccionado.getComp_cantidad());
+        return Atributos; 
+    }
 }

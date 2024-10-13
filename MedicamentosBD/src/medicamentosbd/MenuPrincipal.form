@@ -38,7 +38,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="B_VerDatos" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jToggleButton3" min="-2" max="-2" attributes="0"/>
+                              <Component id="B_Actualizar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jToggleButton4" min="-2" pref="115" max="-2" attributes="0"/>
                           </Group>
@@ -58,7 +58,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="B_Insertar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="B_VerDatos" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jToggleButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="B_Actualizar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jToggleButton4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -96,10 +96,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B_VerDatosActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButton3">
+    <Component class="javax.swing.JToggleButton" name="B_Actualizar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Actualizar Datos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="B_ActualizarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JToggleButton" name="jToggleButton4">
       <Properties>

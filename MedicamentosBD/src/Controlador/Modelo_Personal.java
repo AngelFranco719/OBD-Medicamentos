@@ -98,4 +98,13 @@ public class Modelo_Personal extends Controlador<Personal>{
         Atributos.add(String.valueOf(this.Lista_Personal.get(index).getPer_cedula()));
         return Atributos; 
     }
+    @Override
+    public List<String> getAllAtributesFromInstance(String ID){
+        List<String> Atributos=new ArrayList();
+        Personal Seleccionado=this.getElementByID(ID);
+        Atributos.add(String.valueOf(Seleccionado.getPer_nombre()));
+        Atributos.add(String.valueOf(Seleccionado.getPer_rol()));
+        Atributos.add(String.valueOf(Seleccionado.getPer_cedula()));
+        return Atributos; 
+    }
 }

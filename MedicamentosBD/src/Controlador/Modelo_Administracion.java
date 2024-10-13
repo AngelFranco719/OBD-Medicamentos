@@ -102,6 +102,17 @@ public class Modelo_Administracion extends Controlador<Administracion>{
         Atributos.add(this.Lista_Administracion.get(index).getAdm_lis());
         return Atributos; 
     }
+     @Override
+    public List<String> getAllAtributesFromInstance(String ID){
+        List<String> Atributos=new ArrayList();
+        Administracion seleccionado=this.getElementByID(ID);
+        Atributos.add(seleccionado.getAdm_codigo());
+        Atributos.add(seleccionado.getAdm_fecha());
+        Atributos.add(seleccionado.getAdm_registro());
+        Atributos.add(seleccionado.getAdm_per());
+        Atributos.add(seleccionado.getAdm_lis());
+        return Atributos; 
+    }
     
     public void ActualizarInstancia(String adm_codigo, String adm_fecha, String adm_registro, String per_nombre, String lis_codigo){
         Administracion nuevaInstancia=new Administracion(adm_codigo, adm_fecha, adm_registro); 

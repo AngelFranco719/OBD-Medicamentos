@@ -77,4 +77,13 @@ public class Modelo_PrincipioActivo extends Controlador<PrincipioActivo>{
         Atributos.add(this.Lista_Activo.get(index).getAct_descripcion());
         return Atributos; 
     }
+    @Override
+    public List<String> getAllAtributesFromInstance(String ID){
+        List<String> Atributos=new ArrayList();
+        PrincipioActivo Seleccionado=this.getElementByID(ID);
+        Atributos.add(Seleccionado.getAct_codigo());
+        Atributos.add(Seleccionado.getAct_nombre());
+        Atributos.add(Seleccionado.getAct_descripcion());
+        return Atributos; 
+    }
 }
