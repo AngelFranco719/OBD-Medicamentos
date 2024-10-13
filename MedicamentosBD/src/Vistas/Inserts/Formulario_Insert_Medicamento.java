@@ -175,6 +175,10 @@ public class Formulario_Insert_Medicamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
+       if (!validarCamposVacios()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String Codigo=this.Med_Codigo.getText();
         String Nombre=this.Med_Nombre.getText();
         String Presentacion=this.Med_Presentacion.getText();
@@ -238,6 +242,16 @@ public class Formulario_Insert_Medicamento extends javax.swing.JFrame {
             Cb_Composicion.addItem(composicion);
         }   
     }
+    public boolean validarCamposVacios() {       
+       if (Med_Codigo.getText().trim().isEmpty() || 
+           Med_Cantidad.getText().trim().isEmpty()||
+           med_desc.getText().trim().isEmpty()||
+           Med_Nombre.getText().trim().isEmpty() ||
+           Med_Presentacion.getText().trim().isEmpty()){
+           return false;
+       }
+       return true;
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_Cancelar;

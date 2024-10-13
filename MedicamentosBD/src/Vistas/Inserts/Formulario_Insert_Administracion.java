@@ -256,6 +256,11 @@ public class Formulario_Insert_Administracion extends javax.swing.JFrame {
     }//GEN-LAST:event_Adm_HoraActionPerformed
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
+        if (!validarCamposVacios()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         SimpleDateFormat Formato=new SimpleDateFormat("dd-MM-yy"); 
         String Codigo=this.Adm_Codigo.getText();
         String Clinica=this.Adm_Clinica.getText();
@@ -317,6 +322,16 @@ public class Formulario_Insert_Administracion extends javax.swing.JFrame {
             }
         });
     }
+    
+    public boolean validarCamposVacios() {       
+       if (Adm_Codigo.getText().trim().isEmpty() || 
+           Adm_Clinica.getText().trim().isEmpty() ||
+           Adm_Hora.getText().trim().isEmpty() ||
+           Adm_Registro.getText().trim().isEmpty()) {
+           return false;
+       }
+       return true;
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Adm_Clinica;
