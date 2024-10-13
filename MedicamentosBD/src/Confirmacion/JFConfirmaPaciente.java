@@ -232,8 +232,8 @@ public class JFConfirmaPaciente extends javax.swing.JFrame {
 
     private void ingresaDatosConfirmados(){
         try {
-            Paciente.InsertToBD(Nombre);
             Paciente.InitializeInstance(Integer.parseInt(Nss), Nombre, Float.parseFloat(Estatura), Float.parseFloat(Peso));
+            Paciente.InsertToBD(Nombre);
             Paciente.RelationshipPaciente_Ingreso(Nombre, Ingreso);
             
         } catch (Exception e) {

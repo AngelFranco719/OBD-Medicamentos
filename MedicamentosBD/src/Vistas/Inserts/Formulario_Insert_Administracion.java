@@ -32,7 +32,7 @@ public class Formulario_Insert_Administracion extends javax.swing.JFrame {
             this.Adm_Lista.addItem(resultado);
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

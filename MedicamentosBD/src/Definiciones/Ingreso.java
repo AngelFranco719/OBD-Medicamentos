@@ -34,8 +34,8 @@ public class Ingreso extends Modelo implements Serializable{
         this.ing_num = i_n;
         this.ing_sintomas = i_sin;
         this.ing_diagnostico = i_diag;
-        this.ing_fechaEntrada = parseStringToDate(i_feEnt);
-        this.ing_fechaSalida = parseStringToDate(i_feSal);
+        this.ing_fechaEntrada = parseStringToOnlyDate(i_feEnt);
+        this.ing_fechaSalida = parseStringToOnlyDate(i_feSal);
     }
 
     @Override

@@ -42,8 +42,8 @@ public class Modelo_Paciente extends Controlador<Paciente>{
             System.out.println("Error al Ingresar al Modelo");
         }
     }
-    public void RelationshipPaciente_Prescripcion(String pac_codigo, String pres_codigo){
-        Paciente p=(Paciente)this.getElementByID(pac_codigo);
+    public void RelationshipPaciente_Prescripcion(String pac_nss, String pres_codigo){
+        Paciente p=(Paciente)this.getElementByID(pac_nss);
         Prescripcion pr=(Prescripcion)Prescripcion.getElementByID(pres_codigo);
         p.formPac_pre(pr);
         pr.formPres_pac(p);

@@ -5,6 +5,8 @@ import Controlador.Modelo_Paciente;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import Confirmacion.JFConfirmaIngreso;
+import com.toedter.calendar.JCalendar;
+import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.util.List;
 import javax.swing.JLabel;
@@ -15,6 +17,8 @@ public class JFIngreso extends javax.swing.JFrame {
     
     Modelo_Ingreso Ingreso;
     Modelo_Paciente Paciente;
+    JCalendar nuevoCalendario= new JCalendar(); 
+    JCalendar nuevoCalendario2=new JCalendar(); 
     public JFIngreso(Modelo_Ingreso ingreso, Modelo_Paciente paciente) {
         initComponents();
         this.Ingreso = ingreso;
@@ -23,6 +27,7 @@ public class JFIngreso extends javax.swing.JFrame {
         lblErrorNum.setText("");
         lblErrorCodigo.setText("");
         agregarValidaciones();
+        this.InicializarCalendario();
         
     }
 
@@ -38,9 +43,7 @@ public class JFIngreso extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtSintomas = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
-        txtFechaSeleccionada1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtFechaSeleccionada2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         PacienteCb = new javax.swing.JComboBox<>();
         continuarBtn = new javax.swing.JButton();
@@ -52,6 +55,8 @@ public class JFIngreso extends javax.swing.JFrame {
         txtcodigo = new javax.swing.JTextField();
         lblErrorNum = new javax.swing.JLabel();
         lblErrorCodigo = new javax.swing.JLabel();
+        P_FechaE = new javax.swing.JPanel();
+        P_FechaS = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Formulario del Ingreso");
@@ -79,11 +84,7 @@ public class JFIngreso extends javax.swing.JFrame {
 
         jLabel4.setText("Fecha de Entrada: ");
 
-        txtFechaSeleccionada1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-
         jLabel5.setText("Fecha de Salida: ");
-
-        txtFechaSeleccionada2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel6.setText("Seleccionar Paciente: ");
 
@@ -123,6 +124,28 @@ public class JFIngreso extends javax.swing.JFrame {
         lblErrorCodigo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblErrorCodigo.setText("jLabel8");
 
+        javax.swing.GroupLayout P_FechaELayout = new javax.swing.GroupLayout(P_FechaE);
+        P_FechaE.setLayout(P_FechaELayout);
+        P_FechaELayout.setHorizontalGroup(
+            P_FechaELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 261, Short.MAX_VALUE)
+        );
+        P_FechaELayout.setVerticalGroup(
+            P_FechaELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout P_FechaSLayout = new javax.swing.GroupLayout(P_FechaS);
+        P_FechaS.setLayout(P_FechaSLayout);
+        P_FechaSLayout.setHorizontalGroup(
+            P_FechaSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 142, Short.MAX_VALUE)
+        );
+        P_FechaSLayout.setVerticalGroup(
+            P_FechaSLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 113, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout panelCOntenedorLayout = new javax.swing.GroupLayout(panelCOntenedor);
         panelCOntenedor.setLayout(panelCOntenedorLayout);
         panelCOntenedorLayout.setHorizontalGroup(
@@ -130,15 +153,6 @@ public class JFIngreso extends javax.swing.JFrame {
             .addGroup(panelCOntenedorLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(panelCOntenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCOntenedorLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFechaSeleccionada1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFechaSeleccionada2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51))
                     .addGroup(panelCOntenedorLayout.createSequentialGroup()
                         .addGroup(panelCOntenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelCOntenedorLayout.createSequentialGroup()
@@ -157,11 +171,24 @@ public class JFIngreso extends javax.swing.JFrame {
                                     .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(panelCOntenedorLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblDiagnostico))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelCOntenedorLayout.createSequentialGroup()
+                        .addGroup(panelCOntenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelCOntenedorLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(P_FechaE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5))
+                            .addGroup(panelCOntenedorLayout.createSequentialGroup()
+                                .addComponent(lblDiagnostico)
+                                .addGap(310, 310, 310)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(P_FechaS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCOntenedorLayout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelCOntenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCOntenedorLayout.createSequentialGroup()
                         .addComponent(CancelarBtn)
@@ -200,16 +227,21 @@ public class JFIngreso extends javax.swing.JFrame {
                     .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addGroup(panelCOntenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtFechaSeleccionada1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtFechaSeleccionada2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addComponent(lblDiagnostico)
+                .addGap(17, 17, 17)
+                .addGroup(panelCOntenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCOntenedorLayout.createSequentialGroup()
+                        .addGroup(panelCOntenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelCOntenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5))
+                            .addComponent(P_FechaE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addComponent(lblDiagnostico))
+                    .addGroup(panelCOntenedorLayout.createSequentialGroup()
+                        .addComponent(P_FechaS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -230,14 +262,14 @@ public class JFIngreso extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelCOntenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panelCOntenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panelCOntenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
@@ -268,6 +300,16 @@ public class JFIngreso extends javax.swing.JFrame {
             }
         });
     }
+    private void InicializarCalendario(){
+        this.P_FechaE.setLayout(new BorderLayout());
+        this.P_FechaE.add(nuevoCalendario, BorderLayout.CENTER);
+        this.P_FechaE.repaint();
+        this.P_FechaE.revalidate();
+        this.P_FechaS.setLayout(new BorderLayout());
+        this.P_FechaS.add(nuevoCalendario2, BorderLayout.CENTER);
+        this.P_FechaS.repaint();
+        this.P_FechaS.revalidate();
+    }
     
     private void continuarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarBtnActionPerformed
         if (!validarCamposVacios()) {
@@ -286,11 +328,20 @@ public class JFIngreso extends javax.swing.JFrame {
         String numero = this.txtid.getText();
         String sintomas =this.txtSintomas.getText();
         String diagnostico = this.txtDiagnostico.getText();
-        String fechaEntrada = this.txtFechaSeleccionada1.getText();
-        String fechaSalida = this.txtFechaSeleccionada2.getText();
+        SimpleDateFormat Formato=new SimpleDateFormat("dd-MM-yy"); 
+        Date FechaE=this.nuevoCalendario.getDate();
+        Date FechaS=this.nuevoCalendario2.getDate();
+        String FechaEF=new String(); 
+        String FechaSF=new String(); 
+        try{
+            FechaEF=Formato.format(FechaE);
+            FechaSF=Formato.format(FechaS);
+        }catch(Exception e){
+            System.out.println(e.toString());
+        }
         String pacienteSeleccionado = this.PacienteCb.getSelectedItem().toString();        
        
-        JFConfirmaIngreso confirma = new JFConfirmaIngreso(Ingreso, codigo, numero, sintomas, diagnostico, fechaEntrada, fechaSalida, pacienteSeleccionado);
+        JFConfirmaIngreso confirma = new JFConfirmaIngreso(Ingreso, codigo, numero, sintomas, diagnostico, FechaEF, FechaSF, pacienteSeleccionado);
         confirma.setVisible(true);
     }//GEN-LAST:event_continuarBtnActionPerformed
 
@@ -302,8 +353,8 @@ public class JFIngreso extends javax.swing.JFrame {
     public boolean validarCamposVacios() {       
        if (txtid.getText().trim().isEmpty() || 
            txtSintomas.getText().trim().isEmpty() ||
-           txtFechaSeleccionada1.getText().trim().isEmpty() ||
-           txtFechaSeleccionada2.getText().trim().isEmpty() || 
+           this.nuevoCalendario.getDate().toString().trim().isEmpty() ||
+           this.nuevoCalendario2.getDate().toString().trim().isEmpty() || 
            txtDiagnostico.getText().trim().isEmpty() || 
            PacienteCb.equals("")){  
            return false;
@@ -353,6 +404,8 @@ public class JFIngreso extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelarBtn;
+    private javax.swing.JPanel P_FechaE;
+    private javax.swing.JPanel P_FechaS;
     private javax.swing.JComboBox<String> PacienteCb;
     private javax.swing.JButton continuarBtn;
     private javax.swing.JLabel jLabel1;
@@ -369,8 +422,6 @@ public class JFIngreso extends javax.swing.JFrame {
     private javax.swing.JLabel lblErrorNum;
     private javax.swing.JPanel panelCOntenedor;
     private javax.swing.JTextArea txtDiagnostico;
-    private javax.swing.JTextField txtFechaSeleccionada1;
-    private javax.swing.JTextField txtFechaSeleccionada2;
     private javax.swing.JTextArea txtSintomas;
     private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtid;
