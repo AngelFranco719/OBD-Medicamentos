@@ -14,6 +14,7 @@ public class JFConfirmaPersonal extends javax.swing.JFrame {
         this.Nombre=Nombre;
         this.Rol=Rol;
         this.Cedula=Cedula;
+        this.Personal=Personal;
         this.per_nombre.setText(Nombre);
         this.per_rol.setText(Rol);
         this.per_cedula.setText(Cedula);

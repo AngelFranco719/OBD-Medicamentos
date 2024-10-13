@@ -61,7 +61,7 @@ public class JFPersonal extends javax.swing.JFrame {
         jLabel3.setText("Cédula: ");
 
         per_rol.setEditable(true);
-        per_rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENFERMERA(O)", "MEDICO" }));
+        per_rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ENFERMERO", "MEDICO" }));
         per_rol.setSelectedItem(null);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N

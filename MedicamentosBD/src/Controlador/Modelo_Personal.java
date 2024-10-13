@@ -41,7 +41,7 @@ public class Modelo_Personal extends Controlador<Personal>{
             Personal per=new Personal(per_nombre, setRol, per_cedula); 
             Lista_Personal.add(per);
         }catch(Exception e){
-            System.out.println("Error al Ingresar al Modelo");
+            System.out.println("Error al Ingresar al Modelo"+e.toString());
         }
     }
     
