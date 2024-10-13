@@ -30,6 +30,7 @@ public class ConexionBD <T>{
             em.getTransaction().begin();
             em.merge(Nueva_Instancia);
             em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Actualizado con Exito");
         }catch(Exception e){
             System.out.println("Error al Actualizar");
         }

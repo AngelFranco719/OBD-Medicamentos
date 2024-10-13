@@ -32,6 +32,17 @@ public class Modelo_PrincipioActivo extends Controlador<PrincipioActivo>{
             System.out.println("Error al Ingresar al Modelo");
         }
     }
+    public void InitializeAndUpdateInstance(String pri_codigo, String pri_nombre, String pri_descripcion, String comp_codigo){
+        try{
+            PrincipioActivo lis=new PrincipioActivo(pri_codigo, pri_nombre, pri_descripcion); 
+            this.RelationshipPrincipio_Composicion(pri_codigo, comp_codigo);
+            this.UpdateInstance(lis);
+            this.Lista_Activo.clear();
+            this.selectInstancesFromBD();
+        }catch(Exception e){
+            System.out.println("Error al Ingresar al Modelo");
+        }
+    }
    
     
     public void RelationshipPrincipio_Composicion(String pri_codigo, String comp_codigo){

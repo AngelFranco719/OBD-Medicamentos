@@ -2,6 +2,8 @@ package Vistas.Inserts;
 import Confirmacion.Confirmacion_Activo;
 import Controlador.Modelo_Composicion;
 import Controlador.Modelo_PrincipioActivo;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -9,6 +11,7 @@ import javax.swing.JOptionPane;
 public class Formulario_Insert_Activos extends javax.swing.JFrame {
     Modelo_PrincipioActivo Activo;
     Modelo_Composicion Composicion;
+    boolean actualizar=false; 
     
     public  Formulario_Insert_Activos(Modelo_PrincipioActivo Activo, Modelo_Composicion Composicion){
         initComponents();
@@ -30,6 +33,7 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
         this.Act_Nombre.setText(Atributos.get(1));
         this.Act_Descripcion.setText(Atributos.get(2));
         this.Act_Codigo.setEditable(false);
+        actualizar=true; 
     }
 
 
@@ -178,17 +182,24 @@ public class Formulario_Insert_Activos extends javax.swing.JFrame {
     }//GEN-LAST:event_Button_CancelarActionPerformed
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
-        
-        if (!validarCamposVacios()) {
+        if(actualizar){
+            if(JOptionPane.showConfirmDialog(this,"¿Quiere Actualizar los Datos?", "Confirmacion", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION){
+                Activo.InitializeAndUpdateInstance(this.Act_Codigo.getText(), this.Act_Nombre.getText(), this.Act_Descripcion.getText(),this.Act_Composicion.getSelectedItem().toString());              
+            }
+        }
+        else{
+            if (!validarCamposVacios()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
+            }
+            String Codigo=this.Act_Codigo.getText();
+            String Nombre=this.Act_Nombre.getText();
+            String Descripcion=this.Act_Descripcion.getText();
+            String Composicion=this.Act_Composicion.getSelectedItem().toString();
+            Confirmacion_Activo confirmacion=new Confirmacion_Activo(Activo,Codigo,Nombre,Descripcion,Composicion);
+            confirmacion.setVisible(true);
         }
-        String Codigo=this.Act_Codigo.getText();
-        String Nombre=this.Act_Nombre.getText();
-        String Descripcion=this.Act_Descripcion.getText();
-        String Composicion=this.Act_Composicion.getSelectedItem().toString();
-        Confirmacion_Activo confirmacion=new Confirmacion_Activo(Activo,Codigo,Nombre,Descripcion,Composicion);
-        confirmacion.setVisible(true);
+        
         
     }//GEN-LAST:event_Button_EnviarActionPerformed
 

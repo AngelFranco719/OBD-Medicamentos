@@ -16,6 +16,7 @@ public class Formulario_Insert_Administracion extends javax.swing.JFrame {
     Modelo_Personal Personal;
     Modelo_Lista Lista;
     JCalendar Calendario;
+    boolean actualizacion=false; 
     public Formulario_Insert_Administracion(Modelo_Administracion Administracion, Modelo_Personal Personal, Modelo_Lista Lista) {
         initComponents();
         this.Administracion=Administracion;
@@ -44,6 +45,7 @@ public class Formulario_Insert_Administracion extends javax.swing.JFrame {
         this.Adm_Personal.setSelectedItem(this.getElementInCombo(Atributos.get(3), Adm_Personal));
         this.Adm_Lista.setSelectedItem(this.getElementInCombo(Atributos.get(4), Adm_Lista));
         this.Adm_Codigo.setEditable(false);
+        actualizacion=true; 
     }
      
      private Object getElementInCombo(String ID, JComboBox Combo){
@@ -287,29 +289,41 @@ public class Formulario_Insert_Administracion extends javax.swing.JFrame {
     }//GEN-LAST:event_Adm_HoraActionPerformed
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
-        if (!validarCamposVacios()) {
+        if(actualizacion){
+            Date Fecha=Calendario.getDate(); 
+            String fecha_final=new String();
+            try{
+                SimpleDateFormat Formato=new SimpleDateFormat(); 
+                fecha_final=Formato.format(Fecha)+this.Adm_Hora.getText();
+            }catch(Exception e){}
+            Administracion.ActualizarInstancia(this.Adm_Codigo.getText(), fecha_final, this.Adm_Registro.getText(),this.Adm_Personal.getSelectedItem().toString(), this.Adm_Lista.getSelectedItem().toString());
+        }
+        else{
+            if (!validarCamposVacios()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
+            }
+
+            SimpleDateFormat Formato=new SimpleDateFormat("dd-MM-yy"); 
+            String Codigo=this.Adm_Codigo.getText();
+            String Clinica=this.Adm_Clinica.getText();
+            String Lista=this.Adm_Lista.getSelectedItem().toString();
+            String Personal=this.Adm_Personal.getSelectedItem().toString();
+            String Registro=this.Adm_Registro.getText(); 
+            Date Fecha=this.Calendario.getDate();
+            String fecha_final=new String(); 
+            try{
+                fecha_final=Formato.format(Fecha);
+            }catch(Exception e){
+                System.out.println(e.toString());
+            }
+
+            String Hora=this.Adm_Hora.getText();
+            fecha_final+=" "+Hora; 
+            Confirmacion_Administracion Confirmacion=new Confirmacion_Administracion(this.Administracion,Codigo, Clinica, Lista, Personal, fecha_final, Registro); 
+            Confirmacion.setVisible(true);
         }
         
-        SimpleDateFormat Formato=new SimpleDateFormat("dd-MM-yy"); 
-        String Codigo=this.Adm_Codigo.getText();
-        String Clinica=this.Adm_Clinica.getText();
-        String Lista=this.Adm_Lista.getSelectedItem().toString();
-        String Personal=this.Adm_Personal.getSelectedItem().toString();
-        String Registro=this.Adm_Registro.getText(); 
-        Date Fecha=this.Calendario.getDate();
-        String fecha_final=new String(); 
-        try{
-            fecha_final=Formato.format(Fecha);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        }
-        
-        String Hora=this.Adm_Hora.getText();
-        fecha_final+=" "+Hora; 
-        Confirmacion_Administracion Confirmacion=new Confirmacion_Administracion(this.Administracion,Codigo, Clinica, Lista, Personal, fecha_final, Registro); 
-        Confirmacion.setVisible(true);
     }//GEN-LAST:event_Button_EnviarActionPerformed
 
     private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed

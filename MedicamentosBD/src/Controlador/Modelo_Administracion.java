@@ -119,5 +119,7 @@ public class Modelo_Administracion extends Controlador<Administracion>{
         this.RelationshipAdministracion_Personal(nuevaInstancia, per_nombre);
         this.RelationshipAdministracion_Lista(nuevaInstancia, lis_codigo);
         this.UpdateInstance(nuevaInstancia);
+        this.Lista_Administracion.clear();
+        this.selectInstancesFromBD();
     }
 }
