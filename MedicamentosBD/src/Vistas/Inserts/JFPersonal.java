@@ -4,6 +4,7 @@ import Confirmacion.JFConfirmaPersonal;
 import Controlador.Modelo_Personal;
 import Controlador.Modelo_Administracion;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class JFPersonal extends javax.swing.JFrame {
 
@@ -61,6 +62,11 @@ public class JFPersonal extends javax.swing.JFrame {
         });
 
         Button_Cancelar.setText("Cancelar");
+        Button_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button_CancelarActionPerformed(evt);
+            }
+        });
 
         per_admin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -154,6 +160,12 @@ public class JFPersonal extends javax.swing.JFrame {
         n_c.setVisible(true);
         this.InicializarAdministracion();
     }//GEN-LAST:event_Button_EnviarActionPerformed
+
+    private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed
+        if(JOptionPane.OK_OPTION==JOptionPane.showConfirmDialog(this, "Los cambios se perderán ¿Desea salir?")){
+            this.dispose();
+        }
+    }//GEN-LAST:event_Button_CancelarActionPerformed
 
     
     

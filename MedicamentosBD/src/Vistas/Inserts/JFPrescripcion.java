@@ -7,6 +7,8 @@ import Controlador.Modelo_Personal;
 import Controlador.Modelo_Prescripcion;
 import Controlador.Modelo_Lista;
 import java.util.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class JFPrescripcion extends javax.swing.JFrame {
 
@@ -198,6 +200,7 @@ public class JFPrescripcion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
+        
         String Codigo=this.pre_codigo.getText();
         String Fecha=this.pre_fecha.getText();
         String Paciente=this.cb_paciente.getSelectedItem().toString();
@@ -210,7 +213,9 @@ public class JFPrescripcion extends javax.swing.JFrame {
     }//GEN-LAST:event_Button_EnviarActionPerformed
 
     private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed
-        // TODO add your handling code here:
+        if(JOptionPane.OK_OPTION==JOptionPane.showConfirmDialog(this, "Los cambios se perderán ¿Desea salir?")){
+            this.dispose();
+        }
     }//GEN-LAST:event_Button_CancelarActionPerformed
 
     private void pre_fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pre_fechaActionPerformed
