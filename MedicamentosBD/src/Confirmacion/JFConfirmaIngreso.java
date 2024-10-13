@@ -1,6 +1,7 @@
 
 package Confirmacion;
 import Controlador.Modelo_Ingreso;
+import javax.swing.JOptionPane;
 
 public class JFConfirmaIngreso extends javax.swing.JFrame {
 
@@ -78,7 +79,12 @@ public class JFConfirmaIngreso extends javax.swing.JFrame {
 
         SintomasConfirma.setEditable(false);
         SintomasConfirma.setColumns(20);
+        SintomasConfirma.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         SintomasConfirma.setRows(5);
+        SintomasConfirma.setBorder(null);
+        SintomasConfirma.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        SintomasConfirma.setDisabledTextColor(new java.awt.Color(0, 0, 102));
+        SintomasConfirma.setFocusable(false);
         jScrollPane1.setViewportView(SintomasConfirma);
 
         NumIngresoConfirma.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -97,6 +103,7 @@ public class JFConfirmaIngreso extends javax.swing.JFrame {
         lblPaciente.setText("Paciente:");
 
         pacienteConfirma.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        pacienteConfirma.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pacienteConfirma.setText("labelpac");
 
         ConfirmaBtn.setText("Confirmar");
@@ -118,7 +125,10 @@ public class JFConfirmaIngreso extends javax.swing.JFrame {
 
         DiagnosticosConfirma.setEditable(false);
         DiagnosticosConfirma.setColumns(20);
+        DiagnosticosConfirma.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         DiagnosticosConfirma.setRows(5);
+        DiagnosticosConfirma.setBorder(null);
+        DiagnosticosConfirma.setFocusable(false);
         jScrollPane2.setViewportView(DiagnosticosConfirma);
 
         javax.swing.GroupLayout PanelContenedorLayout = new javax.swing.GroupLayout(PanelContenedor);
@@ -127,11 +137,6 @@ public class JFConfirmaIngreso extends javax.swing.JFrame {
             PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelContenedorLayout.createSequentialGroup()
                 .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelContenedorLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(RegresarBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(ConfirmaBtn))
                     .addGroup(PanelContenedorLayout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,10 +168,16 @@ public class JFConfirmaIngreso extends javax.swing.JFrame {
                                                     .addGap(66, 66, 66)
                                                     .addComponent(FechaSalidaConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                         .addGroup(PanelContenedorLayout.createSequentialGroup()
-                                            .addComponent(lblPaciente)
-                                            .addGap(31, 31, 31)
-                                            .addComponent(pacienteConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(0, 40, Short.MAX_VALUE)))
+                                            .addGap(24, 24, 24)
+                                            .addComponent(lblPaciente))))))
+                        .addGap(0, 40, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelContenedorLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(RegresarBtn, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(pacienteConfirma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(ConfirmaBtn)))
                 .addContainerGap())
         );
         PanelContenedorLayout.setVerticalGroup(
@@ -188,18 +199,17 @@ public class JFConfirmaIngreso extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelContenedorLayout.createSequentialGroup()
-                        .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PanelContenedorLayout.createSequentialGroup()
-                                .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(FechaEntradaConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(FechaSalidaConfirma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(pacienteConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblPaciente, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(PanelContenedorLayout.createSequentialGroup()
+                        .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(FechaEntradaConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(FechaSalidaConfirma, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pacienteConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPaciente))
                 .addGap(42, 42, 42)
                 .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ConfirmaBtn)
@@ -225,18 +235,34 @@ public class JFConfirmaIngreso extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConfirmaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmaBtnActionPerformed
-        Ingreso.InitializeInstance(codigo, Integer.parseInt(numero), Sintomas, Diagnostico, fechaEntrada, fechaSalida);
-        Ingreso.RelationshipIngreso_Paciente(codigo, paciente);
-        Ingreso.InsertToBD(codigo);
+        int Opcion=JOptionPane.showConfirmDialog(null,"¿Los datos estan correctos?","Confirmar", JOptionPane.YES_NO_OPTION);       
+        if(Opcion==JOptionPane.YES_OPTION){ 
+            ingresaDatosConfirmados();
+            JFConfirmaIngreso.this.dispose(); 
+            
+        }
     }//GEN-LAST:event_ConfirmaBtnActionPerformed
 
     private void RegresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBtnActionPerformed
-        this.dispose();
+        int Opcion=JOptionPane.showConfirmDialog(null,"¿Quiere Cancelar los Cambios?","Cancelar Insert", JOptionPane.YES_NO_OPTION);
+                if(Opcion==JOptionPane.YES_OPTION){
+                    this.dispose();                    
+                }
     }//GEN-LAST:event_RegresarBtnActionPerformed
 
+    private void ingresaDatosConfirmados(){
+        try {
+            Ingreso.InitializeInstance(codigo, Integer.parseInt(numero), Sintomas, Diagnostico, fechaEntrada, fechaSalida);
+            Ingreso.RelationshipIngreso_Paciente(codigo, paciente);
+            Ingreso.InsertToBD(codigo);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error : "+e.toString());
+        }
+    }
     /**
      * @param args the command line arguments
      */

@@ -4,6 +4,8 @@ package Vistas.Inserts;
 import Confirmacion.JFConfirmaPaciente;
 import Controlador.Modelo_Ingreso;
 import Controlador.Modelo_Paciente;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class JFPaciente extends javax.swing.JFrame {
         this.Paciente = Paciente;
         this.Ingreso = Ingreso;
         this.InicializarIngresos();
+        agregarValidaciones();
     }
 
     
@@ -55,6 +58,7 @@ public class JFPaciente extends javax.swing.JFrame {
         ContenedorPanel.setBackground(new java.awt.Color(254, 254, 254));
         ContenedorPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Datos del Paciente");
 
         jLabel2.setText("NSS: ");
@@ -124,63 +128,68 @@ public class JFPaciente extends javax.swing.JFrame {
         ContenedorPanelLayout.setHorizontalGroup(
             ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContenedorPanelLayout.createSequentialGroup()
-                .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Btncontinuar)
-                        .addGap(9, 9, 9)
-                        .addComponent(BtnCancelar))
-                    .addGroup(ContenedorPanelLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(ContenedorPanelLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ContenedorPanelLayout.createSequentialGroup()
                         .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblPeso)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ContenedorPanelLayout.createSequentialGroup()
-                                .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblPeso)
-                                    .addComponent(jLabel2))
+                                .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(ContenedorPanelLayout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(lblPeso1)))
+                                .addGap(0, 30, Short.MAX_VALUE))
+                            .addComponent(lblErrorPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ContenedorPanelLayout.createSequentialGroup()
+                                .addComponent(lblEstatura)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblErrorEstat, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(ContenedorPanelLayout.createSequentialGroup()
-                                        .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(ContenedorPanelLayout.createSequentialGroup()
-                                                .addGap(13, 13, 13)
-                                                .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(lblPeso1)))
-                                        .addGap(0, 30, Short.MAX_VALUE))
-                                    .addGroup(ContenedorPanelLayout.createSequentialGroup()
-                                        .addComponent(lblErrorPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(ContenedorPanelLayout.createSequentialGroup()
-                                        .addGap(0, 0, 0)
-                                        .addComponent(lblEstatura)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblErrorEstat, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(ContenedorPanelLayout.createSequentialGroup()
-                                                .addComponent(txtEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(lblPeso2))))
-                                    .addGroup(ContenedorPanelLayout.createSequentialGroup()
-                                        .addGap(15, 15, 15)
-                                        .addComponent(lblErrorNss, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblPeso2))))
                             .addGroup(ContenedorPanelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lblErrorNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(15, 15, 15)
+                                .addComponent(lblErrorNss, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(192, 192, 192))
                     .addGroup(ContenedorPanelLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(47, 47, 47)
                         .addComponent(cbIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorPanelLayout.createSequentialGroup()
+                        .addComponent(BtnCancelar)
+                        .addGap(18, 18, 18)
+                        .addComponent(Btncontinuar)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorPanelLayout.createSequentialGroup()
+                        .addComponent(lblPaterno)
+                        .addGap(81, 81, 81)
+                        .addComponent(lblMaterno)
+                        .addGap(96, 96, 96))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorPanelLayout.createSequentialGroup()
+                        .addComponent(txtNomMaterno_Pac, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81))))
+            .addGroup(ContenedorPanelLayout.createSequentialGroup()
+                .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContenedorPanelLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel1))
+                    .addGroup(ContenedorPanelLayout.createSequentialGroup()
+                        .addGap(142, 142, 142)
+                        .addComponent(lblErrorNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(ContenedorPanelLayout.createSequentialGroup()
                     .addGap(49, 49, 49)
@@ -190,17 +199,8 @@ public class JFPaciente extends javax.swing.JFrame {
                             .addComponent(lblNombre))
                         .addComponent(txtNombre_Pact, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(ContenedorPanelLayout.createSequentialGroup()
-                            .addGap(16, 16, 16)
-                            .addComponent(lblPaterno)
-                            .addGap(50, 50, 50)
-                            .addComponent(lblMaterno))
-                        .addGroup(ContenedorPanelLayout.createSequentialGroup()
-                            .addComponent(txtNomPaterno_Pac, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtNomMaterno_Pac, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(50, Short.MAX_VALUE)))
+                    .addComponent(txtNomPaterno_Pac, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(270, Short.MAX_VALUE)))
         );
         ContenedorPanelLayout.setVerticalGroup(
             ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,7 +215,13 @@ public class JFPaciente extends javax.swing.JFrame {
                     .addComponent(lblErrorNss, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblErrorNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNomMaterno_Pac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMaterno)
+                    .addComponent(lblPaterno))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPeso)
@@ -241,13 +247,9 @@ public class JFPaciente extends javax.swing.JFrame {
                     .addGap(97, 97, 97)
                     .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtNombre_Pact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtNomPaterno_Pac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtNomMaterno_Pac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtNomPaterno_Pac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(ContenedorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblNombre)
-                        .addComponent(lblPaterno)
-                        .addComponent(lblMaterno))
+                    .addComponent(lblNombre)
                     .addContainerGap(133, Short.MAX_VALUE)))
         );
 
@@ -271,46 +273,116 @@ public class JFPaciente extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+    private void agregarValidaciones() {
+        // Validación de nombres: solo letras
+        txtNombre_Pact.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (!validarTexto(txtNombre_Pact.getText())) {
+                    lblErrorNombre.setText("Solo se permiten letras.");
+                } else {
+                    lblErrorNombre.setText(""); // Limpia el error si es válido
+                }
+            }
+        });
+        txtNomPaterno_Pac.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (!validarTexto(txtNomPaterno_Pac.getText())) {
+                    lblErrorNombre.setText("Solo se permiten letras.");
+                } else {
+                    lblErrorNombre.setText(""); // Limpia el error si es válido
+                }
+            }
+        });
+        txtNomMaterno_Pac.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (!validarTexto(txtNomMaterno_Pac.getText())) {
+                    lblErrorNombre.setText("Solo se permiten letras.");
+                } else {
+                    lblErrorNombre.setText(""); // Limpia el error si es válido
+                }
+            }
+        });
 
-    private void BtncontinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtncontinuarActionPerformed
-        if (!validarCamposVacios()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        txtNSS.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String texto = txtNSS.getText();
+                if (!texto.matches("\\d+")) {
+                    lblErrorNss.setText("Solo se permiten números.");
+                } else {
+                    lblErrorNss.setText(""); // Limpia el error si es válido
+                }
+            }
+        });
         
+        txtPeso.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String texto = txtPeso.getText();
+                if (!texto.matches("\\d*\\.?\\d+")) {
+                    lblErrorPeso.setText("Formato de peso incorrecto.");
+                } else {
+                    lblErrorPeso.setText(""); // Limpia el error si es válido
+                }
+            }
+        });
+
+        txtEstatura.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String texto = txtEstatura.getText();
+                if (!texto.matches("\\d*\\.?\\d+")) {
+                    lblErrorEstat.setText("Formato de estatura incorrecto.");
+                } else {
+                    lblErrorEstat.setText(""); // Limpia el error si es válido
+                }
+            }
+        });
+    }
+    
+    private void BtncontinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtncontinuarActionPerformed
+        boolean datosValidos = true;
         String pac_nss = this.txtNSS.getText();
         String pac_nombre = this.txtNombre_Pact.getText().toUpperCase() + " " +
                             this.txtNomPaterno_Pac.getText().toUpperCase()+ " " + 
                             this.txtNomMaterno_Pac.getText().toUpperCase();
         String pac_estatura = this.txtEstatura.getText();
         String pac_peso = this.txtPeso.getText();
-        String ingresoSeleccionado = this.cbIngreso.getSelectedItem().toString();
+        String ingresoSeleccionado = this.cbIngreso.getSelectedItem().toString();       
+        
+        if (!validarCamposVacios()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }              
 
         // Validaciones
         if (!validarTexto(txtNombre_Pact.getText()) || !validarTexto(txtNomPaterno_Pac.getText()) || !validarTexto(txtNomMaterno_Pac.getText())) {
-            mostrarError(lblErrorNombre, "Nombre inválido, solo letras.");
-            return;
+            mostrarError(lblErrorNombre, "Nombre inválido");
+            datosValidos = false;
         }
-        if (!validarEntero(txtNSS.getText())) {
-            mostrarError(lblErrorNss, "NSS inválido, solo números.");
-            return;
+        
+        if (!txtNSS.getText().matches("\\d+")) {
+            mostrarError(lblErrorNss, "NSS inválido");
+            datosValidos = false;
         }
-        if (!validarFlotante(txtEstatura.getText())) {
+        
+        if (!txtEstatura.getText().matches("\\d*\\.?\\d+")) {
             mostrarError(lblErrorEstat, "Estatura inválida");
-            return;
+            datosValidos = false;
         }
-        if (!validarFlotante(txtPeso.getText())) {
+        
+        if (!validarDouble(txtPeso.getText())) {
             mostrarError(lblErrorPeso, "Peso inválido");
-            return;
+            datosValidos = false;
         }
         
-        lblErrorNombre.setVisible(false);
-        lblErrorNss.setVisible(false);
-        lblErrorEstat.setVisible(false);
-        lblErrorPeso.setVisible(false);
-        
-        JFConfirmaPaciente ventanaConfirmacion = new JFConfirmaPaciente(Paciente, pac_nombre, pac_nss, pac_estatura, pac_peso, ingresoSeleccionado);
-        ventanaConfirmacion.setVisible(true);
+        if(datosValidos){
+            JFConfirmaPaciente ventanaConfirmacion = new JFConfirmaPaciente(Paciente, pac_nombre, pac_nss, pac_estatura, pac_peso, ingresoSeleccionado);
+            ventanaConfirmacion.setVisible(true);
+        }        
     }//GEN-LAST:event_BtncontinuarActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
@@ -358,10 +430,10 @@ public class JFPaciente extends javax.swing.JFrame {
     }
     
     public boolean validarTexto(String texto) {
-        return texto.matches("[a-zA-Z\\s]+");
+        return texto.matches("[a-zA-ZñÑ\\s]+");
     }
     
-    public boolean validarFlotante(String texto) {
+    public boolean validarDouble(String texto) {
         try {
             Double.parseDouble(texto);
             return true;
@@ -369,22 +441,13 @@ public class JFPaciente extends javax.swing.JFrame {
             return false;
             }   
     }
-    
-    public boolean validarEntero(String texto) {
-        try {
-            Integer.parseInt(texto);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-            }
-    }
 
     public void mostrarError(JLabel label, String mensaje) {
         label.setText(mensaje);
         label.setVisible(true);
     }
     
-   public boolean validarCamposVacios() {       
+    public boolean validarCamposVacios() {       
        if (txtNombre_Pact.getText().trim().isEmpty() || 
            txtNomPaterno_Pac.getText().trim().isEmpty() ||
            txtNomMaterno_Pac.getText().trim().isEmpty() ||
@@ -394,7 +457,7 @@ public class JFPaciente extends javax.swing.JFrame {
            return false;
        }
        return true;
-}
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

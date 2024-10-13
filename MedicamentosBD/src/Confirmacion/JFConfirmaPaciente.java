@@ -2,6 +2,7 @@
 package Confirmacion;
 
 import Controlador.Modelo_Paciente;
+import javax.swing.JOptionPane;
 
 
 public class JFConfirmaPaciente extends javax.swing.JFrame {
@@ -15,15 +16,17 @@ public class JFConfirmaPaciente extends javax.swing.JFrame {
     
     public JFConfirmaPaciente(Modelo_Paciente Paciente, String nombre, String nss, String estatura, String peso, String Ingreso) {
         initComponents();
+        this.Paciente = Paciente;
         this.Nombre = nombre;
         this.Nss = nss;
         this.Estatura = estatura;
         this.Peso = peso;
+        this.Ingreso = Ingreso;
         
         this.NombreConfirma.setText(nombre);
         this.NSSConfirma.setText(nss);
-        this.EstaturaConfirma.setText(estatura + " mts");
-        this.PesoConfirma.setText(peso +" kg");
+        this.EstaturaConfirma.setText(estatura);
+        this.PesoConfirma.setText(peso);
         this.IngresoConfirma.setText(Ingreso);
    }
 
@@ -46,6 +49,8 @@ public class JFConfirmaPaciente extends javax.swing.JFrame {
         RegresarBtn = new javax.swing.JButton();
         lblIngreso = new javax.swing.JLabel();
         IngresoConfirma = new javax.swing.JLabel();
+        lblPeso1 = new javax.swing.JLabel();
+        lblmts = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +103,12 @@ public class JFConfirmaPaciente extends javax.swing.JFrame {
         IngresoConfirma.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         IngresoConfirma.setText("labelIng");
 
+        lblPeso1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPeso1.setText("kg");
+
+        lblmts.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblmts.setText("mts");
+
         javax.swing.GroupLayout PanelContenedorLayout = new javax.swing.GroupLayout(PanelContenedor);
         PanelContenedor.setLayout(PanelContenedorLayout);
         PanelContenedorLayout.setHorizontalGroup(
@@ -105,13 +116,15 @@ public class JFConfirmaPaciente extends javax.swing.JFrame {
             .addGroup(PanelContenedorLayout.createSequentialGroup()
                 .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelContenedorLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 255, Short.MAX_VALUE)
                         .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(PanelContenedorLayout.createSequentialGroup()
                                 .addComponent(lblEstatura)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(EstaturaConfirma)
                                 .addGap(18, 18, 18)
-                                .addComponent(EstaturaConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23))
+                                .addComponent(lblmts)
+                                .addGap(33, 33, 33))
                             .addComponent(RegresarBtn))
                         .addGap(18, 18, 18)
                         .addComponent(ConfirmaBtn))
@@ -130,7 +143,9 @@ public class JFConfirmaPaciente extends javax.swing.JFrame {
                                     .addGroup(PanelContenedorLayout.createSequentialGroup()
                                         .addComponent(lblPeso)
                                         .addGap(18, 18, 18)
-                                        .addComponent(PesoConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(PesoConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblPeso1))
                                     .addGroup(PanelContenedorLayout.createSequentialGroup()
                                         .addComponent(lblIngreso)
                                         .addGap(29, 29, 29)
@@ -158,9 +173,13 @@ public class JFConfirmaPaciente extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPeso)
-                    .addComponent(EstaturaConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PesoConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblEstatura))
+                    .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(EstaturaConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblmts)
+                        .addComponent(lblEstatura))
+                    .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(PesoConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPeso1)))
                 .addGap(27, 27, 27)
                 .addGroup(PanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblIngreso)
@@ -190,19 +209,37 @@ public class JFConfirmaPaciente extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConfirmaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmaBtnActionPerformed
         // TODO add your handling code here:
-        Paciente.InitializeInstance(Integer.parseInt(Nss), Nombre, Integer.parseInt(Estatura), Integer.parseInt(Peso));
-        Paciente.RelationshipPaciente_Ingreso(Nombre, Ingreso);
+        int Opcion=JOptionPane.showConfirmDialog(null,"¿Los datos estan correctos?","Confirmar", JOptionPane.YES_NO_OPTION);       
+        if(Opcion==JOptionPane.YES_OPTION){   
+            ingresaDatosConfirmados();
+            JFConfirmaPaciente.this.dispose();                    
+        }
+                
     }//GEN-LAST:event_ConfirmaBtnActionPerformed
 
     private void RegresarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarBtnActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        int Opcion=JOptionPane.showConfirmDialog(null,"¿Quiere Cancelar los Cambios?","Cancelar Insert", JOptionPane.YES_NO_OPTION);
+            if(Opcion==JOptionPane.YES_OPTION){
+                this.dispose();                    
+            }
     }//GEN-LAST:event_RegresarBtnActionPerformed
 
+    private void ingresaDatosConfirmados(){
+        try {
+            Paciente.InitializeInstance(Integer.parseInt(Nss), Nombre, Float.parseFloat(Estatura), Float.parseFloat(Peso));
+            Paciente.InsertToBD(Nombre);
+            Paciente.RelationshipPaciente_Ingreso(Nombre, Ingreso);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al generar: "+e.toString());
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -252,5 +289,7 @@ public class JFConfirmaPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel lblIngreso;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPeso;
+    private javax.swing.JLabel lblPeso1;
+    private javax.swing.JLabel lblmts;
     // End of variables declaration//GEN-END:variables
 }
