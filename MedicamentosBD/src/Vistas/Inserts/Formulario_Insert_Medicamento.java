@@ -11,6 +11,7 @@ public class Formulario_Insert_Medicamento extends javax.swing.JFrame {
 
     Modelo_Medicamento Medicamento; 
     Modelo_Composicion Composicion; 
+    boolean actualizacion=false; 
     public Formulario_Insert_Medicamento(Modelo_Medicamento Medicamento, Modelo_Composicion Composicion) {
         initComponents();
         this.Medicamento=Medicamento;
@@ -32,6 +33,7 @@ public class Formulario_Insert_Medicamento extends javax.swing.JFrame {
         this.Med_Presentacion.setText(Atributos.get(3));
         this.med_desc.setText(Atributos.get(4));
         this.Med_Codigo.setEditable(false);
+        this.actualizacion=true; 
     }
 
     @SuppressWarnings("unchecked")
@@ -190,18 +192,25 @@ public class Formulario_Insert_Medicamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
-       if (!validarCamposVacios()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        String Codigo=this.Med_Codigo.getText();
-        String Nombre=this.Med_Nombre.getText();
-        String Presentacion=this.Med_Presentacion.getText();
-        String Cantidad=this.Med_Cantidad.getText();
-        String Composicion=this.Cb_Composicion.getSelectedItem().toString();
-        String Descripcion=this.med_desc.getText();
-        Confirmacion_Medicamento n_c=new Confirmacion_Medicamento(Medicamento,Codigo,Nombre,Cantidad,Presentacion, Composicion, Descripcion); 
-        n_c.setVisible(true);
+       String Codigo=this.Med_Codigo.getText();
+       String Nombre=this.Med_Nombre.getText();
+       String Presentacion=this.Med_Presentacion.getText();
+       String Cantidad=this.Med_Cantidad.getText();
+       String Composicion=this.Cb_Composicion.getSelectedItem().toString();
+       String Descripcion=this.med_desc.getText();
+        if(actualizacion){
+           if(JOptionPane.showConfirmDialog(this, "¿Desea Actualizar los Datos?")==JOptionPane.YES_OPTION)
+               Medicamento.InitializeAndUpdateInstance(Codigo, Nombre, Integer.parseInt(Cantidad), Presentacion, Descripcion, Composicion);
+               
+       }else{
+           if (!validarCamposVacios()) {
+                JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            Confirmacion_Medicamento n_c=new Confirmacion_Medicamento(Medicamento,Codigo,Nombre,Cantidad,Presentacion, Composicion, Descripcion); 
+            n_c.setVisible(true);
+       }
+        
     }//GEN-LAST:event_Button_EnviarActionPerformed
 
     private void Cb_ComposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cb_ComposicionActionPerformed

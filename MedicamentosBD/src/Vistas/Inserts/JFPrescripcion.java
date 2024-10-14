@@ -21,6 +21,8 @@ public class JFPrescripcion extends javax.swing.JFrame {
     Modelo_Personal Personal; 
     Modelo_Lista Lista;
     JCalendar Calendario; 
+    boolean actualizar=false;
+    
     public JFPrescripcion(Modelo_Prescripcion Prescripcion,Modelo_Paciente Paciente, Modelo_Personal Personal, Modelo_Lista Lista){
         initComponents();
         this.Prescripcion=Prescripcion;
@@ -51,6 +53,7 @@ public class JFPrescripcion extends javax.swing.JFrame {
         this.pre_intrucciones.setText(Atributos.get(3));
         this.cb_paciente.setSelectedItem(this.getElementInCombo(Atributos.get(4), cb_paciente));
         this.cb_personal.setSelectedItem(this.getElementInCombo(Atributos.get(5), cb_personal));
+        this.actualizar=true;
     }
     private Object getElementInCombo(String ID, JComboBox Combo){
          for(int i=0; i<Combo.getItemCount(); i++){
@@ -254,20 +257,31 @@ public class JFPrescripcion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
+        if(actualizar){
+            if(JOptionPane.showConfirmDialog(this, "¿Quiere Actualizar los Datos?")==JOptionPane.YES_OPTION){
+                SimpleDateFormat Formato=new SimpleDateFormat("dd-MM-yy hh:mm:ss"); 
+                String Fecha=new String(); 
+                try{Fecha=Formato.format(this.Calendario.getDate());}catch(Exception e){}
+                Prescripcion.InitializeAndUpdateInstance(this.pre_codigo.getText(), Fecha, this.pre_cantidad.getText(), 
+                        this.pre_intrucciones.getText(), this.cb_paciente.getSelectedItem().toString(), 
+                        this.cb_personal.getSelectedItem().toString(),this.cb_lista.getSelectedItem().toString());
+            }
+        }else{
+            String Codigo=this.pre_codigo.getText();
+            String Fecha=new String(); 
+            try{
+                SimpleDateFormat Formato=new SimpleDateFormat("dd-MM-yy"); 
+                Fecha=Formato.format(Calendario.getDate()+" 00:00:00");
+            }catch(Exception  e){}
+            String Paciente=this.cb_paciente.getSelectedItem().toString();
+            String Personal=this.cb_personal.getSelectedItem().toString();
+            String Lista=this.cb_lista.getSelectedItem().toString();
+            String Instrucciones=this.pre_intrucciones.getText();
+            String Cantidad=this.pre_cantidad.getText();
+            JFConfirmaPrescripcion n_c=new JFConfirmaPrescripcion(Prescripcion,Codigo, Fecha, Paciente, Personal, Lista ,Instrucciones, Cantidad);
+            n_c.setVisible(true);
+        }
         
-        String Codigo=this.pre_codigo.getText();
-        String Fecha=new String(); 
-        try{
-            SimpleDateFormat Formato=new SimpleDateFormat("dd-MM-yy"); 
-            Fecha=Formato.format(Calendario.getDate()+" 00:00:00");
-        }catch(Exception  e){}
-        String Paciente=this.cb_paciente.getSelectedItem().toString();
-        String Personal=this.cb_personal.getSelectedItem().toString();
-        String Lista=this.cb_lista.getSelectedItem().toString();
-        String Instrucciones=this.pre_intrucciones.getText();
-        String Cantidad=this.pre_cantidad.getText();
-        JFConfirmaPrescripcion n_c=new JFConfirmaPrescripcion(Prescripcion,Codigo, Fecha, Paciente, Personal, Lista ,Instrucciones, Cantidad);
-        n_c.setVisible(true);
     }//GEN-LAST:event_Button_EnviarActionPerformed
 
     private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed

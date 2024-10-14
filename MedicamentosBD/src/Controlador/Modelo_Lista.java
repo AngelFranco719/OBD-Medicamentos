@@ -41,8 +41,27 @@ public class Modelo_Lista extends Controlador<Lista>{
             System.out.println("Error al Ingresar al Modelo");
         }
     }
+    public void InitializeAndUpdateInstance(String codigo, String intervalo, String dosis,
+            int dias, String fecha_hora_inicio, String pres_codigo, String med_codigo, String adm_codigo){
+        try{
+            Lista lis=new Lista(codigo, intervalo, dosis, dias, fecha_hora_inicio); 
+            this.RelationshipLista_Administracion(lis, adm_codigo);
+            this.RelationshipLista_Medicamento(lis, med_codigo);
+            this.RelationshipLista_Prescripcion(lis, pres_codigo);
+            this.UpdateInstance(lis);
+            this.Lista_Listas.clear();
+            this.selectInstancesFromBD();
+        }catch(Exception e){
+            System.out.println("Error al Ingresar al Modelo");
+        }
+    }
     public void RelationshipLista_Prescripcion(String lis_codigo, String pres_codigo){
         Lista l=(Lista)this.getElementByID(lis_codigo);
+        Prescripcion p=(Prescripcion)Prescripcion.getElementByID(pres_codigo);
+        l.formLis_pres(p);
+        p.formPres_lis(l);
+    }
+    public void RelationshipLista_Prescripcion(Lista l, String pres_codigo){
         Prescripcion p=(Prescripcion)Prescripcion.getElementByID(pres_codigo);
         l.formLis_pres(p);
         p.formPres_lis(l);
@@ -53,8 +72,18 @@ public class Modelo_Lista extends Controlador<Lista>{
         l.formLis_med(m);
         m.formMed_list(l);
     }
+    public void RelationshipLista_Medicamento(Lista l, String med_codigo){
+        Medicamento m=(Medicamento)(Medicamento.getElementByID(med_codigo));
+        l.formLis_med(m);
+        m.formMed_list(l);
+    }
     public void RelationshipLista_Administracion(String lis_codigo, String adm_codigo){
         Lista l=(Lista)this.getElementByID(lis_codigo);
+        Administracion a=(Administracion)(Administracion.getElementByID(adm_codigo));
+        l.formLis_adm(a);
+        a.formAdm_lis(l);
+    }
+    public void RelationshipLista_Administracion(Lista l, String adm_codigo){
         Administracion a=(Administracion)(Administracion.getElementByID(adm_codigo));
         l.formLis_adm(a);
         a.formAdm_lis(l);

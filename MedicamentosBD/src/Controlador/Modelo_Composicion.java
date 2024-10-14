@@ -37,6 +37,18 @@ public class Modelo_Composicion extends Controlador<Composicion>{
             System.out.println("Error al Ingresar al Modelo");
         }   
     }
+    public void InitializeAndUpdateInstance(String comp_codigo,int comp_cantidad, String med_codigo, String act_codigo){
+        try{
+            Composicion comp=new Composicion(comp_codigo, comp_cantidad); 
+            this.RelationshipComposicion_Medicamento(comp_codigo, med_codigo);
+            this.RelationshipComposicion_Activo(comp_codigo, act_codigo);
+            this.UpdateInstance(comp);
+            this.Lista_Composicion.clear();
+            this.selectInstancesFromBD();
+        }catch(Exception e){
+            System.out.println("Error al Ingresar al Modelo");
+        }   
+    }
    public void RelationshipComposicion_Medicamento(String comp_codigo, String med_codigo){
         Composicion p=(Composicion)this.getElementByID(comp_codigo);
         Medicamento m=(Medicamento)Medicamento.getElementByID(med_codigo);

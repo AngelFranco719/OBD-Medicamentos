@@ -12,6 +12,7 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
     Modelo_Composicion Composicion;
     Modelo_Medicamento Medicamento;
     Modelo_PrincipioActivo Activo;
+    boolean actualizacion=false; 
     public Formulario_Insert_Composicion(Modelo_Composicion Composicion,Modelo_Medicamento Medicamento, Modelo_PrincipioActivo Activo) {
         initComponents();
         this.Composicion=Composicion;
@@ -32,6 +33,7 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
         this.Com_Codigo.setText(Atributos.get(0));
         this.Com_Cantidad.setText(Atributos.get(1));
         this.Com_Codigo.setEditable(false);
+        this.actualizacion=true; 
     }
 
     /**
@@ -162,16 +164,24 @@ public class Formulario_Insert_Composicion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
-        if (!validarCamposVacios()) {
+        if(actualizacion){
+            if(JOptionPane.showConfirmDialog(this,"¿Quiere Actualizar los Datos?")==JOptionPane.YES_OPTION){
+                Composicion.InitializeAndUpdateInstance(this.Com_Codigo.getText(), Integer.parseInt(this.Com_Cantidad.getText()), 
+                        this.Com_Medicamento.getSelectedItem().toString(),this.Com_Activos.getSelectedItem().toString());
+            }
+        }else{
+            if (!validarCamposVacios()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
+            }
+            String Codigo =this.Com_Codigo.getText();
+            String Cantidad = this.Com_Cantidad.getText();
+            String Medicamento = this.Com_Medicamento.getSelectedItem().toString();
+            String Activo = this.Com_Activos.getSelectedItem().toString();
+            Confirmacion_Composicion confirmacion=new Confirmacion_Composicion(Composicion,Codigo,Cantidad,Activo,Medicamento);
+            confirmacion.setVisible(true);
         }
-        String Codigo =this.Com_Codigo.getText();
-        String Cantidad = this.Com_Cantidad.getText();
-        String Medicamento = this.Com_Medicamento.getSelectedItem().toString();
-        String Activo = this.Com_Activos.getSelectedItem().toString();
-        Confirmacion_Composicion confirmacion=new Confirmacion_Composicion(Composicion,Codigo,Cantidad,Activo,Medicamento);
-        confirmacion.setVisible(true);
+        
         
     }//GEN-LAST:event_Button_EnviarActionPerformed
 

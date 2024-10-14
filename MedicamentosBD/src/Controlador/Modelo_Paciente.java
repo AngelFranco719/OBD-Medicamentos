@@ -42,6 +42,20 @@ public class Modelo_Paciente extends Controlador<Paciente>{
             System.out.println("Error al Ingresar al Modelo");
         }
     }
+    
+    public void InitializeAndUpdateInstance(int p_nss, String p_nomb, float p_estat, float p_peso, 
+            String ing_codigo){
+        try{
+            Paciente pac=new Paciente(p_nss, p_nomb, p_estat, p_peso);
+            this.RelationshipPaciente_Ingreso(pac, ing_codigo);
+            this.UpdateInstance(pac);
+            this.Lista_Paciente.clear();
+            this.selectInstancesFromBD();
+        }catch(Exception e){
+            System.out.println("Error al Ingresar al Modelo");
+        }
+    }
+    
     public void RelationshipPaciente_Prescripcion(String pac_nss, String pres_codigo){
         Paciente p=(Paciente)this.getElementByID(pac_nss);
         Prescripcion pr=(Prescripcion)Prescripcion.getElementByID(pres_codigo);
@@ -50,6 +64,11 @@ public class Modelo_Paciente extends Controlador<Paciente>{
     }
     public void RelationshipPaciente_Ingreso(String pac_nombre, String ing_codigo){
         Paciente p=(Paciente)this.getElementByID(pac_nombre);
+        Ingreso i=(Ingreso)(Ingreso.getElementByID(ing_codigo));
+        p.formPac_ing(i);
+        i.formIng_pac(p);
+    }
+    public void RelationshipPaciente_Ingreso(Paciente p, String ing_codigo){
         Ingreso i=(Ingreso)(Ingreso.getElementByID(ing_codigo));
         p.formPac_ing(i);
         i.formIng_pac(p);

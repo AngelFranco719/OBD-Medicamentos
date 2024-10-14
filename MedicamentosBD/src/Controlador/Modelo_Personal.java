@@ -45,6 +45,19 @@ public class Modelo_Personal extends Controlador<Personal>{
         }
     }
     
+    public void InitializeAndUpdateInstance(String per_nombre, String per_rol, String per_cedula){
+        try{
+            Roles setRol=Roles.valueOf(per_rol);
+            Personal per=new Personal(per_nombre, setRol, per_cedula); 
+            this.UpdateInstance(per);
+            this.Lista_Personal.clear();
+            this.selectInstancesFromBD();
+            
+        }catch(Exception e){
+            System.out.println("Error al Ingresar al Modelo"+e.toString());
+        }
+    }
+    
     public void RelationshipPersonal_Administracion(String per_nombre, String adm_codigo){
         Personal p=(Personal)this.getElementByID(per_nombre);
         Administracion a=(Administracion)Administracion.getElementByID(adm_codigo);
@@ -52,8 +65,19 @@ public class Modelo_Personal extends Controlador<Personal>{
         a.formAdm_per(p);
     }
     
+    public void RelationshipPersonal_Administracion(Personal p, String adm_codigo){
+        Administracion a=(Administracion)Administracion.getElementByID(adm_codigo);
+        p.formPer_adm(a);
+        a.formAdm_per(p);
+    }
+    
     public void RelationShipPersonal_Prescripcion(String per_nombre, String pres_codigo){
         Personal p=(Personal)this.getElementByID(per_nombre);
+        Prescripcion pr=(Prescripcion)Prescripcion.getElementByID(pres_codigo);
+        p.formPer_pres(pr);
+        pr.formPres_per(p);
+    }
+     public void RelationShipPersonal_Prescripcion(Personal p, String pres_codigo){
         Prescripcion pr=(Prescripcion)Prescripcion.getElementByID(pres_codigo);
         p.formPer_pres(pr);
         pr.formPres_per(p);

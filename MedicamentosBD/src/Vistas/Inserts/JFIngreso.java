@@ -20,6 +20,7 @@ public class JFIngreso extends javax.swing.JFrame {
     Modelo_Paciente Paciente;
     JCalendar nuevoCalendario= new JCalendar(); 
     JCalendar nuevoCalendario2=new JCalendar(); 
+    boolean actualizacion=false;
     public JFIngreso(Modelo_Ingreso ingreso, Modelo_Paciente paciente) {
         initComponents();
         this.Ingreso = ingreso;
@@ -52,6 +53,7 @@ public class JFIngreso extends javax.swing.JFrame {
         }catch(Exception e){}
         this.PacienteCb.setSelectedItem(this.getElementInCombo(Atributos.get(6), PacienteCb));
         this.txtcodigo.setEditable(false);
+        this.actualizacion=true; 
         
     }
     private Object getElementInCombo(String ID, JComboBox Combo){
@@ -344,37 +346,48 @@ public class JFIngreso extends javax.swing.JFrame {
     }
     
     private void continuarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarBtnActionPerformed
-        if (!validarCamposVacios()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        } 
-        if (!txtcodigo.getText().matches("[a-zA-Z0-9_-]+")) {
-            lblErrorCodigo.setText("Código inválido");
-            return;
+        if(actualizacion){
+            if(JOptionPane.showConfirmDialog(this, "¿Quiere Actualizar los Datos?")==JOptionPane.YES_OPTION){
+                SimpleDateFormat Formato=new SimpleDateFormat("dd-MM-yy hh:mm:ss");
+                String FechaE=Formato.format(this.nuevoCalendario.getDate());
+                String FechaS=Formato.format(this.nuevoCalendario2.getDate());
+                Ingreso.InitializeAndUpdateInstance(this.txtcodigo.getText(), Integer.parseInt(this.txtid.getText()), this.txtSintomas.getText(), this.txtDiagnostico.getText(), 
+                       FechaE, FechaS, this.PacienteCb.getSelectedItem().toString());
+            }
+        }else{
+            if (!validarCamposVacios()) {
+                JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            } 
+            if (!txtcodigo.getText().matches("[a-zA-Z0-9_-]+")) {
+                lblErrorCodigo.setText("Código inválido");
+                return;
+            }
+            if (!txtid.getText().matches("\\d+")) {
+                lblErrorNum.setText("Id inválido");
+                return;
+            }
+            String codigo = this.txtcodigo.getText();
+            String numero = this.txtid.getText();
+            String sintomas =this.txtSintomas.getText();
+            String diagnostico = this.txtDiagnostico.getText();
+            SimpleDateFormat Formato=new SimpleDateFormat("dd-MM-yy"); 
+            Date FechaE=this.nuevoCalendario.getDate();
+            Date FechaS=this.nuevoCalendario2.getDate();
+            String FechaEF=new String(); 
+            String FechaSF=new String(); 
+            try{
+                FechaEF=Formato.format(FechaE);
+                FechaSF=Formato.format(FechaS);
+            }catch(Exception e){
+                System.out.println(e.toString());
+            }
+            String pacienteSeleccionado = this.PacienteCb.getSelectedItem().toString();        
+
+            JFConfirmaIngreso confirma = new JFConfirmaIngreso(Ingreso, codigo, numero, sintomas, diagnostico, FechaEF, FechaSF, pacienteSeleccionado);
+            confirma.setVisible(true);
         }
-        if (!txtid.getText().matches("\\d+")) {
-            lblErrorNum.setText("Id inválido");
-            return;
-        }
-        String codigo = this.txtcodigo.getText();
-        String numero = this.txtid.getText();
-        String sintomas =this.txtSintomas.getText();
-        String diagnostico = this.txtDiagnostico.getText();
-        SimpleDateFormat Formato=new SimpleDateFormat("dd-MM-yy"); 
-        Date FechaE=this.nuevoCalendario.getDate();
-        Date FechaS=this.nuevoCalendario2.getDate();
-        String FechaEF=new String(); 
-        String FechaSF=new String(); 
-        try{
-            FechaEF=Formato.format(FechaE);
-            FechaSF=Formato.format(FechaS);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        }
-        String pacienteSeleccionado = this.PacienteCb.getSelectedItem().toString();        
-       
-        JFConfirmaIngreso confirma = new JFConfirmaIngreso(Ingreso, codigo, numero, sintomas, diagnostico, FechaEF, FechaSF, pacienteSeleccionado);
-        confirma.setVisible(true);
+        
     }//GEN-LAST:event_continuarBtnActionPerformed
 
     private void CancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBtnActionPerformed

@@ -10,6 +10,7 @@ public class JFPersonal extends javax.swing.JFrame {
 
     Modelo_Personal Personal;
     Modelo_Administracion Administracion;
+    boolean actualizacion=false; 
     public JFPersonal(Modelo_Personal Personal, Modelo_Administracion Administracion){
         initComponents();
         this.Personal=Personal;
@@ -24,6 +25,7 @@ public class JFPersonal extends javax.swing.JFrame {
         this.per_rol.setSelectedIndex(this.getRolCombo(Atributos.get(1))); 
         this.per_cedula.setText(Atributos.get(2));
         this.per_nombre.setEditable(false);
+        this.actualizacion=true; 
     }
 
     private int getRolCombo(String rol){
@@ -153,11 +155,18 @@ public class JFPersonal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
-        String Nombre=this.per_nombre.getText();
-        String Rol=this.per_rol.getSelectedItem().toString();
-        String Cedula=this.per_cedula.getText();
-        JFConfirmaPersonal n_c=new JFConfirmaPersonal (Personal, Nombre, Rol, Cedula);
-        n_c.setVisible(true);
+        if(actualizacion){
+            if(JOptionPane.showConfirmDialog(this, "¿Quiere actualizar los Datos?") == JOptionPane.YES_OPTION)
+            Personal.InitializeAndUpdateInstance(this.per_nombre.getText(), this.per_rol.getSelectedItem().toString(), 
+                    per_cedula.getText());
+        }else{
+            String Nombre=this.per_nombre.getText();
+            String Rol=this.per_rol.getSelectedItem().toString();
+            String Cedula=this.per_cedula.getText();
+            JFConfirmaPersonal n_c=new JFConfirmaPersonal (Personal, Nombre, Rol, Cedula);
+            n_c.setVisible(true);
+        }
+            
     }//GEN-LAST:event_Button_EnviarActionPerformed
 
     private void Button_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_CancelarActionPerformed
@@ -166,15 +175,6 @@ public class JFPersonal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Button_CancelarActionPerformed
 
-    
-    
-    private void InicializarAdministracion(){
-        List<String>RAdmnin=Administracion.getListAttribute("adm_codigo");
-        per_admin.removeAllItems();
-        for(String admin : RAdmnin){
-            per_admin.addItem(admin);
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button_Cancelar;

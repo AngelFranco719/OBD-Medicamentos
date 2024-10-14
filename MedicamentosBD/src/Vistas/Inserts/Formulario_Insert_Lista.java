@@ -19,6 +19,7 @@ public class Formulario_Insert_Lista extends javax.swing.JFrame {
     Modelo_Prescripcion Prescripcion;
     Modelo_Administracion Administracion;
     JCalendar Calendario;
+    boolean actualizacion=false; 
     public Formulario_Insert_Lista(Modelo_Lista Lista, Modelo_Medicamento Medicamento, Modelo_Prescripcion Prescripcion,Modelo_Administracion Administracion) {
         initComponents();
         this.Lista=Lista;
@@ -52,6 +53,7 @@ public class Formulario_Insert_Lista extends javax.swing.JFrame {
         this.Lista_Prescripcion.setSelectedItem(this.getElementInCombo(Atributos.get(5), this.Lista_Prescripcion));
         this.Lista_Medicamento.setSelectedItem(this.getElementInCombo(Medicamento.getIDByNombre(Atributos.get(6)), Lista_Medicamento));
         this.Lista_Codigo.setEditable(false);
+        this.actualizacion=true; 
     }
 
     private Object getElementInCombo(String ID, JComboBox Combo){
@@ -314,9 +316,15 @@ public class Formulario_Insert_Lista extends javax.swing.JFrame {
         
         String Hora=this.Lis_Hora.getText();
         fecha_final+=" "+Hora; 
-        JOptionPane.showMessageDialog(this,fecha_final);                             
-        Confirmacion_Lista confirmacion=new Confirmacion_Lista(Lista,Codigo,Intervalo,Dosis,Fecha_Hora,Dias,Medicamento,Prescripcion,Administracion);
-        confirmacion.setVisible(true);
+        if(actualizacion){
+            if(JOptionPane.showConfirmDialog(this, "¿Desea Actualizar los Datos?")== JOptionPane.YES_OPTION)
+            Lista.InitializeAndUpdateInstance(Codigo, Intervalo, Dosis, Integer.parseInt(Dias), fecha_final, 
+                    Prescripcion, Medicamento, Administracion);
+        }else{
+            Confirmacion_Lista confirmacion=new Confirmacion_Lista(Lista,Codigo,Intervalo,Dosis,Fecha_Hora,Dias,Medicamento,Prescripcion,Administracion);
+            confirmacion.setVisible(true);
+        }                            
+        
         
         
     }//GEN-LAST:event_Button_EnviarActionPerformed

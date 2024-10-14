@@ -13,6 +13,7 @@ public class JFPaciente extends javax.swing.JFrame {
 
     Modelo_Paciente Paciente;
     Modelo_Ingreso Ingreso;
+    boolean actualizacion=false; 
     public JFPaciente(Modelo_Paciente Paciente, Modelo_Ingreso Ingreso) {
         initComponents();
         this.Paciente = Paciente;
@@ -32,6 +33,7 @@ public class JFPaciente extends javax.swing.JFrame {
         this.txtEstatura.setText(Atributos.get(2));
         this.txtPeso.setText(Atributos.get(3));
         this.txtNSS.setEditable(false);
+        this.actualizacion=true; 
     }
 
     public void SepararNombres(String NombreCompleto){
@@ -413,10 +415,16 @@ public class JFPaciente extends javax.swing.JFrame {
             datosValidos = false;
         }
         
-        if(datosValidos){
+        if(actualizacion){
+            Paciente.InitializeAndUpdateInstance(Integer.parseInt(pac_nss), pac_nombre, Float.parseFloat(pac_estatura),
+                    Float.parseFloat(pac_peso), ingresoSeleccionado);
+        }else{
+            if(datosValidos){
             JFConfirmaPaciente ventanaConfirmacion = new JFConfirmaPaciente(Paciente, pac_nombre, pac_nss, pac_estatura, pac_peso, ingresoSeleccionado);
             ventanaConfirmacion.setVisible(true);
-        }        
+            }        
+        }
+        
     }//GEN-LAST:event_BtncontinuarActionPerformed
 
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed

@@ -290,13 +290,15 @@ public class Formulario_Insert_Administracion extends javax.swing.JFrame {
 
     private void Button_EnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button_EnviarActionPerformed
         if(actualizacion){
-            Date Fecha=Calendario.getDate(); 
-            String fecha_final=new String();
-            try{
-                SimpleDateFormat Formato=new SimpleDateFormat(); 
-                fecha_final=Formato.format(Fecha)+this.Adm_Hora.getText();
-            }catch(Exception e){}
-            Administracion.ActualizarInstancia(this.Adm_Codigo.getText(), fecha_final, this.Adm_Registro.getText(),this.Adm_Personal.getSelectedItem().toString(), this.Adm_Lista.getSelectedItem().toString());
+            if(JOptionPane.showConfirmDialog(this,"¿Quiere Actualizar los Datos?")==JOptionPane.YES_OPTION){
+                Date Fecha=Calendario.getDate(); 
+                String fecha_final=new String();
+                try{
+                    SimpleDateFormat Formato=new SimpleDateFormat(); 
+                    fecha_final=Formato.format(Fecha)+this.Adm_Hora.getText();
+                }catch(Exception e){}
+                Administracion.ActualizarInstancia(this.Adm_Codigo.getText(), fecha_final, this.Adm_Registro.getText(),this.Adm_Personal.getSelectedItem().toString(), this.Adm_Lista.getSelectedItem().toString());
+            }
         }
         else{
             if (!validarCamposVacios()) {

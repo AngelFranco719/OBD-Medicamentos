@@ -45,8 +45,27 @@ public class Modelo_Prescripcion extends Controlador<Prescripcion>{
             System.out.println("Error al Ingresar al Modelo");
         }
     }
+    public void InitializeAndUpdateInstance(String codigo, String Fecha, String usos, String instrucciones,
+            String pac_nombre, String per_nombre, String lis_codigo){
+        try{
+            Prescripcion pre=new Prescripcion(codigo, Fecha, usos, instrucciones); 
+            this.RelationshipPrescripcion_Paciente(pre, pac_nombre);
+            this.RelationshipPrescripcion_Personal(pre, per_nombre);
+            this.RelationshipPrescripcion_Lista(pre, lis_codigo);
+            this.UpdateInstance(pre);
+            Lista_Prescripcion.clear(); 
+            this.selectInstancesFromBD();
+        }catch(Exception e){
+            System.out.println("Error al Ingresar al Modelo"+e.toString());
+        }
+    }
     public void RelationshipPrescripcion_Paciente(String pres_codigo, String pac_nombre){
         Prescripcion p=(Prescripcion)this.getElementByID(pres_codigo);
+        Paciente pa=(Paciente)(Paciente.getElementByID(pac_nombre));
+        p.formPres_pac(pa);
+        pa.formPac_pre(p);
+    }
+    public void RelationshipPrescripcion_Paciente(Prescripcion p, String pac_nombre){
         Paciente pa=(Paciente)(Paciente.getElementByID(pac_nombre));
         p.formPres_pac(pa);
         pa.formPac_pre(p);
@@ -57,8 +76,18 @@ public class Modelo_Prescripcion extends Controlador<Prescripcion>{
         p.formPres_per(per);
         per.formPer_pres(p);
     }
+    public void RelationshipPrescripcion_Personal(Prescripcion p, String per_nombre){
+        Personal per=(Personal)(Personal.getElementByID(per_nombre));
+        p.formPres_per(per);
+        per.formPer_pres(p);
+    }
     public void RelationshipPrescripcion_Lista(String pres_codigo, String lis_codigo){
         Prescripcion p=(Prescripcion)this.getElementByID(pres_codigo);
+        Lista l=(Lista)(Lista.getElementByID(lis_codigo));
+        p.formPres_lis(l);
+        l.formLis_pres(p);
+    }
+    public void RelationshipPrescripcion_Lista(Prescripcion p, String lis_codigo){
         Lista l=(Lista)(Lista.getElementByID(lis_codigo));
         p.formPres_lis(l);
         l.formLis_pres(p);

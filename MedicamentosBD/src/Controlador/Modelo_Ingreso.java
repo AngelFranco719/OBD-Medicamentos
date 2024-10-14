@@ -5,6 +5,7 @@ import Definiciones.Paciente;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import javax.swing.JOptionPane;
 public class Modelo_Ingreso extends Controlador<Ingreso>{
     ConexionBD Conexion_Actual; 
     List<Ingreso> Lista_Ingreso=new ArrayList(); 
@@ -30,10 +31,30 @@ public class Modelo_Ingreso extends Controlador<Ingreso>{
             System.out.println("Error al ingresar el dato al Modelo.");
         }
     }
+     public void InitializeAndUpdateInstance(String ing_codigo,int i_n, String i_sin, String i_diag, 
+             String i_feEnt, String i_feSal, String pac_nombre){
+        try{
+            Ingreso ing=new Ingreso(ing_codigo,i_n,i_sin,i_diag,i_feEnt,i_feSal); 
+            this.RelationshipIngreso_Paciente(ing, pac_nombre);
+            this.UpdateInstance(ing);
+            this.Lista_Ingreso.clear();
+            this.selectInstancesFromBD();
+        }catch(Exception e){
+            System.out.println("Error al ingresar el dato al Modelo.");
+        }
+    }
     
+     public void RelationshipIngreso_Paciente(Ingreso i, String pac_nombre){
+       Paciente p=(Paciente)Paciente.getElementByID(pac_nombre);
+       JOptionPane.showMessageDialog(null, p.getPac_nombre());
+       i.formIng_pac(p);
+       p.formPac_ing(i);
+    }
+     
     public void RelationshipIngreso_Paciente(String ing_codigo, String pac_nombre){
        Ingreso i= (Ingreso)this.getElementByID(ing_codigo);
        Paciente p=(Paciente)Paciente.getElementByID(pac_nombre);
+       JOptionPane.showMessageDialog(null, p.getPac_nombre());
        i.formIng_pac(p);
        p.formPac_ing(i);
     }
