@@ -37,6 +37,18 @@ public class ConexionBD <T>{
         
     }
     
+    public void DeleteInstance(T Instancia){
+        try{
+            em.getTransaction().begin();
+            em.remove(Instancia);
+            em.getTransaction().commit();
+            JOptionPane.showMessageDialog(null, "Se Borró la Instancia Correctamente");
+        }
+        catch(Exception e){
+            System.out.println("Error al Borrar: "+e.toString()); 
+        }
+    }
+    
     public List<T> SelectAllFrom(String Entidad, Class<T> TipoClase){
         List<T>Resultados=new ArrayList(); 
         String Sentencia="SELECT o FROM "+Entidad+" o";

@@ -55,6 +55,14 @@ public abstract class Controlador<T> {
             }
         }
     }
+    
+    public void DeleteAnInstance(String ID_Instancia){
+        T Instancia=this.getElementByID(ID_Instancia);
+        Conexion_Actual.DeleteInstance(Instancia);
+        this.getLista().clear();
+        this.selectInstancesFromBD();
+    }
+    
     public void AllInstancesToString(){
         for(T instancia : this.getLista()){
             System.out.println(instancia.toString());

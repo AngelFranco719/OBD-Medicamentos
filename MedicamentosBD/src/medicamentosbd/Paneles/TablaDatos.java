@@ -29,6 +29,7 @@ public class TablaDatos <T> extends javax.swing.JPanel {
     Modelo_Prescripcion M_Pres;
     Modelo_PrincipioActivo M_Pri;
     ActualizarDatos Contenedor; 
+    BorrarDatos Contenedor2; 
     String Seleccionado; 
     String ID_Selected; 
     int cantidad_atributos=0; 
@@ -67,6 +68,25 @@ public class TablaDatos <T> extends javax.swing.JPanel {
         this.InicializarCombos();
         this.InicializarEventos();
     }
+      
+      public TablaDatos(Modelo_Administracion M_Adm, Modelo_Composicion M_Comp, Modelo_Ingreso M_Ing, 
+            Modelo_Lista M_Lis,Modelo_Medicamento M_Medicamento,Modelo_Paciente M_Pac,Modelo_Personal M_Per,
+            Modelo_Prescripcion M_Pres,Modelo_PrincipioActivo M_Pri, BorrarDatos Contenedor) {
+        initComponents();
+        this.M_Adm=M_Adm; 
+        this.M_Comp=M_Comp;
+        this.M_Ing=M_Ing; 
+        this.M_Lis=M_Lis;
+        this.M_Medicamento=M_Medicamento;
+        this.M_Pac=M_Pac; 
+        this.M_Per=M_Per;
+        this.M_Pres=M_Pres;
+        this.M_Pri=M_Pri;
+        this.Contenedor2=Contenedor;
+        this.setVisible(true);
+        this.InicializarCombos();
+        this.InicializarEventos();
+    }
 
       public String getSeleccion(){
           return this.Seleccionado;
@@ -80,7 +100,13 @@ public class TablaDatos <T> extends javax.swing.JPanel {
                   if(fila_seleccionada!=-1){
                       this.ID_Selected=T_Instancias.getValueAt(fila_seleccionada, 0).toString();
                       String Entidad=this.Cb_Tablas.getSelectedItem().toString();
-                      this.Contenedor.ObtenerSeleccion(ID_Selected, Entidad);              
+                      if(Contenedor!=null){
+                          this.Contenedor.ObtenerSeleccion(ID_Selected, Entidad); 
+                      }else if(Contenedor2 !=null){
+                          this.Contenedor2.ObtenerSeleccion(ID_Selected,Entidad);
+                      }
+                      
+                      
                   }
               }
           });
